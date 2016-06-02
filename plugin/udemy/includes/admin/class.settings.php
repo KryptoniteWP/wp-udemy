@@ -42,7 +42,11 @@ if (!class_exists('Udemy_Settings')) {
 
         function init_settings()
         {
-            register_setting('udemy', 'udemy');
+            register_setting(
+                'udemy',
+                'udemy',
+                array( &$this, 'validate_input_callback' )
+            );
 
             // SECTION: General
             add_settings_section(
@@ -52,20 +56,11 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy'
             );
 
-            // On/off
+            // API Client
             add_settings_field(
-                'udemy_status',
-                __('Status', 'rollbar'),
-                array(&$this, 'status_render'),
-                'udemy',
-                'udemy_general'
-            );
-
-            // Token
-            add_settings_field(
-                'udemy_access_token',
-                __('Access Token', 'rollbar'),
-                array(&$this, 'access_token_render'),
+                'udemy_api_client',
+                __('API Client', 'udemy'),
+                array(&$this, 'api_client_render'),
                 'udemy',
                 'udemy_general'
             );
@@ -73,7 +68,7 @@ if (!class_exists('Udemy_Settings')) {
             // Config
             add_settings_field(
                 'udemy_environment',
-                __('Environment', 'rollbar'),
+                __('Environment', 'udemy'),
                 array(&$this, 'environment_render'),
                 'udemy',
                 'udemy_general',
@@ -82,7 +77,7 @@ if (!class_exists('Udemy_Settings')) {
 
             add_settings_field(
                 'udemy_logging_level',
-                __('Logging level', 'rollbar'),
+                __('Logging level', 'udemy'),
                 array(&$this, 'logging_level_render'),
                 'udemy',
                 'udemy_general',
@@ -90,32 +85,91 @@ if (!class_exists('Udemy_Settings')) {
             );
         }
 
-        function status_render()
-        {
-            $php_logging_enabled = (!empty($this->options['php_logging_enabled'])) ? 1 : 0;
-            ?>
+        function validate_input_callback( $input ) {
 
-            <input type='checkbox' name='udemy[php_logging_enabled]'
-                   id="udemy_php_logging_enabled" <?php checked($php_logging_enabled, 1); ?> value='1'/>
-            <label for="udemy_php_logging_enabled"><?php _e('PHP error logging', 'rollbar-wp'); ?></label>
-            <?php
+            //udemy_debug($input);
+
+            $validation = ( isset ( $this->options['api_status'] ) ) ? $this->options['api_status'] : false;
+            $error = ( isset ( $this->options['api_error'] ) ) ? $this->options['api_error'] : '';
+
+            if ( ! empty ( $input['api_client_id'] ) && ! empty ( $input['api_client_password'] ) ) {
+
+                $api_client_id = ( isset ( $this->options['api_client_id'] ) ) ? $this->options['api_client_id'] : '';
+                $api_client_id_new = $input['api_client_id'];
+
+                $api_client_password = ( isset ( $this->options['api_client_password'] ) ) ? $this->options['api_client_password'] : '';
+                $api_client_password_new = $input['api_client_password'];
+
+                if ( $api_client_id_new != $api_client_id || $api_client_password_new != $api_client_password ) {
+
+                    $result = udemy_validate_api_credentials( $api_client_id_new, $api_client_password_new );
+
+                    $validation = ( ! empty ( $result['status'] ) ) ? true : false;
+                    $error = ( ! empty ( $result['error'] ) ) ? $result['error'] : '';
+                }
+            }
+
+            $input['api_status'] = $validation;
+            $input['api_error'] = $error;
+
+            /*
+            $validation = edd_get_option( 'edd_envato_customers_api_status', false );
+
+            if ( ! empty ( $input['edd_envato_customers_api_token'] ) ) {
+
+                $api_token_new = $input['edd_envato_customers_api_token'];
+                $api_token_old = edd_get_option( 'edd_envato_customers_api_token', '' );
+
+                if ( $api_token_new != $api_token_old ) {
+                    $validation_result = edd_envato_customers_get_api_token_validation( $api_token_new );
+
+                    if ( true === $validation_result ) {
+                        $validation = true;
+                        $input['edd_envato_customers_api_error'] = '';
+                    } else {
+                        $validation = false;
+                        $input['edd_envato_customers_api_error'] = $validation_result;
+                    }
+                }
+
+            } else {
+                $validation = false;
+            }
+
+            // Update API status
+            $input['edd_envato_customers_api_status'] = $validation;
+            */
+
+            return $input;
         }
 
-        function access_token_render()
-        {
-            $client_side_access_token = (!empty($this->options['client_side_access_token'])) ? esc_attr(trim($this->options['client_side_access_token'])) : null;
-            $server_side_access_token = (!empty($this->options['server_side_access_token'])) ? esc_attr(trim($this->options['server_side_access_token'])) : null;
+        function api_client_render() {
+
+            $api_client_id = ( !empty($this->options['api_client_id'] ) ) ? esc_attr( trim( $this->options['api_client_id'] ) ) : '';
+            $api_client_password = ( !empty($this->options['api_client_password'] ) ) ? esc_attr( trim($this->options['api_client_password'] ) ) : '';
+
+            //udemy_debug(udemy_api_validate_credentials( $api_client_id, $api_client_password ) );
 
             ?>
-            <h4 style="margin: 5px 0;"><?php _e('Client Side Access Token', 'rollbar-wp'); ?> <small>(post_client_item)</small></h4>
-            <input type='text' name='udemy[client_side_access_token]' id="udemy_client_side_access_token"
-                   value='<?php echo esc_attr(trim($client_side_access_token)); ?>' style="width: 300px;">
+            <h4 style="margin: 5px"><?php _e('Status', 'udemy'); ?></h4>
+            <?php if ( ! empty( $api_client_id ) && ! empty( $api_client_password ) ) { ?>
+                <?php $this->api_status_render(); ?>
+            <?php } else { ?>
+                <strong><?php _e('Note:', 'udemy'); ?></strong> <?php _e("API credentials are currently only required when searching courses or displaying categories.", 'udemy'); ?>
+            <?php } ?>
 
-            <h4 style="margin: 15px 0 5px 0;"><?php _e('Server Side Access Token', 'rollbar-wp'); ?> <small>(post_server_item)</small></h4>
-            <input type='text' name='udemy[server_side_access_token]' id="udemy_server_side_access_token"
-                   value='<?php echo esc_attr(trim($server_side_access_token)); ?>' style="width: 300px;">
+            <h4 style="margin-bottom: 5px"><?php _e('Client ID', 'udemy'); ?></h4>
+            <input type='text' name='udemy[api_client_id]' id="udemy_api_client_id"
+                   value='<?php echo esc_attr( trim( $api_client_id ) ); ?>' style="width: 300px;">
+
+            <h4 style="margin: 15px 0 5px 0;"><?php _e('Client Password', 'udemy'); ?></h4>
+            <input type='text' name='udemy[api_client_password]' id="udemy_api_client_password"
+                   value='<?php echo esc_attr( trim( $api_client_password ) ); ?>' style="width: 300px;">
+
             <p>
-                <small><?php _e('You can find your access tokens under your project settings: <strong>Project Access Tokens</strong>.', 'rollbar-wp'); ?></small>
+                <small>
+                    <?php printf( wp_kses( __( 'Before entering your API credentials you have to create a new API Client <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://www.udemy.com/user/edit-api-clients/' ) ); ?>
+                </small>
             </p>
             <?php
         }
@@ -128,7 +182,7 @@ if (!class_exists('Udemy_Settings')) {
             <input type='text' name='udemy[environment]' id="udemy_environment"
                    value='<?php echo esc_attr(trim($environment)); ?>'>
             <p>
-                <small><?php _e('Define the current environment: e.g. "production" or "development".', 'rollbar-wp'); ?></small>
+                <small><?php _e('Define the current environment: e.g. "production" or "development".', 'udemy'); ?></small>
             </p>
             <?php
         }
@@ -141,9 +195,9 @@ if (!class_exists('Udemy_Settings')) {
 
             <select name="udemy[logging_level]" id="udemy_logging_level">
                 <option
-                    value="1" <?php selected($logging_level, 1); ?>><?php _e('Fatal run-time errors (E_ERROR) only', 'rollbar-wp'); ?></option>
+                    value="1" <?php selected($logging_level, 1); ?>><?php _e('Fatal run-time errors (E_ERROR) only', 'udemy'); ?></option>
                 <option
-                    value="2" <?php selected($logging_level, 2); ?>><?php _e('Run-time warnings (E_WARNING) and above', 'rollbar-wp'); ?></option>
+                    value="2" <?php selected($logging_level, 2); ?>><?php _e('Run-time warnings (E_WARNING) and above', 'udemy'); ?></option>
             </select>
 
             <?php
@@ -189,6 +243,23 @@ if (!class_exists('Udemy_Settings')) {
                     </div>
                 </div>
             </div>
+            <?php
+        }
+
+        /*
+         * API Status field
+         */
+        function api_status_render() {
+
+
+            $status = ( ! empty ( $this->options['api_status'] ) ) ? true : false;
+            $error = ( ! empty ( $this->options['api_error'] ) ) ? $this->options['api_error'] : '';
+
+            $message = ( $status ) ? __( 'Connected', 'udemy' ) : __( 'Disconnected', 'udemy' );
+            $color = ( $status ) ? 'darkgreen' : 'darkred';
+
+            ?>
+            <span style="color: <?php echo $color; ?>; font-weight: bold;"><?php echo ( ! empty ( $error ) ) ? $error : $message; ?></span>
             <?php
         }
     }

@@ -10,6 +10,56 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /*
+ * Get options
+ */
+function udemy_get_options() {
+    return get_option( 'udemy', array() );
+}
+
+/*
+ * Validate API credentials
+ */
+function udemy_validate_api_credentials( $client_id, $client_password ) {
+
+    if ( empty( $client_id ) || empty( $client_password ) )
+        return false;
+
+    $url = 'https://www.udemy.com/api-2.0/courses/';
+
+    $response = wp_remote_get( esc_url_raw( $url ), array(
+        'timeout' => 15,
+        'headers' => array(
+            'Authorization' => 'Basic ' . base64_encode( $client_id . ':' . $client_password )
+        ),
+        'sslverify' => false
+    ));
+
+    //udemy_debug($response);
+
+    // Prepare validation
+    $validation = array(
+        'status' => false,
+        'error' => __( 'Undefined error', 'udemy' ),
+    );
+
+    // Handle response
+    if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) ) {
+
+        if ( $response['response']['code'] === 200 ) {
+            $validation['status'] = true;
+            $validation['error'] = '';
+
+        } elseif ( $response['response']['code'] === 403 ) {
+            $validation['status'] = false;
+            $validation['error'] = __( 'Client ID and/or password invalid.', 'udemy' );
+        }
+    }
+
+    // Return validation
+    return $validation;
+}
+
+/*
  * Get course
  */
 function udemy_get_course( $id ) {
@@ -35,6 +85,40 @@ function udemy_get_course( $id ) {
 
     } else {
         return __( 'Course not found.', 'udemy' );
+    }
+}
+
+/*
+ * Get courses
+ */
+function udemy_get_courses( $id ) {
+
+    if ( ! is_numeric( $id ) )
+        return __( 'Course ID must be a number.', 'udemy' );
+
+    $options = udemy_get_options();
+
+    if ( empty( $options['api_client_id'] ) || empty( $options['api_client_password'] ) )
+        return false;
+
+    $url = 'https://www.udemy.com/api-2.0/courses/';
+
+    $response = wp_remote_get( esc_url_raw( $url ), array(
+        'timeout' => 15,
+        'headers' => array(
+            'Authorization' => 'Basic ' . base64_encode( $options['api_client_id'] . ':' . $options['api_client_password'] )
+        ),
+        'sslverify' => false
+    ));
+
+    udemy_debug($response);
+
+    // Response okay
+    if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
+        return json_decode( wp_remote_retrieve_body( $response ), true );
+
+    } else {
+        return __( 'Courses not found.', 'udemy' );
     }
 }
 
@@ -122,3 +206,4 @@ function udemy_get_template_file( $template, $type ) {
 
     return $default_template;
 }
+

@@ -66,23 +66,16 @@ if (!class_exists('Udemy_Settings')) {
             );
 
             // Config
+            /*
             add_settings_field(
-                'udemy_environment',
-                __('Environment', 'udemy'),
-                array(&$this, 'environment_render'),
+                'udemy_default_language',
+                __('Default Language', 'udemy'),
+                array(&$this, 'default_language_render'),
                 'udemy',
                 'udemy_general',
-                array( 'label_for' => 'udemy_environment' )
+                array( 'label_for' => 'udemy_default_language' )
             );
-
-            add_settings_field(
-                'udemy_logging_level',
-                __('Logging level', 'udemy'),
-                array(&$this, 'logging_level_render'),
-                'udemy',
-                'udemy_general',
-                array( 'label_for' => 'udemy_logging_level' )
-            );
+            */
         }
 
         function validate_input_callback( $input ) {
@@ -151,7 +144,7 @@ if (!class_exists('Udemy_Settings')) {
             //udemy_debug(udemy_api_validate_credentials( $api_client_id, $api_client_password ) );
 
             ?>
-            <h4 style="margin: 5px"><?php _e('Status', 'udemy'); ?></h4>
+            <h4 style="margin: 5px 0"><?php _e('Status', 'udemy'); ?></h4>
             <?php if ( ! empty( $api_client_id ) && ! empty( $api_client_password ) ) { ?>
                 <?php $this->api_status_render(); ?>
             <?php } else { ?>
@@ -174,26 +167,13 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
-        function environment_render()
+        function default_language_render()
         {
-            $environment = (!empty($this->options['environment'])) ? esc_attr(trim($this->options['environment'])) : '';
-
-            ?>
-            <input type='text' name='udemy[environment]' id="udemy_environment"
-                   value='<?php echo esc_attr(trim($environment)); ?>'>
-            <p>
-                <small><?php _e('Define the current environment: e.g. "production" or "development".', 'udemy'); ?></small>
-            </p>
-            <?php
-        }
-
-        function logging_level_render()
-        {
-            $logging_level = (!empty($this->options['logging_level'])) ? esc_attr(trim($this->options['logging_level'])) : 1024;
+            $logging_level = ( ! empty( $this->options['default_language'] ) ) ? esc_attr( trim( $this->options['default_language'] ) ) : 'en';
 
             ?>
 
-            <select name="udemy[logging_level]" id="udemy_logging_level">
+            <select name="udemy[default_language]" id="udemy_default_language">
                 <option
                     value="1" <?php selected($logging_level, 1); ?>><?php _e('Fatal run-time errors (E_ERROR) only', 'udemy'); ?></option>
                 <option

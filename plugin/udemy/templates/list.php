@@ -13,11 +13,10 @@ if ( ! isset ( $courses ) )
     return;
 ?>
 
-<?php foreach ($courses as $course) { ?>
+<div class="udemy-list">
+    <?php foreach ($courses as $course) { ?>
 
-    <?php if ( is_string ( $course ) ) { echo $course; } else { ?>
-
-        <div class="udemy-box">
+        <div class="udemy-list__item">
             <?php if ( isset ( $course['title'] ) ) { ?>
                 <h3><?php echo $course['title']; ?></h3>
             <?php } ?>
@@ -28,5 +27,4 @@ if ( ! isset ( $courses ) )
         </div>
 
     <?php } ?>
-
-<?php } ?>
+</div>

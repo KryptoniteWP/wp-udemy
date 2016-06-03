@@ -16,3 +16,10 @@ function udemy_debug( $args ) {
     print_r($args);
     echo '</pre>';
 }
+
+function udemy_cleanup_category_name( $category ) {
+
+    $category = str_replace('And', 'and', ucwords( $category, '-' ) );
+
+    return $category;
+}

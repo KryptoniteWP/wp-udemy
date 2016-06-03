@@ -67,10 +67,9 @@ function udemy_get_course( $id ) {
     if ( ! is_numeric( $id ) )
         return __( 'Course ID must be a number.', 'udemy' );
 
-    $args = udemy_api_get_course_args();
-    $args = implode(',', $args);
+    $data_args = udemy_api_get_course_data_args();
 
-    $url = 'https://www.udemy.com/api-2.0/courses/' . $id . '?fields[course]=' . $args;
+    $url = 'https://www.udemy.com/api-2.0/courses/' . $id . '?fields[course]=' . $data_args;
 
     $response = wp_remote_get( esc_url_raw( $url ), array(
         'timeout' => 15,
@@ -82,7 +81,6 @@ function udemy_get_course( $id ) {
     // Response okay
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
         return json_decode( wp_remote_retrieve_body( $response ), true );
-
     } else {
         return __( 'Course not found.', 'udemy' );
     }
@@ -91,10 +89,17 @@ function udemy_get_course( $id ) {
 /*
  * Get courses
  */
-function udemy_get_courses( $id ) {
+function udemy_get_courses( $args = array() ) {
 
-    if ( ! is_numeric( $id ) )
-        return __( 'Course ID must be a number.', 'udemy' );
+    $defaults = array(
+        'page' => 1,
+        'page_size' => 10,
+    );
+
+    $args = wp_parse_args( $args, $defaults );
+
+    //echo '<h4>Parsed args</h4>';
+    //udemy_debug($args);
 
     $options = udemy_get_options();
 
@@ -102,6 +107,13 @@ function udemy_get_courses( $id ) {
         return false;
 
     $url = 'https://www.udemy.com/api-2.0/courses/';
+    $url = add_query_arg( $args, $url );
+
+    $data_args = udemy_api_get_course_data_args();
+    $url = $url . '&fields[course]=' . $data_args;
+
+    //echo '<h4>URL calling</h4>';
+    //udemy_debug($url);
 
     $response = wp_remote_get( esc_url_raw( $url ), array(
         'timeout' => 15,
@@ -111,22 +123,30 @@ function udemy_get_courses( $id ) {
         'sslverify' => false
     ));
 
-    udemy_debug($response);
+    //udemy_debug($response);
 
     // Response okay
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
-        return json_decode( wp_remote_retrieve_body( $response ), true );
+        $result = json_decode(wp_remote_retrieve_body($response), true);
+
+        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'udemy');
+
+    } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
+        return __( 'Client ID and/or password invalid.', 'udemy' );
 
     } else {
-        return __( 'Courses not found.', 'udemy' );
+        return __( 'Courses could not be fetched. Please try again.', 'udemy' );
     }
 }
 
 /*
  * Get course arguments
  */
-function udemy_api_get_course_args() {
+function udemy_api_get_course_data_args() {
 
+    return '@all';
+
+    /*
     $args = array(
         'title',
         'headline',
@@ -145,7 +165,10 @@ function udemy_api_get_course_args() {
         'status_label'
     );
 
+    $args = implode(',', $args);
+
     return $args;
+    */
 }
 
 /*
@@ -156,33 +179,21 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
     //udemy_debug($courses);
 
     // Defaults
-    $type = 'single';
-    $template = ( isset ( $args['template'] ) ? $args['template'] : $type );
+    $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
+    $template = ( isset ( $args['template'] ) ? str_replace(' ', '', $args['template'] ) : 'single' );
 
     // Get template file
-    $file = udemy_get_template_file( $template, $type );
+    $file = udemy_get_template_file( $template );
 
     // Output
     ob_start();
 
     echo '<div class="udemy-wp">';
 
-    foreach ($courses as $course) {
-
-        // Valid data
-        if ( is_array( $course ) ) {
-
-            // Final render
-            if ( file_exists( $file ) ) {
-                include( $file );
-            } else {
-                _e('Template not found.', 'udemy');
-            }
-
-        // Holding an error/notice message
-        } else {
-            echo '<p>' . $course . '</p>';
-        }
+    if ( file_exists( $file ) ) {
+        include( $file );
+    } else {
+        _e('Template not found.', 'udemy');
     }
 
     echo '</div>';
@@ -195,15 +206,24 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
 /*
  * Get template file
  */
-function udemy_get_template_file( $template, $type ) {
+function udemy_get_template_file( $template ) {
 
-    $default_template = UDEMY_DIR . 'templates/' .$type . '.php';
+    $template_file = UDEMY_DIR . 'templates/' . $template . '.php';
 
     // Check theme folder
     if ( $custom_template_file = locate_template( array( 'udemy/' . $template . '.php' ) ) ) {
         return $custom_template_file;
     }
 
-    return $default_template;
+    if ( file_exists( $template_file ) )
+        return $template_file;
+
+    return UDEMY_DIR . 'templates/single.php';
 }
 
+/*
+ * Main categories
+ */
+function udemy_get_categories() {
+    return array('Academics','Business','Crafts-and-Hobbies','Design','Development','Games','Health-and-Fitness','Humanities','IT-and-Software','Language','Lifestyle','Marketing','Math-and-Science','Music','Office-Productivity','Other','Personal-Development','Photography','Social-Science','Sports','Teacher-Training','Technology','Test','Test-Prep');
+}

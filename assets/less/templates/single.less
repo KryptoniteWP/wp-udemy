@@ -1,0 +1,83 @@
+@import "../common";
+
+//== Course
+.udemy-course {
+    margin: 0 0 20px;
+
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    color: @color-font;
+    font-size: 13px;
+    line-height: 18px;
+
+    &:hover {
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    a {
+        border: none;
+        box-shadow: none;
+        color: @color-font;
+        text-decoration: none;
+
+        &:visited {
+            color: @color-font;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border: none;
+            color: @color-font;
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}
+
+.udemy-course__link {
+    display: block;
+}
+
+.udemy-course__content {
+    display: block;
+
+    padding: 10px;
+}
+
+.udemy-course__img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.udemy-course__title {
+    display: block;
+    margin: 0 0 10px;
+
+    font-weight: bold;
+}
+
+.udemy-course__headline {
+    display: block;
+
+    color: @color-font-lightened;
+}
+
+.udemy-course__price {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.udemy-course__meta-list {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.udemy-course__meta-list-item {
+    display: inline-block;
+
+    color: @color-font-light;
+}

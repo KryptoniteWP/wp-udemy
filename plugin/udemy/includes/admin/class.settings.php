@@ -2,7 +2,7 @@
 /**
  * Settings
  *
- * @package     RollbarWP\Settings
+ * @package     Udemy\Settings
  * @since       1.0.0
  */
 

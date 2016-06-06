@@ -1,0 +1,39 @@
+@import "../common";
+
+//== List
+.udemy-list {
+    margin: 0 0 20px;
+
+    .udemy-course {
+        margin: 0;
+
+        background: none;
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .udemy-course__link {
+        padding: 10px 0;
+    }
+
+    .udemy-course__img {
+        float: left;
+        margin-right: 10px;
+    }
+}
+
+.udemy-list__item {
+    background: #fff;
+    border-bottom: 1px solid @color-border;
+
+    &:hover {
+        background: @color-border;
+    }
+
+    &:first-child {
+        border-top: 1px solid @color-border;
+    }
+}

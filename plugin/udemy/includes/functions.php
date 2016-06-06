@@ -80,7 +80,10 @@ function udemy_get_course( $id ) {
 
     // Response okay
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
-        return json_decode( wp_remote_retrieve_body( $response ), true );
+
+        $result = json_decode(wp_remote_retrieve_body($response), true);
+
+        return new Udemy_Course( $result );
     } else {
         return __( 'Course not found.', 'udemy' );
     }
@@ -129,7 +132,7 @@ function udemy_get_courses( $args = array() ) {
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
         $result = json_decode(wp_remote_retrieve_body($response), true);
 
-        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'udemy');
+        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? udemy_get_course_objects( $result['results'] ) : __('No courses found.', 'udemy');
 
     } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
         return __( 'Client ID and/or password invalid.', 'udemy' );
@@ -137,6 +140,23 @@ function udemy_get_courses( $args = array() ) {
     } else {
         return __( 'Courses could not be fetched. Please try again.', 'udemy' );
     }
+}
+
+/*
+ * Build course objects from result arrays
+ */
+function udemy_get_course_objects( $results = array() ) {
+
+    $objects = array();
+
+    if ( sizeof( $results ) > 0 ) {
+
+        foreach ( $results as $result ) {
+            $objects[] = new Udemy_Course( $result );
+        }
+    }
+
+    return $objects;
 }
 
 /*
@@ -174,13 +194,20 @@ function udemy_api_get_course_data_args() {
 /*
  * Display courses
  */
+$udemy_args = array();
+
 function udemy_display_courses( $courses = array(), $args = array() ) {
 
     //udemy_debug($courses);
 
+    global $udemy_args;
+
+    $udemy_args = $args;
+
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
     $template = ( isset ( $args['template'] ) ? str_replace(' ', '', $args['template'] ) : 'single' );
+    $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
 
     // Get template file
     $file = udemy_get_template_file( $template );

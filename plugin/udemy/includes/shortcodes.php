@@ -22,6 +22,7 @@ function udemy_add_shortcode( $atts ) {
     $courses_list = false;
 
     $output = '';
+    $output_args = array();
     $args = array();
     $courses = array();
 
@@ -35,6 +36,10 @@ function udemy_add_shortcode( $atts ) {
         foreach ( $course_ids as $id ) {
             $courses[] = udemy_get_course( $id );
         }
+
+        // Shortcode atts
+        if ( isset ( $atts['url'] ) )
+            $output_args['url'] = sanitize_text_field( $atts['url'] );
 
     // Lists
     } else {
@@ -71,6 +76,10 @@ function udemy_add_shortcode( $atts ) {
 
             //udemy_debug($courses);
         }
+
+        // Shortcode atts
+        if ( isset ( $atts['grid'] ) )
+            $output_args['grid'] = sanitize_text_field( $atts['grid'] );
     }
 
     if ( is_string( $courses ) )
@@ -78,10 +87,9 @@ function udemy_add_shortcode( $atts ) {
 
     if ( is_array( $courses ) & sizeof( $courses ) > 0 ) {
 
-        $output_args = array();
-
         $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
 
+        // Shortcode atts
         if ( isset ( $atts['template'] ) )
             $output_args['template'] = sanitize_text_field( $atts['template'] );
 

@@ -13,18 +13,14 @@ if ( ! isset ( $courses ) )
     return;
 ?>
 
-<?php foreach ($courses as $course) { ?>
+<?php foreach ( $courses as $course ) { ?>
 
-    <?php if ( is_string ( $course ) ) { echo $course; } else { ?>
+    <?php if ( is_string ( $course ) ) { echo '<p>' . $course . '</p>'; } else { ?>
 
-        <div class="udemy-box">
-            <?php if ( isset ( $course['title'] ) ) { ?>
-                <h3><?php echo $course['title']; ?></h3>
-            <?php } ?>
+        <div class="udemy-course">
+            <h3><?php echo $course->get_title(); ?></h3>
 
-            <?php if ( isset ( $course['headline'] ) ) { ?>
-                <p><?php echo $course['headline']; ?></p>
-            <?php } ?>
+            <p><?php echo $course->get_headline(); ?></p>
         </div>
 
     <?php } ?>

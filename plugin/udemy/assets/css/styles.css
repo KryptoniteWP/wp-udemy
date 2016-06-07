@@ -2,7 +2,7 @@
   margin: 0 0 20px;
   background: #fff;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-  color: #353535;
+  color: #1E2C35;
   font-size: 13px;
   line-height: 18px;
 }
@@ -12,17 +12,17 @@
 .udemy-wp .udemy-course a {
   border: none;
   box-shadow: none;
-  color: #353535;
+  color: #1E2C35;
   text-decoration: none;
 }
 .udemy-wp .udemy-course a:visited {
-  color: #353535;
+  color: #1E2C35;
 }
 .udemy-wp .udemy-course a:hover,
 .udemy-wp .udemy-course a:focus,
 .udemy-wp .udemy-course a:active {
   border: none;
-  color: #353535;
+  color: #1E2C35;
   outline: none;
   text-decoration: none;
 }
@@ -45,20 +45,30 @@
 }
 .udemy-wp .udemy-course__headline {
   display: block;
-  color: #4f4f4f;
+  color: #304756;
 }
-.udemy-wp .udemy-course__price {
-  font-size: 15px;
+.udemy-wp .udemy-course__footer {
+  display: block;
+  margin-top: 10px;
+}
+.udemy-wp .udemy-course__footer .udemy-course__price,
+.udemy-wp .udemy-course__footer .udemy-course__rating,
+.udemy-wp .udemy-course__footer .udemy-course__meta {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+.udemy-wp .udemy-course__footer .udemy-course__rating,
+.udemy-wp .udemy-course__footer .udemy-course__meta {
+  margin-left: 4px;
+}
+.udemy-wp .udemy-course__footer .udemy-course__rating:before,
+.udemy-wp .udemy-course__footer .udemy-course__meta:before {
+  content: '\2022';
+  margin-right: 6px;
   font-weight: bold;
 }
-.udemy-wp .udemy-course__meta-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.udemy-wp .udemy-course__meta-list-item {
-  display: inline-block;
-  color: #ccc;
+.udemy-wp .udemy-course__price {
+  font-weight: bold;
 }
 .udemy-wp .udemy-grid {
   letter-spacing: -0.31em;
@@ -132,11 +142,50 @@
   box-shadow: none;
 }
 .udemy-wp .udemy-list .udemy-course__link {
+  position: relative;
   padding: 10px 0;
 }
+@media (max-width: 480px) {
+  .udemy-wp .udemy-list .udemy-course__link {
+    padding: 10px;
+  }
+}
+.udemy-wp .udemy-list .udemy-course__content {
+  margin-left: 165px;
+  min-height: 84px;
+  padding: 0;
+}
+@media (max-width: 480px) {
+  .udemy-wp .udemy-list .udemy-course__content {
+    margin: 10px 0 0;
+    min-height: 0;
+  }
+}
 .udemy-wp .udemy-list .udemy-course__img {
-  float: left;
-  margin-right: 10px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: block;
+  height: auto;
+  max-width: 150px;
+}
+@media (max-width: 480px) {
+  .udemy-wp .udemy-list .udemy-course__img {
+    position: static;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+.udemy-wp .udemy-list .udemy-course__title {
+  margin-bottom: 5px;
+}
+.udemy-wp .udemy-list .udemy-course__footer {
+  margin-top: 7px;
+}
+@media (max-width: 900px) {
+  .udemy-wp .udemy-list .udemy-course__footer .udemy-course__meta {
+    display: none;
+  }
 }
 .udemy-wp .udemy-list__item {
   background: #fff;
@@ -147,4 +196,38 @@
 }
 .udemy-wp .udemy-list__item:first-child {
   border-top: 1px solid #eee;
+}
+.udemy-wp-star-rating {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+  width: 80px;
+  background-image: url('../img/star.png');
+  background-repeat: repeat-x;
+  background-position: left center;
+  vertical-align: top;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .udemy-wp-star-rating {
+    background-image: url('../img/star@2x.png');
+  }
+}
+.udemy-wp-star-rating > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  height: 16px;
+  width: 80px;
+  background-image: url('../img/star-active.png');
+  background-repeat: repeat-x;
+  background-position: left center;
+  vertical-align: top;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .udemy-wp-star-rating > span {
+    background-image: url('../img/star-active@2x.png');
+  }
 }

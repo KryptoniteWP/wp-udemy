@@ -64,20 +64,35 @@
     color: @color-font-lightened;
 }
 
+.udemy-course__footer {
+    display: block;
+    margin-top: 10px;
+
+    .udemy-course__price,
+    .udemy-course__rating,
+    .udemy-course__meta {
+        display: inline-block;
+        margin-bottom: 3px;
+    }
+
+    .udemy-course__rating,
+    .udemy-course__meta {
+        margin-left: 4px;
+
+        &:before {
+            content: '\2022';
+
+            margin-right: 6px;
+
+            font-weight: bold;
+        }
+    }
+}
+
 .udemy-course__price {
-    font-size: 15px;
     font-weight: bold;
 }
 
-.udemy-course__meta-list {
-    margin: 0;
-    padding: 0;
+.udemy-course__rating {
 
-    list-style: none;
-}
-
-.udemy-course__meta-list-item {
-    display: inline-block;
-
-    color: @color-font-light;
 }

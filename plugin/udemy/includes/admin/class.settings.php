@@ -56,7 +56,6 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy'
             );
 
-            // API Client
             add_settings_field(
                 'udemy_api_client',
                 __('API Client', 'udemy'),
@@ -65,17 +64,22 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy_general'
             );
 
-            // Config
-            /*
-            add_settings_field(
-                'udemy_default_language',
-                __('Default Language', 'udemy'),
-                array(&$this, 'default_language_render'),
-                'udemy',
-                'udemy_general',
-                array( 'label_for' => 'udemy_default_language' )
+            // SECTION: Output
+            add_settings_section(
+                'udemy_output',
+                false,
+                false,
+                'udemy'
             );
-            */
+
+            add_settings_field(
+                'udemy_course_details',
+                __('Course Details', 'udemy'),
+                array(&$this, 'course_details_render'),
+                'udemy',
+                'udemy_output',
+                array('label_for' => 'udemy_course_details')
+            );
         }
 
         function validate_input_callback( $input ) {
@@ -167,19 +171,21 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
-        function default_language_render()
-        {
-            $logging_level = ( ! empty( $this->options['default_language'] ) ) ? esc_attr( trim( $this->options['default_language'] ) ) : 'en';
+        function course_details_render() {
+
+            $course_details_options = array(
+                'course' => __('Course headline', 'aawp'),
+                'author' => __('Author information', 'aawp'),
+            );
+
+            $course_details = ( isset ( $this->options['course_details'] ) ) ? $this->options['course_details'] : 'course';
 
             ?>
-
-            <select name="udemy[default_language]" id="udemy_default_language">
-                <option
-                    value="1" <?php selected($logging_level, 1); ?>><?php _e('Fatal run-time errors (E_ERROR) only', 'udemy'); ?></option>
-                <option
-                    value="2" <?php selected($logging_level, 2); ?>><?php _e('Run-time warnings (E_WARNING) and above', 'udemy'); ?></option>
+            <select id="udemy_course_details" name="udemy[course_details]">
+                <?php foreach ( $course_details_options as $key => $label ) { ?>
+                    <option value="<?php echo $key; ?>" <?php selected( $course_details, $key ); ?>><?php echo $label; ?></option>
+                <?php } ?>
             </select>
-
             <?php
         }
 

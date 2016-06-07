@@ -18,9 +18,9 @@ if ( ! isset ( $courses ) )
     <?php if ( is_string ( $course ) ) { echo '<p>' . $course . '</p>'; } else { ?>
 
         <div class="udemy-course">
-            <h3><?php echo $course->get_title(); ?></h3>
+            <span class="udemy-course__title"><?php echo $course->get_title(); ?></span>
 
-            <p><?php echo $course->get_headline(); ?></p>
+            <span class="udemy-course__details"><?php echo $course->get_details(); ?></span>
         </div>
 
     <?php } ?>

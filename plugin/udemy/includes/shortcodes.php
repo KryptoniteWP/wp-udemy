@@ -90,6 +90,9 @@ function udemy_add_shortcode( $atts ) {
         $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
 
         // Shortcode atts
+        if ( isset ( $atts['style'] ) )
+            $output_args['style'] = sanitize_text_field( $atts['style'] );
+
         if ( isset ( $atts['template'] ) )
             $output_args['template'] = sanitize_text_field( $atts['template'] );
 

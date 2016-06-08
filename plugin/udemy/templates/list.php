@@ -13,9 +13,11 @@ if ( ! isset ( $courses ) )
     return;
 ?>
 
-<div class="udemy-list">
+<div class="udemy-list<?php if ( isset( $style ) ) echo ' udemy-style-' . $style; ?>">
 
     <?php foreach ( $courses as $course ) { ?>
+
+        <?php if ( is_string ( $course ) ) continue; ?>
 
         <div class="udemy-list__item">
 

@@ -73,6 +73,14 @@ if (!class_exists('Udemy_Settings')) {
             );
 
             add_settings_field(
+                'udemy_default_templates',
+                __('Standard Templates', 'udemy'),
+                array(&$this, 'default_templates_render'),
+                'udemy',
+                'udemy_output'
+            );
+
+            add_settings_field(
                 'udemy_course_details',
                 __('Course Details', 'udemy'),
                 array(&$this, 'course_details_render'),
@@ -171,11 +179,45 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
+        function default_templates_render() {
+
+            $templates = array(
+                'single' => __('Single', 'udemy'),
+                'grid' => __('Grid', 'udemy'),
+                'list' => __('List', 'udemy')
+            );
+
+            $template_course = ( isset ( $this->options['template_course'] ) ) ? $this->options['template_course'] : 'single';
+            $template_courses = ( isset ( $this->options['template_courses'] ) ) ? $this->options['template_courses'] : 'list';
+
+            ?>
+            <h4 style="margin: 5px 0;"><?php _e('Single Course', 'udemy'); ?></h4>
+            <p>
+                <select id="udemy_template_course" name="udemy[template_course]">
+                    <?php foreach ( $templates as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $template_course, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
+            </p>
+
+            <br />
+
+            <h4 style="margin: 5px 0;"><?php _e('Multiple Courses', 'udemy'); ?></h4>
+            <p>
+                <select id="udemy_template_courses" name="udemy[template_courses]">
+                    <?php foreach ( $templates as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $template_courses, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
+            </p>
+            <?php
+        }
+
         function course_details_render() {
 
             $course_details_options = array(
-                'course' => __('Course headline', 'aawp'),
-                'author' => __('Author information', 'aawp'),
+                'course' => __('Course headline', 'udemy'),
+                'instructor' => __('Instructor information', 'udemy'),
             );
 
             $course_details = ( isset ( $this->options['course_details'] ) ) ? $this->options['course_details'] : 'course';

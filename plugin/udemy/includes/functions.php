@@ -198,6 +198,8 @@ $udemy_args = array();
 
 function udemy_display_courses( $courses = array(), $args = array() ) {
 
+    $options = udemy_get_options();
+
     //udemy_debug($courses);
 
     global $udemy_args;
@@ -206,8 +208,19 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
 
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
-    $template = ( isset ( $args['template'] ) ? str_replace(' ', '', $args['template'] ) : 'single' );
     $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
+
+    if ( isset ( $args['style'] ) )
+        $style = $args['style'];
+
+    $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'single';
+    $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
+
+    if ( isset ( $args['template'] ) ) {
+        $template = str_replace(' ', '', $args['template'] );
+    } else {
+        $template = ( sizeof( $courses ) > 1 ) ? $template_courses : $template_course;
+    }
 
     // Get template file
     $file = udemy_get_template_file( $template );

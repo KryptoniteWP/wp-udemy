@@ -72,44 +72,46 @@ if (!class_exists('Udemy_Course')) {
             return ( isset ( $this->course['price'] ) ) ? $this->course['price'] : '';
         }
 
+        public function get_instructors() {
+
+            if ( ! isset ( $this->course['visible_instructors'] ) || ! is_array( $this->course['visible_instructors'] ) )
+                return '';
+
+            $instructors = '';
+
+            $authors_count = sizeof( $this->course['visible_instructors'] );
+
+            if ( 1 === $authors_count ) {
+
+                $instructors .= ( ! empty ( $this->course['visible_instructors'][0]['display_name'] ) ) ? $this->course['visible_instructors'][0]['display_name'] : '';
+                $instructors .= ( ! empty ( $this->course['visible_instructors'][0]['job_title'] ) ) ? ', ' . $this->course['visible_instructors'][0]['job_title'] : '';
+
+            } elseif ( 1 < $authors_count ) {
+
+                foreach ( $this->course['visible_instructors'] as $key => $instructor ) {
+
+                    if ( ! empty ( $instructor['display_name'] ) ) {
+
+                        if ( 0 != $key )
+                            $instructors .= ', ';
+
+                        $instructors .= $instructor['display_name'];
+                    }
+                }
+            }
+
+            return $instructors;
+        }
+
         public function get_details() {
 
             $options_details = ( isset ( $this->options['course_details'] ) ) ? $this->options['course_details'] : 'course';
 
-            if ( 'course' === $options_details && ! empty ( $this->course['headline'] ) )
-                return $this->course['headline'];
+            if ( 'course' === $options_details )
+                return $this->get_headline();
 
-            if ( 'author' === $options_details && isset ( $this->course['visible_instructors'] ) && is_array( $this->course['visible_instructors'] ) ) {
-
-                $authors_count = sizeof( $this->course['visible_instructors'] );
-
-                if ( 1 === $authors_count ) {
-
-                    $details = ( ! empty ( $this->course['visible_instructors'][0]['display_name'] ) ) ? $this->course['visible_instructors'][0]['display_name'] : '';
-                    $details .= ( ! empty ( $this->course['visible_instructors'][0]['job_title'] ) ) ? ', ' . $this->course['visible_instructors'][0]['job_title'] : '';
-
-                    if ( ! empty ( $details ) )
-                        return $details;
-
-                } elseif ( 1 < $authors_count ) {
-
-                    $details = '';
-
-                    foreach ( $this->course['visible_instructors'] as $key => $instructor ) {
-
-                        if ( ! empty ( $instructor['display_name'] ) ) {
-
-                            if ( 0 != $key )
-                                $details .= ', ';
-
-                            $details .= $instructor['display_name'];
-                        }
-                    }
-
-                    if ( ! empty ( $details ) )
-                        return $details;
-                }
-            }
+            if ( 'instructor' === $options_details )
+                return $this->get_instructors();
 
             return __('No info available', 'udemy');
         }

@@ -1,0 +1,101 @@
+@import "../common";
+
+//== Course
+.udemy-course {
+    margin: 0 0 20px;
+
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    color: @color-font;
+    font-size: 13px;
+    line-height: 18px;
+
+    &:hover {
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    a {
+        border: none;
+        box-shadow: none;
+        color: @color-font;
+        text-decoration: none;
+
+        &:visited {
+            color: @color-font;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border: none;
+            color: @color-font;
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}
+
+.udemy-course__link {
+    display: block;
+}
+
+.udemy-course__content {
+    display: block;
+
+    padding: @spacing;
+}
+
+.udemy-course__img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.udemy-course__title {
+    display: block;
+    margin: 0 0 @spacing;
+
+    font-weight: bold;
+}
+
+.udemy-course__details {
+    display: block;
+
+    color: @color-font-lightened;
+}
+
+.udemy-course__footer {
+    display: block;
+    margin-top: @spacing;
+
+    .udemy-course__price,
+    .udemy-course__rating,
+    .udemy-course__meta {
+        display: inline-block;
+        margin-bottom: 3px;
+    }
+
+    .udemy-course__rating,
+    .udemy-course__meta {
+        margin-left: 4px;
+
+        &:before {
+            content: '\2022';
+
+            margin-right: 6px;
+
+            font-weight: bold;
+        }
+    }
+}
+
+.udemy-course__price {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 15px;
+    vertical-align: -6%;
+}
+
+.udemy-course__rating {
+
+}

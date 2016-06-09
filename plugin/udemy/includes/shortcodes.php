@@ -34,7 +34,24 @@ function udemy_add_shortcode( $atts ) {
         $course_ids = explode(',', str_replace(' ', '', sanitize_text_field( $atts['id'] ) ) );
 
         foreach ( $course_ids as $id ) {
-            $courses[] = udemy_get_course( $id );
+
+            $course_cache = udemy_get_cache( $id );
+
+            // Cache available
+            if ( $course_cache ) {
+                echo '<p>Cache available for ' . $id . '!</p>';
+                $courses[] = $course_cache;
+
+            // Cache not available, fetch from API
+            } else {
+                echo '<p>Cache NOT available for ' . $id . '!</p>';
+                $course = udemy_get_course( $id );
+                $courses[] = $course;
+
+                if ( is_object( $course ) ) {
+                    udemy_update_cache( $course );
+                }
+            }
         }
 
         // Shortcode atts

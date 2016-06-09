@@ -192,6 +192,80 @@ function udemy_api_get_course_data_args() {
 }
 
 /*
+ * Cache structure
+ */
+function udemy_get_cache_structure() {
+    return array(
+        'items' => array(),
+        'lists' => array()
+    );
+}
+
+/*
+ * Update cache
+ */
+function udemy_update_cache( $items, $list = null ) {
+
+    $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
+
+    echo 'update cache!';
+
+    if ( isset ( $cache['items'] ) ) {
+
+        // Multiple course
+        if ( is_array( $items ) ) {
+
+            foreach ( $items as $item ) {
+
+                if ( is_object( $item ) && method_exists( $item, 'get_id' ) )
+                    $cache['items'][$item->get_id()] = $item;
+            }
+
+        // Single course
+        } else {
+
+            if ( is_object( $items ) && method_exists( $items, 'get_id' ) )
+                $cache['items'][$items->get_id()] = $items;
+        }
+    }
+
+    update_option( 'udemy_cache', $cache );
+}
+
+/*
+ * Get cache
+ */
+function udemy_get_cache( $key, $list = false ) {
+
+    $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
+
+    //udemy_debug( $cache );
+
+    if ( isset ( $cache['items'][$key] ) ) {
+        return $cache['items'][$key];
+    }
+
+    return false;
+}
+
+/*
+ * Build cache key
+ */
+function udemy_get_cache_key( $args ) {
+
+    $key = '';
+
+    return $key;
+}
+
+/*
+ * Delete cache
+ */
+function udemy_delete_cache() {
+    delete_option( 'udemy_cache' );
+}
+
+/*
  * Display courses
  */
 $udemy_args = array();

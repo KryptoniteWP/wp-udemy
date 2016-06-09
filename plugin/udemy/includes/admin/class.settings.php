@@ -64,6 +64,14 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy_general'
             );
 
+            add_settings_field(
+                'udemy_cache_duration',
+                __('Cache duration', 'udemy'),
+                array(&$this, 'cache_duration_render'),
+                'udemy',
+                'udemy_general'
+            );
+
             // SECTION: Output
             add_settings_section(
                 'udemy_output',
@@ -117,6 +125,12 @@ if (!class_exists('Udemy_Settings')) {
             $input['api_status'] = $validation;
             $input['api_error'] = $error;
 
+            // Handle cache deletion
+            if ( isset ( $input['delete_cache'] ) && $input['delete_cache'] === '1' ) {
+                udemy_delete_cache();
+                $input['delete_cache'] = '0';
+            }
+
             return $input;
         }
 
@@ -148,6 +162,31 @@ if (!class_exists('Udemy_Settings')) {
                     <?php printf( wp_kses( __( 'Before entering your API credentials you have to create a new API Client <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://www.udemy.com/user/edit-api-clients/' ) ); ?>
                 </small>
             </p>
+            <?php
+        }
+
+        function cache_duration_render() {
+
+            $cache_durations = array(
+                '6' => __('6 Hours', 'udemy'),
+                '12' => __('12 Hours', 'udemy'),
+                '1' => __('1 Day', 'udemy'),
+            );
+
+            $cache_duration = ( isset ( $this->options['cache_duration'] ) ) ? $this->options['cache_duration'] : 'course';
+
+            ?>
+            <select id="udemy_cache_duration" name="udemy[cache_duration]">
+                <?php foreach ( $cache_durations as $key => $label ) { ?>
+                    <option value="<?php echo $key; ?>" <?php selected( $cache_duration, $key ); ?>><?php echo $label; ?></option>
+                <?php } ?>
+            </select>
+
+            <p>
+                Cache size: <?php $cache = get_option( 'udemy_cache', udemy_get_cache_structure() ); echo sizeof( $cache['items'] ); ?>
+            </p>
+
+            <input type="hidden" id="udemy_delete_cache" name="udemy[delete_cache]" value="0" />
             <?php
         }
 
@@ -229,8 +268,19 @@ if (!class_exists('Udemy_Settings')) {
                                             <?php
                                             settings_fields('udemy');
                                             do_settings_sections('udemy');
-                                            submit_button();
                                             ?>
+
+                                            <script type="application/javascript">
+                                                jQuery( document ).on( 'click', '#udemy-delete-cache-submit', function(event) {
+                                                    jQuery('#udemy_delete_cache').val('1');
+                                                });
+                                            </script>
+
+                                            <p>
+                                                <?php submit_button( 'Save Changes', 'button-primary', 'submit', false ); ?>
+                                                &nbsp;
+                                                <?php submit_button( 'Delete cache', 'delete button-secondary', 'udemy-delete-cache-submit', false ); ?>
+                                            </p>
 
                                         </div>
                                     </div>

@@ -58,7 +58,7 @@ if (!class_exists('Udemy_Settings')) {
 
             add_settings_field(
                 'udemy_api_client',
-                __('API Client', 'udemy'),
+                __('Udemy API', 'udemy'),
                 array(&$this, 'api_client_render'),
                 'udemy',
                 'udemy_general'
@@ -116,34 +116,6 @@ if (!class_exists('Udemy_Settings')) {
 
             $input['api_status'] = $validation;
             $input['api_error'] = $error;
-
-            /*
-            $validation = edd_get_option( 'edd_envato_customers_api_status', false );
-
-            if ( ! empty ( $input['edd_envato_customers_api_token'] ) ) {
-
-                $api_token_new = $input['edd_envato_customers_api_token'];
-                $api_token_old = edd_get_option( 'edd_envato_customers_api_token', '' );
-
-                if ( $api_token_new != $api_token_old ) {
-                    $validation_result = edd_envato_customers_get_api_token_validation( $api_token_new );
-
-                    if ( true === $validation_result ) {
-                        $validation = true;
-                        $input['edd_envato_customers_api_error'] = '';
-                    } else {
-                        $validation = false;
-                        $input['edd_envato_customers_api_error'] = $validation_result;
-                    }
-                }
-
-            } else {
-                $validation = false;
-            }
-
-            // Update API status
-            $input['edd_envato_customers_api_status'] = $validation;
-            */
 
             return $input;
         }
@@ -210,6 +182,11 @@ if (!class_exists('Udemy_Settings')) {
                     <?php } ?>
                 </select>
             </p>
+
+            <br />
+
+            <p><?php printf( esc_html__( 'Available templates (%1$s) can be used to overwrite each shortcode individually: e.g.', 'udemy' ), 'single, grid, list' ); ?> <code>[udemy id="1234,6789" template="list"]</code></p>
+            <p></p>
             <?php
         }
 
@@ -228,6 +205,7 @@ if (!class_exists('Udemy_Settings')) {
                     <option value="<?php echo $key; ?>" <?php selected( $course_details, $key ); ?>><?php echo $label; ?></option>
                 <?php } ?>
             </select>
+            <p><small><?php _e('This will be applied to grid and list templates. The single template already shows both information.', 'udemy'); ?></small></p>
             <?php
         }
 
@@ -278,7 +256,6 @@ if (!class_exists('Udemy_Settings')) {
          * API Status field
          */
         function api_status_render() {
-
 
             $status = ( ! empty ( $this->options['api_status'] ) ) ? true : false;
             $error = ( ! empty ( $this->options['api_error'] ) ) ? $this->options['api_error'] : '';

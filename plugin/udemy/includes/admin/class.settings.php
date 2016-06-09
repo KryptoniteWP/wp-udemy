@@ -48,10 +48,18 @@ if (!class_exists('Udemy_Settings')) {
                 array( &$this, 'validate_input_callback' )
             );
 
+            // SECTION: Quickstart
+            add_settings_section(
+                'udemy_quickstart',
+                __('Quickstart Guide', 'udemy'),
+                array( &$this, 'section_quickstart_render' ),
+                'udemy'
+            );
+
             // SECTION: General
             add_settings_section(
                 'udemy_general',
-                false,
+                __('General settings', 'udemy'),
                 false,
                 'udemy'
             );
@@ -132,6 +140,19 @@ if (!class_exists('Udemy_Settings')) {
             }
 
             return $input;
+        }
+
+        function section_quickstart_render() {
+            ?>
+
+            <div class="postbox">
+                <h3 class='hndle'><?php _e('Quickstart Guide', 'udemy'); ?></h3>
+                <div class="inside">
+                    <p>Here is a quickstart guide! :)</p>
+                </div>
+            </div>
+
+            <?php
         }
 
         function api_client_render() {
@@ -262,28 +283,23 @@ if (!class_exists('Udemy_Settings')) {
                             <div class="meta-box-sortables ui-sortable">
                                 <form action="options.php" method="post">
 
-                                    <div class="postbox">
-                                        <div class="inside">
+                                    <?php
+                                    settings_fields('udemy');
+                                    udemy_do_settings_sections('udemy');
+                                    ?>
 
-                                            <?php
-                                            settings_fields('udemy');
-                                            do_settings_sections('udemy');
-                                            ?>
+                                    <script type="application/javascript">
+                                        jQuery( document ).on( 'click', '#udemy-delete-cache-submit', function(event) {
+                                            jQuery('#udemy_delete_cache').val('1');
+                                        });
+                                    </script>
 
-                                            <script type="application/javascript">
-                                                jQuery( document ).on( 'click', '#udemy-delete-cache-submit', function(event) {
-                                                    jQuery('#udemy_delete_cache').val('1');
-                                                });
-                                            </script>
+                                    <p>
+                                        <?php submit_button( 'Save Changes', 'button-primary', 'submit', false ); ?>
+                                        &nbsp;
+                                        <?php submit_button( 'Delete cache', 'delete button-secondary', 'udemy-delete-cache-submit', false ); ?>
+                                    </p>
 
-                                            <p>
-                                                <?php submit_button( 'Save Changes', 'button-primary', 'submit', false ); ?>
-                                                &nbsp;
-                                                <?php submit_button( 'Delete cache', 'delete button-secondary', 'udemy-delete-cache-submit', false ); ?>
-                                            </p>
-
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
 
@@ -321,5 +337,41 @@ if (!class_exists('Udemy_Settings')) {
 }
 
 new Udemy_Settings();
+
+/*
+ * Custom settings section output
+ *
+ * Replacing: do_settings_sections('udemy');
+ */
+function udemy_do_settings_sections( $page ) {
+
+    global $wp_settings_sections, $wp_settings_fields;
+
+    if (!isset($wp_settings_sections[$page]))
+        return;
+
+    foreach ((array)$wp_settings_sections[$page] as $section) {
+
+        $title = '';
+
+        if ($section['title'])
+            $title = "<h3 class='hndle'>{$section['title']}</h3>\n";
+
+        if ($section['callback'])
+            call_user_func($section['callback'], $section);
+
+        if (!isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section['id']]))
+            continue;
+
+        echo '<div class="postbox">';
+        echo $title;
+        echo '<div class="inside">';
+        echo '<table class="form-table">';
+        do_settings_fields($page, $section['id']);
+        echo '</table>';
+        echo '</div>';
+        echo '</div>';
+    }
+}
 
 ?>

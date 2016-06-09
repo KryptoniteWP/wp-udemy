@@ -50,6 +50,26 @@ function udemy_add_shortcode( $atts ) {
         if ( isset ( $atts['items'] ) && is_numeric( $atts['items'] ) )
             $args['page_size'] = $atts['items'];
 
+        // Language
+        if ( isset ( $atts['lang'] ) )
+            $args['language'] = $atts['lang'];
+
+        // Order
+        if ( isset ( $atts['orderby'] ) ) {
+
+            if ( 'sales' === $atts['orderby'] )
+                $orderby = 'best_seller';
+
+            if ( 'date' === $atts['orderby'] )
+                $orderby = 'enrollment';
+
+            if ( 'trends' === $atts['orderby'] )
+                $orderby = 'trending';
+
+            if ( ! empty ( $orderby ) )
+                $args['ordering'] = $orderby;
+        }
+
         // Categories
         if ( isset ( $atts['category'] ) ) {
 
@@ -67,14 +87,9 @@ function udemy_add_shortcode( $atts ) {
         if ( isset ( $atts['search'] ) )
             $args['search'] = sanitize_text_field( $atts['search'] );
 
-        //echo '<h4>Shortcode args</h4>';
-        //udemy_debug($args);
-
         // Get courses
         if ( sizeof( $args ) > 0 ) {
             $courses = udemy_get_courses($args);
-
-            //udemy_debug($courses);
         }
 
         // Shortcode atts

@@ -17,135 +17,9 @@ function udemy_get_options() {
 }
 
 /*
- * Validate API credentials
- */
-function udemy_validate_api_credentials( $client_id, $client_password ) {
-
-    if ( empty( $client_id ) || empty( $client_password ) )
-        return false;
-
-    $url = 'https://www.udemy.com/api-2.0/courses/';
-
-    $response = wp_remote_get( esc_url_raw( $url ), array(
-        'timeout' => 15,
-        'headers' => array(
-            'Authorization' => 'Basic ' . base64_encode( $client_id . ':' . $client_password )
-        ),
-        'sslverify' => false
-    ));
-
-    //udemy_debug($response);
-
-    // Prepare validation
-    $validation = array(
-        'status' => false,
-        'error' => __( 'Undefined error', 'udemy' ),
-    );
-
-    // Handle response
-    if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) ) {
-
-        if ( $response['response']['code'] === 200 ) {
-            $validation['status'] = true;
-            $validation['error'] = '';
-
-        } elseif ( $response['response']['code'] === 403 ) {
-            $validation['status'] = false;
-            $validation['error'] = __( 'Client ID and/or password invalid.', 'udemy' );
-        }
-    }
-
-    // Return validation
-    return $validation;
-}
-
-/*
- * Get course
- */
-function udemy_get_course( $id ) {
-
-    if ( ! is_numeric( $id ) )
-        return __( 'Course ID must be a number.', 'udemy' );
-
-    $data_args = udemy_api_get_course_data_args();
-
-    $url = 'https://www.udemy.com/api-2.0/courses/' . $id . '?fields[course]=' . $data_args;
-
-    $response = wp_remote_get( esc_url_raw( $url ), array(
-        'timeout' => 15,
-        'sslverify' => false
-    ));
-
-    //udemy_debug($response);
-
-    // Response okay
-    if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
-
-        $result = json_decode(wp_remote_retrieve_body($response), true);
-
-        return new Udemy_Course( $result );
-    } else {
-        return __( 'Course not found.', 'udemy' );
-    }
-}
-
-/*
- * Get courses
- */
-function udemy_get_courses( $args = array() ) {
-
-    $defaults = array(
-        'page' => 1,
-        'page_size' => 10,
-    );
-
-    $args = wp_parse_args( $args, $defaults );
-
-    //echo '<h4>Parsed args</h4>';
-    //udemy_debug($args);
-
-    $options = udemy_get_options();
-
-    if ( empty( $options['api_client_id'] ) || empty( $options['api_client_password'] ) )
-        return false;
-
-    $url = 'https://www.udemy.com/api-2.0/courses/';
-    $url = add_query_arg( $args, $url );
-
-    $data_args = udemy_api_get_course_data_args();
-    $url = $url . '&fields[course]=' . $data_args;
-
-    //echo '<h4>URL calling</h4>';
-    //udemy_debug($url);
-
-    $response = wp_remote_get( esc_url_raw( $url ), array(
-        'timeout' => 15,
-        'headers' => array(
-            'Authorization' => 'Basic ' . base64_encode( $options['api_client_id'] . ':' . $options['api_client_password'] )
-        ),
-        'sslverify' => false
-    ));
-
-    //udemy_debug($response);
-
-    // Response okay
-    if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
-        $result = json_decode(wp_remote_retrieve_body($response), true);
-
-        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? udemy_get_course_objects( $result['results'] ) : __('No courses found.', 'udemy');
-
-    } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
-        return __( 'Client ID and/or password invalid.', 'udemy' );
-
-    } else {
-        return __( 'Courses could not be fetched. Please try again.', 'udemy' );
-    }
-}
-
-/*
  * Build course objects from result arrays
  */
-function udemy_get_course_objects( $results = array() ) {
+function udemy_get_course_objects_from_array( $results = array() ) {
 
     $objects = array();
 
@@ -157,38 +31,6 @@ function udemy_get_course_objects( $results = array() ) {
     }
 
     return $objects;
-}
-
-/*
- * Get course arguments
- */
-function udemy_api_get_course_data_args() {
-
-    return '@all';
-
-    /*
-    $args = array(
-        'title',
-        'headline',
-        'image_480x270',
-        'price',
-        'is_paid',
-        'num_lectures',
-        'locale',
-        'avg_rating',
-        'created',
-        'description',
-        'image_100x100',
-        'num_reviews',
-        'num_subscribers',
-        'url',
-        'status_label'
-    );
-
-    $args = implode(',', $args);
-
-    return $args;
-    */
 }
 
 /*
@@ -204,15 +46,21 @@ function udemy_get_cache_structure() {
 /*
  * Update cache
  */
-function udemy_update_cache( $items, $list = null ) {
+function udemy_update_cache( $items, $key = false ) {
 
     $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
 
-    echo 'update cache!';
+    // List of courses
+    if ( $key ) {
 
-    if ( isset ( $cache['items'] ) ) {
+        $serialized_key = serialize( $key );
 
-        // Multiple course
+        $cache['lists'][$serialized_key] = $items;
+
+    // Single or multiple courses
+    } else {
+
+        // Multiple courses
         if ( is_array( $items ) ) {
 
             foreach ( $items as $item ) {
@@ -221,7 +69,7 @@ function udemy_update_cache( $items, $list = null ) {
                     $cache['items'][$item->get_id()] = $item;
             }
 
-        // Single course
+            // Single course
         } else {
 
             if ( is_object( $items ) && method_exists( $items, 'get_id' ) )
@@ -235,14 +83,27 @@ function udemy_update_cache( $items, $list = null ) {
 /*
  * Get cache
  */
-function udemy_get_cache( $key, $list = false ) {
+function udemy_get_cache( $key ) {
 
     $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
 
     //udemy_debug( $cache );
 
-    if ( isset ( $cache['items'][$key] ) ) {
-        return $cache['items'][$key];
+    // List of items
+    if ( is_array( $key ) ) {
+
+        $serialized_key = serialize( $key );
+
+        if ( isset ( $cache['lists'][$serialized_key] ) ) {
+            return $cache['lists'][$serialized_key];
+        }
+
+    // Single item
+    } else {
+
+        if ( isset ( $cache['items'][$key] ) ) {
+            return $cache['items'][$key];
+        }
     }
 
     return false;
@@ -252,10 +113,7 @@ function udemy_get_cache( $key, $list = false ) {
  * Build cache key
  */
 function udemy_get_cache_key( $args ) {
-
-    $key = '';
-
-    return $key;
+    return ( is_numeric( $args ) ) ? $args : serialize( $args );
 }
 
 /*
@@ -263,6 +121,111 @@ function udemy_get_cache_key( $args ) {
  */
 function udemy_delete_cache() {
     delete_option( 'udemy_cache' );
+}
+
+/*
+ * Get courses
+ */
+function udemy_get_courses( $atts ) {
+
+    //echo '<h4>Shortcode atts</h4>';
+    //udemy_debug($atts);
+
+    // Defaults
+    $args = array();
+    $courses = array();
+
+    // IDs
+    if ( isset ( $atts['id'] ) ) {
+
+        $course_ids = explode(',', str_replace(' ', '', sanitize_text_field( $atts['id'] ) ) );
+
+        foreach ( $course_ids as $id ) {
+
+            $course_cache = udemy_get_cache( $id );
+
+            // Cache available
+            if ( $course_cache ) {
+                echo '<p>Cache available for ' . $id . '!</p>';
+                $courses[] = $course_cache;
+
+                // Cache not available, fetch from API
+            } else {
+                echo '<p>Cache NOT available for ' . $id . '!</p>';
+                $course = udemy_get_course_from_api( $id );
+                $courses[] = $course;
+
+                if ( is_object( $course ) ) {
+                    udemy_update_cache( $course );
+                }
+            }
+        }
+
+        // Lists
+    } else {
+
+        // Page size
+        if ( isset ( $atts['items'] ) && is_numeric( $atts['items'] ) )
+            $args['page_size'] = $atts['items'];
+
+        // Language
+        if ( isset ( $atts['lang'] ) )
+            $args['language'] = $atts['lang'];
+
+        // Order
+        if ( isset ( $atts['orderby'] ) ) {
+
+            if ( 'sales' === $atts['orderby'] )
+                $orderby = 'best_seller';
+
+            if ( 'date' === $atts['orderby'] )
+                $orderby = 'enrollment';
+
+            if ( 'trends' === $atts['orderby'] )
+                $orderby = 'trending';
+
+            if ( ! empty ( $orderby ) )
+                $args['ordering'] = $orderby;
+        }
+
+        // Categories
+        if ( isset ( $atts['category'] ) ) {
+
+            $category = udemy_cleanup_category_name ( sanitize_text_field( $atts['category'] ) );
+            $categories = udemy_get_categories();
+
+            if ( in_array( $category, $categories ) ) {
+                $args['category'] = $category;
+            } else {
+                $args['subcategory'] = $category;
+            }
+        }
+
+        // Search
+        if ( isset ( $atts['search'] ) )
+            $args['search'] = sanitize_text_field( $atts['search'] );
+
+        // Get courses
+        if ( sizeof( $args ) > 0 ) {
+
+            $courses_cache = udemy_get_cache( $args );
+
+            // Cache available
+            if ( $courses_cache ) {
+                echo '<p>Cache available for this list!</p>';
+                $courses = $courses_cache;
+            } else {
+                echo '<p>Cache <u>NOT</u> available for this list!</p>';
+                $courses = udemy_get_courses_from_api($args);
+
+                if ( is_array( $courses ) ) {
+                    udemy_update_cache( $courses, $args );
+                }
+            }
+        }
+    }
+
+    return $courses;
 }
 
 /*

@@ -74,7 +74,10 @@ if( !class_exists( 'Udemy' ) ) {
             define( 'UDEMY_URL', plugin_dir_url( __FILE__ ) );
 
             // Debug
-            define( 'UDEMY_DEBUG', true );
+            $options = get_option('udemy');
+            $debug = ( isset ( $options['developer_mode'] ) && $options['developer_mode'] == '1' ) ? true : false;
+
+            define( 'UDEMY_DEBUG', $debug );
         }
         
         /**

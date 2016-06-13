@@ -5,6 +5,7 @@
   color: #1E2C35;
   font-size: 13px;
   line-height: 18px;
+  transition: box-shadow 0.3s ease;
 }
 .udemy-wp .udemy-course:hover {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
@@ -75,6 +76,9 @@
 }
 .udemy-wp .udemy-single .udemy-course {
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+.udemy-wp .udemy-single .udemy-course:hover {
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
 }
 .udemy-wp .udemy-single.udemy-style-light .udemy-course {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -290,6 +294,7 @@
 .udemy-wp .udemy-list__item {
   background: #fff;
   border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
 }
 .udemy-wp .udemy-list__item:hover {
   background: #eee;

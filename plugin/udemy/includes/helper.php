@@ -23,3 +23,14 @@ function udemy_cleanup_category_name( $category ) {
 
     return $category;
 }
+
+function udemy_get_datetime( $timestamp ) {
+
+    if ( ! is_numeric( $timestamp ) )
+        return null;
+
+    $date_format = get_option( 'date_format', 'm/d/Y' );
+    $time_format = get_option( 'time_format', 'g:i:s A' );
+
+    return get_date_from_gmt( date( $date_format . ' ' . $time_format, $timestamp ), $date_format . ' - ' . $time_format );
+}

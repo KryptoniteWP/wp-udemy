@@ -150,3 +150,22 @@ function udemy_load() {
     return Udemy::instance();
 }
 add_action( 'plugins_loaded', 'udemy_load' );
+
+/**
+ * The activation hook
+ */
+function udemy_activation() {
+
+    if ( ! wp_next_scheduled ( 'udemy_wp_scheduled_events' ) )
+        wp_schedule_event( time(), 'hourly', 'udemy_wp_scheduled_events' );
+
+}
+register_activation_hook( __FILE__, 'udemy_activation' );
+
+/**
+ * The deactivation hook
+ */
+function udemy_deactivation() {
+    wp_clear_scheduled_hook('udemy_wp_scheduled_events');
+}
+register_deactivation_hook(__FILE__, 'udemy_deactivation');

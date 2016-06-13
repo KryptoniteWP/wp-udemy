@@ -39,7 +39,8 @@ function udemy_get_course_objects_from_array( $results = array() ) {
 function udemy_get_cache_structure() {
     return array(
         'items' => array(),
-        'lists' => array()
+        'lists' => array(),
+        'last_update' => 0
     );
 }
 
@@ -122,6 +123,130 @@ function udemy_get_cache_key( $args ) {
 function udemy_delete_cache() {
     delete_option( 'udemy_cache' );
 }
+
+/*
+ * Cleanup cache event
+ */
+function udemy_cleanup_cache() {
+
+    $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
+
+    $last_update = ( isset ( $cache['last_update'] ) ) ? $cache['last_update'] : 0;
+
+    $debug = false;
+
+    if ( ( time() - $last_update ) > ( 7 * 60 * 60 * 60 ) || $debug ) {
+
+        $cache = udemy_get_cache_structure();
+        $cache['last_update'] = $last_update;
+
+        // Reset cache
+        update_option( 'udemy_cache', $cache );
+    }
+}
+
+/*
+ * Update cache event
+ */
+function udemy_update_cache_event() {
+
+    $options = udemy_get_options();
+
+    $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
+
+    $cache_duration = ( ! empty ( $options['cache_duration'] ) ) ? intval( $options['cache_duration'] ) : 1440;
+    $last_update = ( isset ( $cache['last_update'] ) ) ? intval( $cache['last_update'] ) : 0;
+
+    $debug = false;
+
+    if ( ( time() - $last_update ) > ( $cache_duration * 60 ) || $debug ) {
+
+        // Single items
+        $cache['items'] = udemy_bulk_update_items( $cache['items'] );
+
+        // Lists
+        $cache['lists'] = udemy_bulk_update_lists( $cache['lists'] );
+
+        // Update timestamp
+        $cache['last_update'] = time();
+
+        // Update cache
+        update_option( 'udemy_cache', $cache );
+    }
+}
+
+/*
+ * Bulk update items via API
+ */
+function udemy_bulk_update_items( $items ) {
+
+    $i = 0;
+
+    foreach ( $items as $id => $data ) {
+
+        if ( is_numeric( $id ) ) {
+
+            // Go easy on API and hold on after every 10 items
+            if ($i > 0 && $i % 10 == 0)
+                sleep(5);
+
+            // Fetch course
+            $course = udemy_get_course_from_api( $id );
+
+            if ( is_object( $course ) )
+                $items[$id] = $course;
+
+            // Update item count
+            $i++;
+        }
+    }
+
+    return $items;
+}
+
+/*
+ * Bulk update lists via API
+ */
+function udemy_bulk_update_lists( $lists ) {
+
+    $i = 0;
+
+    foreach ( $lists as $id => $items ) {
+
+        $args = unserialize( $id );
+
+        if ( sizeof( $args ) > 0 ) {
+
+            // Go easy on API and hold on after every 5 lists
+            if ($i > 0 && $i % 5 == 0)
+                sleep(5);
+
+            // Fetch courses
+            $courses = udemy_get_courses_from_api( $args );
+
+            if ( is_array( $courses ) )
+                $lists[$id] = $courses;
+
+            // Update list count
+            $i++;
+        }
+    }
+
+    return $lists;
+}
+
+/*
+ * Handle scheduled events
+ */
+function udemy_scheduled_events() {
+
+    // Cleanup cache
+    udemy_cleanup_cache();
+
+    // Handle cache updates
+    udemy_update_cache_event();
+}
+add_action('udemy_wp_scheduled_events', 'udemy_scheduled_events');
 
 /*
  * Get courses

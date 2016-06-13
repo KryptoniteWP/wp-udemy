@@ -232,7 +232,7 @@ if (!class_exists('Udemy_Settings')) {
                 '10080' => __('1 Week', 'udemy'),
             );
 
-            $cache_duration = ( isset ( $this->options['cache_duration'] ) ) ? $this->options['cache_duration'] : 'course';
+            $cache_duration = ( isset ( $this->options['cache_duration'] ) ) ? $this->options['cache_duration'] : '1440';
 
             ?>
             <select id="udemy_cache_duration" name="udemy[cache_duration]">
@@ -356,17 +356,25 @@ if (!class_exists('Udemy_Settings')) {
                         </td>
                     </tr>
                     <tr class="alternate">
-                        <th><?php _e('Cache Size', 'udemy'); ?></th>
+                        <th><?php _e('Cache', 'udemy'); ?></th>
                         <td>
-                            <?php
-                            $cache = get_option( 'udemy_cache', udemy_get_cache_structure() );
+                            <?php $cache = get_option( 'udemy_cache', udemy_get_cache_structure() ); ?>
 
-                            printf( esc_html__( '%1$s courses and %2$s lists.', 'udemy' ), '<strong>' . sizeof( $cache['items'] ) . '</strong>', '<strong>' . sizeof( $cache['lists'] ) . '</strong>' );
-                            ?>
+                            <strong><?php _e('Size', 'udemy'); ?></strong><br />
+                            <?php printf( esc_html__( '%1$s courses and %2$s lists.', 'udemy' ), '<strong>' . sizeof( $cache['items'] ) . '</strong>', '<strong>' . sizeof( $cache['lists'] ) . '</strong>' ); ?>
+                            <br /><br />
+                            <strong><?php _e('Last update', 'udemy'); ?></strong><br />
+                            <?php echo ( ! empty ( $cache['last_update'] ) && is_numeric( $cache['last_update'] ) ) ? udemy_get_datetime( $cache['last_update'] ) : 'N/A'; ?>
                         </td>
+                    </tr>
+                    <tr>
+                        <th><?php _e('Next Cron Execution', 'udemy'); ?></th>
+                        <td><?php echo udemy_get_datetime( wp_next_scheduled( 'udemy_wp_scheduled_events' ) ); ?></td>
                     </tr>
                 </tbody>
             </table>
+
+            <?php //udemy_cleanup_cache(); ?>
 
             <p>
                 <?php _e('In case one of the values above is <span style="color: red;"><strong>red</strong></span>, please get in contact with your webhoster in order to enable the missing PHP extensions.', 'udemy'); ?>

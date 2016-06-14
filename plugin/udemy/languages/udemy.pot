@@ -1,0 +1,340 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Udemy for WordPress\n"
+"POT-Creation-Date: 2016-06-14 09:04+0200\n"
+"PO-Revision-Date: 2016-06-14 08:59+0200\n"
+"Last-Translator: flowdee <coder@flowdee.de>\n"
+"Language-Team: flowdee <coder@flowdee.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: udemy.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: assets\n"
+
+#: includes/admin/class.settings.php:62 includes/admin/class.settings.php:191
+msgid "Quickstart Guide"
+msgstr ""
+
+#: includes/admin/class.settings.php:70
+msgid "General Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:77
+msgid "Udemy API"
+msgstr ""
+
+#: includes/admin/class.settings.php:85
+msgid "Cache duration"
+msgstr ""
+
+#: includes/admin/class.settings.php:94
+msgid "Output Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:101
+msgid "Standard Templates"
+msgstr ""
+
+#: includes/admin/class.settings.php:109
+msgid "Course Details"
+msgstr ""
+
+#: includes/admin/class.settings.php:119
+msgid "Debug Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:126
+msgid "Developer Mode"
+msgstr ""
+
+#: includes/admin/class.settings.php:137
+msgid "Debug Information"
+msgstr ""
+
+#: includes/admin/class.settings.php:193
+msgid "There are two ways of displaying courses:"
+msgstr ""
+
+#: includes/admin/class.settings.php:195
+msgid "Single course by ID"
+msgstr ""
+
+#: includes/admin/class.settings.php:196
+msgid ""
+"In order to get the course ID, simply add the course to the cart and take "
+"the ID out of the url of your browser."
+msgstr ""
+
+#: includes/admin/class.settings.php:199 includes/admin/class.settings.php:206
+msgid "or"
+msgstr ""
+
+#: includes/admin/class.settings.php:203
+msgid "Search for courses"
+msgstr ""
+
+#: includes/admin/class.settings.php:204
+msgid ""
+"Alternatively you can search for courses and display grids or lists of "
+"multiple courses."
+msgstr ""
+
+#: includes/admin/class.settings.php:204
+msgid "This feature requires API keys!"
+msgstr ""
+
+#: includes/admin/class.settings.php:209
+#, php-format
+msgid ""
+"Please take a look into the <a href=\"%s\">documentation</a> for more "
+"options."
+msgstr ""
+
+#: includes/admin/class.settings.php:224
+msgid "Status"
+msgstr ""
+
+#: includes/admin/class.settings.php:228
+msgid "Note:"
+msgstr ""
+
+#: includes/admin/class.settings.php:228
+msgid ""
+"API credentials are currently only required when searching courses or "
+"displaying categories."
+msgstr ""
+
+#: includes/admin/class.settings.php:231
+msgid "Client ID"
+msgstr ""
+
+#: includes/admin/class.settings.php:235
+msgid "Client Password"
+msgstr ""
+
+#: includes/admin/class.settings.php:241
+#, php-format
+msgid ""
+"Before entering your API credentials you have to create a new API Client <a "
+"href=\"%s\">here</a>."
+msgstr ""
+
+#: includes/admin/class.settings.php:250
+msgid "6 Hours"
+msgstr ""
+
+#: includes/admin/class.settings.php:251
+msgid "12 Hours"
+msgstr ""
+
+#: includes/admin/class.settings.php:252
+msgid "1 Day"
+msgstr ""
+
+#: includes/admin/class.settings.php:253
+msgid "3 Days"
+msgstr ""
+
+#: includes/admin/class.settings.php:254
+msgid "1 Week"
+msgstr ""
+
+#: includes/admin/class.settings.php:273
+msgid "Single"
+msgstr ""
+
+#: includes/admin/class.settings.php:274
+msgid "Grid"
+msgstr ""
+
+#: includes/admin/class.settings.php:275
+msgid "List"
+msgstr ""
+
+#: includes/admin/class.settings.php:282
+msgid "Single Course"
+msgstr ""
+
+#: includes/admin/class.settings.php:293
+msgid "Multiple Courses"
+msgstr ""
+
+#: includes/admin/class.settings.php:304
+#, php-format
+msgid ""
+"Available templates (%1$s) can be used to overwrite each shortcode "
+"individually: e.g."
+msgstr ""
+
+#: includes/admin/class.settings.php:312
+msgid "Course headline"
+msgstr ""
+
+#: includes/admin/class.settings.php:313
+msgid "Instructor information"
+msgstr ""
+
+#: includes/admin/class.settings.php:324
+msgid ""
+"This will be applied to grid and list templates. The single template already "
+"shows both information."
+msgstr ""
+
+#: includes/admin/class.settings.php:334
+msgid "Please activate for debugging reasons only"
+msgstr ""
+
+#: includes/admin/class.settings.php:342
+msgid "Enabled"
+msgstr ""
+
+#: includes/admin/class.settings.php:343
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/class.settings.php:360
+msgid "Setting"
+msgstr ""
+
+#: includes/admin/class.settings.php:361
+msgid "Values"
+msgstr ""
+
+#: includes/admin/class.settings.php:374
+#, php-format
+msgid "PHP \"%1$s\" extension"
+msgstr ""
+
+#: includes/admin/class.settings.php:381
+msgid "Cache"
+msgstr ""
+
+#: includes/admin/class.settings.php:385
+msgid "Size"
+msgstr ""
+
+#: includes/admin/class.settings.php:386
+#, php-format
+msgid "%1$s courses and %2$s lists."
+msgstr ""
+
+#: includes/admin/class.settings.php:388
+msgid "Last update"
+msgstr ""
+
+#: includes/admin/class.settings.php:393
+msgid "Next Cron Execution"
+msgstr ""
+
+#: includes/admin/class.settings.php:400
+msgid ""
+"In case one of the values above is <span style=\"color: red;\"><strong>red</"
+"strong></span>, please get in contact with your webhoster in order to enable "
+"the missing PHP extensions."
+msgstr ""
+
+#: includes/admin/class.settings.php:406
+msgid "Log file"
+msgstr ""
+
+#: includes/admin/class.settings.php:407
+msgid "No entries yet. "
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/admin/class.settings.php:422
+msgid "Udemy"
+msgstr ""
+
+#: includes/admin/class.settings.php:476
+msgid "Connected"
+msgstr ""
+
+#: includes/admin/class.settings.php:476
+msgid "Disconnected"
+msgstr ""
+
+#: includes/admin/plugins.php:23
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/plugins.php:54
+msgid "Documentation"
+msgstr ""
+
+#: includes/api-functions.php:35
+msgid "Undefined error"
+msgstr ""
+
+#: includes/api-functions.php:47 includes/api-functions.php:134
+msgid "Client ID and/or password invalid."
+msgstr ""
+
+#: includes/api-functions.php:62
+msgid "Course ID must be a number."
+msgstr ""
+
+#: includes/api-functions.php:83
+msgid "Course not found."
+msgstr ""
+
+#: includes/api-functions.php:130
+msgid "No courses found."
+msgstr ""
+
+#: includes/api-functions.php:138
+msgid "Courses could not be fetched. Please try again."
+msgstr ""
+
+#: includes/class.course.php:116
+msgid "No info available"
+msgstr ""
+
+#: includes/functions.php:277
+msgid "Please activate PHP curl in order to display Udemy courses."
+msgstr ""
+
+#: includes/functions.php:414
+msgid "Template not found."
+msgstr ""
+
+#: templates/list.php:36 templates/single.php:33
+#, php-format
+msgid "%1$s ratings"
+msgstr ""
+
+#: templates/list.php:37 templates/single.php:34
+#, php-format
+msgid "%1$s lectures"
+msgstr ""
+
+#: templates/list.php:37 templates/single.php:34
+#, php-format
+msgid "%1$s hours"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://coder.flowdee.de/downloads/udemy-for-wordpress/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Display Udemy courses inside your WordPress posts and pages."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "flowdee"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://flowdee.de"
+msgstr ""

@@ -190,7 +190,23 @@ if (!class_exists('Udemy_Settings')) {
             <div class="postbox">
                 <h3 class='hndle'><?php _e('Quickstart Guide', 'udemy'); ?></h3>
                 <div class="inside">
-                    <p>Here is a quickstart guide! :)</p>
+                    <p><?php _e( 'There are two ways of displaying courses:', 'udemy' ); ?></p>
+                    <p>
+                        <strong><?php _e( 'Single course by ID', 'udemy' ); ?></strong><br />
+                        <?php _e( 'In order to get the course ID, simply add the course to the cart and take the ID out of the url of your browser.', 'udemy' ); ?>
+                    </p>
+                    <p>
+                        <code>[udemy id="480986"]</code> <?php _e( 'or', 'udemy' ); ?> <code>[udemy id="480986" url="https://my-affiliate-link.com/"]</code>
+                    </p>
+
+                    <p>
+                        <strong><?php _e( 'Search for courses', 'udemy' ); ?></strong><br />
+                        <?php _e('Alternatively you can search for courses and display grids or lists of multiple courses.', 'udemy'); ?> <span style="color: darkorange; font-weight: bold;"><?php _e( 'This feature requires API keys!', 'udemy' ); ?></span>
+                    <p>
+                        <code>[udemy search="css" items="3" template="grid"]</code> <?php _e( 'or', 'udemy' ); ?> <code>[udemy search="html" items="6" template="list"]</code>
+                    </p>
+
+                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/' ) ); ?></p>
                 </div>
             </div>
 

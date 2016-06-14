@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Udemy
- * Plugin URI:      https://coder.flowdee.der/downloads/udemy-for-wordpress/
+ * Plugin URI:      https://coder.flowdee.de/downloads/udemy-for-wordpress/
  * Description:     Display Udemy courses inside your WordPress posts and pages.
  * Version:         1.0.0
  * Author:          flowdee

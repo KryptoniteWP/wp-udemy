@@ -273,6 +273,9 @@ add_action('udemy_wp_scheduled_events', 'udemy_scheduled_events');
  */
 function udemy_get_courses( $atts ) {
 
+    if ( ! function_exists('curl_version') )
+        return '<p style="color: darkorange; font-weight: bold;">' . __( 'Please activate PHP curl in order to display Udemy courses.' ) . '</p>';
+
     // Defaults
     $args = array();
     $courses = array();

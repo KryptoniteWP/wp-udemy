@@ -14,9 +14,6 @@ if( !defined( 'ABSPATH' ) ) exit;
  */
 function udemy_add_shortcode( $atts ) {
 
-    //echo '<h4>Shortcode atts</h4>';
-    //udemy_debug($atts);
-
     // Defaults
     $courses_list = false;
 

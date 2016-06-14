@@ -273,9 +273,6 @@ add_action('udemy_wp_scheduled_events', 'udemy_scheduled_events');
  */
 function udemy_get_courses( $atts ) {
 
-    //echo '<h4>Shortcode atts</h4>';
-    //udemy_debug($atts);
-
     // Defaults
     $args = array();
     $courses = array();
@@ -291,12 +288,10 @@ function udemy_get_courses( $atts ) {
 
             // Cache available
             if ( $course_cache ) {
-                echo '<p>Cache available for ' . $id . '!</p>';
                 $courses[] = $course_cache;
 
                 // Cache not available, fetch from API
             } else {
-                echo '<p>Cache NOT available for ' . $id . '!</p>';
                 $course = udemy_get_course_from_api( $id );
                 $courses[] = $course;
 
@@ -357,10 +352,8 @@ function udemy_get_courses( $atts ) {
 
             // Cache available
             if ( $courses_cache ) {
-                echo '<p>Cache available for this list!</p>';
                 $courses = $courses_cache;
             } else {
-                echo '<p>Cache <u>NOT</u> available for this list!</p>';
                 $courses = udemy_get_courses_from_api($args);
 
                 if ( is_array( $courses ) ) {

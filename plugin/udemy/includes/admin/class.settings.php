@@ -175,6 +175,12 @@ if (!class_exists('Udemy_Settings')) {
                 $input['delete_cache'] = '0';
             }
 
+            // Handle cache deletion
+            if ( isset ( $input['reset_log'] ) && $input['reset_log'] === '1' ) {
+                delete_option('udemy_log');
+                $input['reset_log'] = '0';
+            }
+
             return $input;
         }
 
@@ -374,10 +380,19 @@ if (!class_exists('Udemy_Settings')) {
                 </tbody>
             </table>
 
-            <?php //udemy_cleanup_cache(); ?>
-
             <p>
                 <?php _e('In case one of the values above is <span style="color: red;"><strong>red</strong></span>, please get in contact with your webhoster in order to enable the missing PHP extensions.', 'udemy'); ?>
+            </p>
+
+            <br />
+
+            <p>
+                <strong><?php _e('Log file', 'udemy'); ?></strong><br />
+                <textarea rows="5" style="width: 100%;"><?php echo get_option( 'udemy_log', __( 'No entries yet. ', 'udemy' ) ); ?></textarea>
+            </p>
+            <p>
+                <input type="hidden" id="udemy_reset_log" name="udemy[reset_log]" value="0" />
+                <?php submit_button( 'Reset log', 'delete button-secondary', 'udemy-reset-log-submit', false ); ?>
             </p>
             <?php
         }
@@ -404,6 +419,9 @@ if (!class_exists('Udemy_Settings')) {
                                     <script type="application/javascript">
                                         jQuery( document ).on( 'click', '#udemy-delete-cache-submit', function(event) {
                                             jQuery('#udemy_delete_cache').val('1');
+                                        });
+                                        jQuery( document ).on( 'click', '#udemy-reset-log-submit', function(event) {
+                                            jQuery('#udemy_reset_log').val('1');
                                         });
                                     </script>
 

@@ -45,6 +45,7 @@ function udemy_validate_api_credentials( $client_id, $client_password ) {
         } elseif ( $response['response']['code'] === 403 ) {
             $validation['status'] = false;
             $validation['error'] = __( 'Client ID and/or password invalid.', 'udemy' );
+            udemy_addlog( 'VALIDATING API CREDENTIALS FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         }
     }
 
@@ -78,6 +79,7 @@ function udemy_get_course_from_api( $id ) {
 
         return new Udemy_Course( $result );
     } else {
+        udemy_addlog( 'FETCHING COURSE ID ' . $id . ' FAILED: COURSE NOT FOUND' );
         return __( 'Course not found.', 'udemy' );
     }
 }
@@ -128,9 +130,11 @@ function udemy_get_courses_from_api( $args = array() ) {
         return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? udemy_get_course_objects_from_array( $result['results'] ) : __('No courses found.', 'udemy');
 
     } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
+        udemy_addlog( 'FETCHING COURSES FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         return __( 'Client ID and/or password invalid.', 'udemy' );
 
     } else {
+        udemy_addlog( 'FETCHING COURSES FAILED' );
         return __( 'Courses could not be fetched. Please try again.', 'udemy' );
     }
 }

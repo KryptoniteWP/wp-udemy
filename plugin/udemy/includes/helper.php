@@ -34,3 +34,19 @@ function udemy_get_datetime( $timestamp ) {
 
     return get_date_from_gmt( date( $date_format . ' ' . $time_format, $timestamp ), $date_format . ' - ' . $time_format );
 }
+
+/**
+ * Output data to a log for debugging reasons
+ **/
+function udemy_addlog( $string ) {
+
+    if ( UDEMY_DEBUG ) {
+
+        $log = get_option( 'udemy_log', '' );
+
+        $string = date( 'd.m.Y H:i:s' ) . " >>> " . $string . "\n";
+        $log .= $string;
+
+        update_option( 'udemy_log', $log );
+    }
+}

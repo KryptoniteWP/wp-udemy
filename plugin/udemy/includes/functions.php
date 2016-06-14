@@ -157,9 +157,13 @@ function udemy_update_cache_event() {
     $cache_duration = ( ! empty ( $options['cache_duration'] ) ) ? intval( $options['cache_duration'] ) : 1440;
     $last_update = ( isset ( $cache['last_update'] ) ) ? intval( $cache['last_update'] ) : 0;
 
-    $debug = false;
+    $debug = true;
 
     if ( ( time() - $last_update ) > ( $cache_duration * 60 ) || $debug ) {
+
+        $debug_start_time = microtime( true );
+
+        udemy_addlog( '*** START *** UPDATING CACHE ***' );
 
         // Single items
         $cache['items'] = udemy_bulk_update_items( $cache['items'] );
@@ -172,6 +176,10 @@ function udemy_update_cache_event() {
 
         // Update cache
         update_option( 'udemy_cache', $cache );
+
+        $debug_execution_time = microtime(true) - $debug_start_time;
+
+        udemy_addlog( '*** END *** UPDATING CACHE *** EXECUTION TIME: ' . $debug_execution_time . ' SECONDS ***' );
     }
 }
 
@@ -180,15 +188,19 @@ function udemy_update_cache_event() {
  */
 function udemy_bulk_update_items( $items ) {
 
-    $i = 0;
+    udemy_addlog( 'BULK UPDATING ITEMS' );
+
+    $i = 1;
 
     foreach ( $items as $id => $data ) {
 
         if ( is_numeric( $id ) ) {
 
             // Go easy on API and hold on after every 10 items
-            if ($i > 0 && $i % 10 == 0)
+            if ($i > 0 && $i % 10 == 0) {
+                udemy_addlog( 'UPDATING PAUSED AFTER ' . $i . ' ITEMS' );
                 sleep(5);
+            }
 
             // Fetch course
             $course = udemy_get_course_from_api( $id );
@@ -201,6 +213,8 @@ function udemy_bulk_update_items( $items ) {
         }
     }
 
+    udemy_addlog( 'BULK UPDATED ' . ( $i - 1 ) . ' ITEMS' );
+
     return $items;
 }
 
@@ -209,7 +223,9 @@ function udemy_bulk_update_items( $items ) {
  */
 function udemy_bulk_update_lists( $lists ) {
 
-    $i = 0;
+    udemy_addlog( 'BULK UPDATING LISTS' );
+
+    $i = 1;
 
     foreach ( $lists as $id => $items ) {
 
@@ -218,8 +234,10 @@ function udemy_bulk_update_lists( $lists ) {
         if ( sizeof( $args ) > 0 ) {
 
             // Go easy on API and hold on after every 5 lists
-            if ($i > 0 && $i % 5 == 0)
+            if ($i > 0 && $i % 5 == 0) {
+                udemy_addlog( 'UPDATING PAUSED AFTER ' . $i . ' LISTS' );
                 sleep(5);
+            }
 
             // Fetch courses
             $courses = udemy_get_courses_from_api( $args );
@@ -231,6 +249,8 @@ function udemy_bulk_update_lists( $lists ) {
             $i++;
         }
     }
+
+    udemy_addlog( 'BULK UPDATED ' . ( $i - 1 ) . ' LISTS' );
 
     return $lists;
 }

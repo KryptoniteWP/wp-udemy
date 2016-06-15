@@ -46,8 +46,8 @@ function udemy_row_meta( $input, $file ) {
     $docs_link = esc_url( add_query_arg( array(
             'utm_source'   => 'plugins-page',
             'utm_medium'   => 'plugin-row',
-            'utm_campaign' => 'admin',
-        ), 'https://coder.flowdee.de/docs/' )
+            'utm_campaign' => 'Udemy for WordPress',
+        ), 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/' )
     );
 
     $links = array(

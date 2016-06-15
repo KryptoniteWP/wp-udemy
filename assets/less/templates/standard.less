@@ -6,10 +6,10 @@
 @image-medium-width: 150px;
 @image-medium-height: 84px;
 
-@breakpoint-single: 900px;
+@breakpoint-standard: 900px;
 
 //== Single
-.udemy-single {
+.udemy-standard {
 
     .udemy-course {
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
@@ -40,7 +40,7 @@
         height: auto;
         max-width: @image-width;
 
-        @media (max-width: @breakpoint-single) {
+        @media (max-width: @breakpoint-standard) {
             max-width: @image-medium-width;
         }
 
@@ -57,7 +57,7 @@
         min-height: @image-height;
         padding: 0;
 
-        @media (max-width: @breakpoint-single) {
+        @media (max-width: @breakpoint-standard) {
             margin-left: @image-medium-width + (@spacing * 2);
         }
 

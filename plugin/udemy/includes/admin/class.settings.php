@@ -270,12 +270,12 @@ if (!class_exists('Udemy_Settings')) {
         function default_templates_render() {
 
             $templates = array(
-                'single' => __('Single', 'udemy'),
+                'standard' => __('Standard', 'udemy'),
                 'grid' => __('Grid', 'udemy'),
                 'list' => __('List', 'udemy')
             );
 
-            $template_course = ( isset ( $this->options['template_course'] ) ) ? $this->options['template_course'] : 'single';
+            $template_course = ( isset ( $this->options['template_course'] ) ) ? $this->options['template_course'] : 'standard';
             $template_courses = ( isset ( $this->options['template_courses'] ) ) ? $this->options['template_courses'] : 'list';
 
             ?>
@@ -301,7 +301,7 @@ if (!class_exists('Udemy_Settings')) {
 
             <br />
 
-            <p><?php printf( esc_html__( 'Available templates (%1$s) can be used to overwrite each shortcode individually: e.g.', 'udemy' ), 'single, grid, list' ); ?> <code>[udemy id="1234,6789" template="list"]</code></p>
+            <p><?php printf( esc_html__( 'Available templates (%1$s) can be used to overwrite each shortcode individually: e.g.', 'udemy' ), 'standard, grid, list' ); ?> <code>[udemy id="1234,6789" template="list"]</code></p>
             <p></p>
             <?php
         }
@@ -309,7 +309,7 @@ if (!class_exists('Udemy_Settings')) {
         function course_details_render() {
 
             $course_details_options = array(
-                'course' => __('Course headline', 'udemy'),
+                'course' => __('Course Subtitle', 'udemy'),
                 'instructor' => __('Instructor information', 'udemy'),
             );
 
@@ -321,7 +321,7 @@ if (!class_exists('Udemy_Settings')) {
                     <option value="<?php echo $key; ?>" <?php selected( $course_details, $key ); ?>><?php echo $label; ?></option>
                 <?php } ?>
             </select>
-            <p><small><?php _e('This will be applied to grid and list templates. The single template already shows both information.', 'udemy'); ?></small></p>
+            <p><small><?php _e('This will be applied to grid and list templates. The standard template already shows both information.', 'udemy'); ?></small></p>
             <?php
         }
 

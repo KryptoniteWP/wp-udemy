@@ -1,6 +1,6 @@
 <?php
 /*
- * Single template
+ * Standard template
  *
  * @package Udemy
  */
@@ -13,7 +13,7 @@ if ( ! isset ( $courses ) )
     return;
 ?>
 
-<div class="udemy-single<?php if ( isset( $style ) ) echo ' udemy-style-' . $style; ?>">
+<div class="udemy-standard<?php if ( isset( $style ) ) echo ' udemy-style-' . $style; ?>">
 
     <?php foreach ( $courses as $course ) { ?>
 

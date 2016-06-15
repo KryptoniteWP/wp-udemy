@@ -391,7 +391,7 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
     if ( isset ( $args['style'] ) )
         $style = $args['style'];
 
-    $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'single';
+    $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
     if ( isset ( $args['template'] ) ) {
@@ -436,7 +436,7 @@ function udemy_get_template_file( $template ) {
     if ( file_exists( $template_file ) )
         return $template_file;
 
-    return UDEMY_DIR . 'templates/single.php';
+    return UDEMY_DIR . 'templates/standard.php';
 }
 
 /*

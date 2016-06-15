@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Udemy for WordPress\n"
-"POT-Creation-Date: 2016-06-14 09:04+0200\n"
+"POT-Creation-Date: 2016-06-15 07:43+0200\n"
 "PO-Revision-Date: 2016-06-14 08:59+0200\n"
 "Last-Translator: flowdee <coder@flowdee.de>\n"
 "Language-Team: flowdee <coder@flowdee.de>\n"
@@ -150,7 +150,7 @@ msgid "1 Week"
 msgstr ""
 
 #: includes/admin/class.settings.php:273
-msgid "Single"
+msgid "Standard"
 msgstr ""
 
 #: includes/admin/class.settings.php:274
@@ -177,7 +177,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class.settings.php:312
-msgid "Course headline"
+msgid "Course Subtitle"
 msgstr ""
 
 #: includes/admin/class.settings.php:313
@@ -186,8 +186,8 @@ msgstr ""
 
 #: includes/admin/class.settings.php:324
 msgid ""
-"This will be applied to grid and list templates. The single template already "
-"shows both information."
+"This will be applied to grid and list templates. The standard template "
+"already shows both information."
 msgstr ""
 
 #: includes/admin/class.settings.php:334
@@ -308,17 +308,17 @@ msgstr ""
 msgid "Template not found."
 msgstr ""
 
-#: templates/list.php:36 templates/single.php:33
+#: templates/list.php:36 templates/standard.php:33
 #, php-format
 msgid "%1$s ratings"
 msgstr ""
 
-#: templates/list.php:37 templates/single.php:34
+#: templates/list.php:37 templates/standard.php:34
 #, php-format
 msgid "%1$s lectures"
 msgstr ""
 
-#: templates/list.php:37 templates/single.php:34
+#: templates/list.php:37 templates/standard.php:34
 #, php-format
 msgid "%1$s hours"
 msgstr ""

@@ -169,3 +169,23 @@ function udemy_deactivation() {
     wp_clear_scheduled_hook('udemy_wp_scheduled_events');
 }
 register_deactivation_hook(__FILE__, 'udemy_deactivation');
+
+/**
+ * Plugin Updater
+ */
+include( dirname( __FILE__ ) . '/vendor/plugin-update-checker/plugin-update-checker.php' );
+
+function udemy_plugin_updater() {
+
+    try {
+        $udemy_update_checker = PucFactory::buildUpdateChecker(
+            'https://updates.flowdee.de/?action=get_metadata&slug=udemy-for-wordpress',
+            __FILE__, //Full path to the main plugin file.
+            'udemy-for-wordpress'
+        );
+
+    } catch (Exception $e) {
+        // do nothing
+    }
+}
+add_action( 'admin_init', 'udemy_plugin_updater', 0 );

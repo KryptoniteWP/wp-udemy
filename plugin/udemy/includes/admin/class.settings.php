@@ -454,7 +454,12 @@ if (!class_exists('Udemy_Settings')) {
                         <!-- /#post-body-content -->
                         <div id="postbox-container-1" class="postbox-container">
                             <div class="meta-box-sortables">
-                                <!-- TODO: Infobox -->
+                                <?php
+                                require_once UDEMY_DIR . 'vendor/flowdee_infobox.php';
+                                $flowdee_infobox = new Flowdee_Infobox();
+                                $flowdee_infobox->set_plugin_slug('udemywp');
+                                $flowdee_infobox->display();
+                                ?>
                             </div>
                             <!-- /.meta-box-sortables -->
                         </div>

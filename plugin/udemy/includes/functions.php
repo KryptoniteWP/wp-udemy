@@ -19,14 +19,14 @@ function udemy_get_options() {
 /*
  * Build course objects from result arrays
  */
-function udemy_get_course_objects_from_array( $results = array() ) {
+function udemy_get_course_objects_from_array( $items = array() ) {
 
     $objects = array();
 
-    if ( sizeof( $results ) > 0 ) {
+    if ( sizeof( $items ) > 0 ) {
 
-        foreach ( $results as $result ) {
-            $objects[] = new Udemy_Course( $result );
+        foreach ( $items as $item ) {
+            $objects[] = ( is_array( $item ) ) ? new Udemy_Course( $item ) : $item;
         }
     }
 
@@ -376,13 +376,16 @@ $udemy_args = array();
 
 function udemy_display_courses( $courses = array(), $args = array() ) {
 
-    $options = udemy_get_options();
-
     //udemy_debug($courses);
+
+    $options = get_option('udemy');
 
     global $udemy_args;
 
     $udemy_args = $args;
+
+    // Prepare courses
+    $courses = udemy_get_course_objects_from_array( $courses );
 
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
@@ -447,25 +450,9 @@ function udemy_get_categories() {
 }
 
 /*
- * Get affiliate link
- */
-function udemy_get_affiliate_url( $url ) {
-
-    $options = udemy_get_options();
-
-    if ( ( ! isset ( $options['affiliate_links'] ) || $options['affiliate_links'] == 'disabled' ) && ! isset ( $options['credits'] ) )
-        return $url;
-
-    // Building final url
-    $url = udemy_get_redirect_affiliate_url( $url );
-
-    return $url;
-}
-
-/*
  * Get redirect affiliate url
  */
-function udemy_get_redirect_affiliate_url( $url, $encode = true ) {
+function udemy_get_course_affiliate_url( $url, $encode = true ) {
 
     $options = udemy_get_options();
 

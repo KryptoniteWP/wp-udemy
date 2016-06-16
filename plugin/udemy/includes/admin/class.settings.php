@@ -89,9 +89,9 @@ if (!class_exists('Udemy_Settings')) {
             );
 
             add_settings_field(
-                'udemy_affiliate',
+                'udemy_affiliate_links',
                 __('Affiliate Links', 'udemy'),
-                array(&$this, 'affiliate_render'),
+                array(&$this, 'affiliate_links_render'),
                 'udemy',
                 'udemy_general'
             );
@@ -289,25 +289,31 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
-        function affiliate_render() {
+        function affiliate_links_render() {
 
             $link_types = array(
                 'disabled' => __('Disabled', 'udemy'),
-                'standard' => __('Standard', 'udemy')
+                'standard' => __('Standard', 'udemy'),
+                'masked' => __('Masked by plugin', 'udemy')
             );
 
             $links = ( isset ( $this->options['affiliate_links'] ) ) ? $this->options['affiliate_links'] : 'disabled';
             $publisher_id = ( !empty($this->options['affiliate_publisher_id'] ) ) ? esc_attr( trim( $this->options['affiliate_publisher_id'] ) ) : '';
 
             ?>
-            <h4 style="margin: 5px 0;"><?php _e('Status', 'udemy'); ?></h4>
+
             <p>
                 <select id="udemy_affiliate_links" name="udemy[affiliate_links]">
                     <?php foreach ( $link_types as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $links, $key ); ?>><?php echo $label; ?></option>
                     <?php } ?>
                 </select>
-                <small><?php _e('Short / Cloaked links coming soon!', 'udemy'); ?></small>
+            </p>
+
+            <p>
+                <small>
+                    <?php printf( wp_kses( __( 'Information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate' ) ); ?>
+                </small>
             </p>
 
             <br />
@@ -319,11 +325,31 @@ if (!class_exists('Udemy_Settings')) {
                 <span><?php _e('e.g.', 'udemy'); ?> <code>rAHrr6IQKiQ</code></span>
             </p>
 
-            <p>
-                <small>
-                    <?php printf( wp_kses( __( 'More information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate' ) ); ?>
-                </small>
-            </p>
+            <h4><?php _e('Comparison of the different affiliate links', 'udemy'); ?></h4>
+            <table class="widefat udemy-settings-table udemy-settings-table--slim">
+                <thead>
+                    <tr>
+                        <th><?php _e('Type', 'udemy'); ?></th>
+                        <th><?php _e('Example', 'udemy'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php _e('Standard', 'udemy'); ?></td>
+                        <td style="word-break: break-all;"><a href="http://click.linksynergy.com/deeplink?id=rAHrr6IQKiQ&type=10&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Funofficial-udemy-launch-become-a-bestselling-instructor%2F" target="_blank" rel="nofollow">http://click.linksynergy.com/deeplink?id=rAHrr6IQKiQ&type=10&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Funofficial-udemy-launch-become-a-bestselling-instructor%2F</a></td>
+                    </tr>
+                    <tr class="alternate">
+                        <?php $rewrite_slug = udemy_get_rewrite_slug(); ?>
+                        <td><?php _e('Masked by plugin', 'udemy'); ?></td>
+                        <td style="word-break: break-all;"><a href="<?php echo get_bloginfo('url'); ?>/<?php echo $rewrite_slug; ?>/unofficial-udemy-launch-become-a-bestselling-instructor/" target="_blank" rel="nofollow"><?php echo get_bloginfo('url'); ?>/<?php echo $rewrite_slug; ?>/unofficial-udemy-launch-become-a-bestselling-instructor/</a></td>
+                    </tr>
+                    <tr>
+                        <td><?php _e('Masked via bit.ly', 'udemy'); ?><br /><small style="font-weight: bold; color: cornflowerblue;"><?php _e('Coming soon!', 'udemy'); ?></small></td>
+                        <td style="word-break: break-all;"><a href="http://bit.ly/1tyo0Oi" target="_blank" rel="nofollow">http://bit.ly/1tyo0Oi</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
             <?php
         }
 
@@ -414,7 +440,7 @@ if (!class_exists('Udemy_Settings')) {
 
             ?>
 
-            <table class="widefat udemy-debug-table">
+            <table class="widefat udemy-settings-table">
                 <thead>
                     <tr>
                         <th width="300"><?php _e('Setting', 'udemy'); ?></th>

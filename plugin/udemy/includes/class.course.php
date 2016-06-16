@@ -6,7 +6,6 @@
  * @since       1.0.0
  */
 
-
 // Exit if accessed directly
 if (!defined('ABSPATH')) exit;
 
@@ -66,7 +65,21 @@ if (!class_exists('Udemy_Course')) {
                 $url .= $this->course['url'];
 
             // Maybe build affiliate url
-            $url = udemy_get_affiliate_url( $url );
+            if ( ( isset ( $this->options['affiliate_links'] ) && $this->options['affiliate_links'] != 'disabled' ) || isset ( $this->options['credits'] ) ) {
+
+                if ( 'standard' === $this->options['affiliate_links'] ) {
+                    $url = udemy_get_course_affiliate_url( $url );
+
+                } elseif ( 'masked' === $this->options['affiliate_links'] ) {
+
+                    $rewrite_slug = udemy_get_rewrite_slug();
+
+                    if ( ! empty ( $rewrite_slug ) && isset ( $this->course['url'] ) )
+                        $url = get_bloginfo( 'url' ) . '/' . $rewrite_slug . $this->course['url'];
+                }
+
+                // TODO: Bit.ly
+            }
 
             return $url;
         }

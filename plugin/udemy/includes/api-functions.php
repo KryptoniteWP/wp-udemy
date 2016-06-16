@@ -77,7 +77,7 @@ function udemy_get_course_from_api( $id ) {
 
         $result = json_decode(wp_remote_retrieve_body($response), true);
 
-        return new Udemy_Course( $result );
+        return $result;
     } else {
         udemy_addlog( 'FETCHING COURSE ID ' . $id . ' FAILED: COURSE NOT FOUND' );
         return __( 'Course not found.', 'udemy' );
@@ -127,7 +127,7 @@ function udemy_get_courses_from_api( $args = array() ) {
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
         $result = json_decode(wp_remote_retrieve_body($response), true);
 
-        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? udemy_get_course_objects_from_array( $result['results'] ) : __('No courses found.', 'udemy');
+        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'udemy');
 
     } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
         udemy_addlog( 'FETCHING COURSES FAILED: CLIENT ID AND/OR PASSWORD INVALID' );

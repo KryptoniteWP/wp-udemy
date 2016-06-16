@@ -445,3 +445,31 @@ function udemy_get_template_file( $template ) {
 function udemy_get_categories() {
     return array('Academics','Business','Crafts-and-Hobbies','Design','Development','Games','Health-and-Fitness','Humanities','IT-and-Software','Language','Lifestyle','Marketing','Math-and-Science','Music','Office-Productivity','Other','Personal-Development','Photography','Social-Science','Sports','Teacher-Training','Technology','Test','Test-Prep');
 }
+
+/*
+ * Get affiliate link
+ */
+function udemy_get_affiliate_link( $url ) {
+
+    $options = udemy_get_options();
+
+    if ( ( ! isset ( $options['affiliate_links'] ) || $options['affiliate_links'] == 'disabled' ) && ! isset ( $options['credits'] ) )
+        return $url;
+
+    if ( empty ( $options['affiliate_publisher_id'] ) && ! isset ( $options['credits'] ) )
+        return $url;
+
+    // Take publisher id, only if empty and credits activated the the other one
+    $publisher_id = ( ! empty ( $options['affiliate_publisher_id'] ) ) ? esc_attr( trim( $options['affiliate_publisher_id'] ) ) : 'rAHrr6IQKiQ';
+
+    // Static ID for Udemys advertiser program
+    $merchant_id = '39197';
+
+    // Encoding url
+    $encoded_url = urlencode( $url );
+
+    // Building final url
+    $url = 'http://click.linksynergy.com/deeplink?id=' . $publisher_id . '&type=10&mid=' . $merchant_id . '&murl=' . $encoded_url;
+
+    return $url;
+}

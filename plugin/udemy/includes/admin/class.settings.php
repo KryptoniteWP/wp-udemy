@@ -82,8 +82,16 @@ if (!class_exists('Udemy_Settings')) {
 
             add_settings_field(
                 'udemy_cache_duration',
-                __('Cache duration', 'udemy'),
+                __('Cache Duration', 'udemy'),
                 array(&$this, 'cache_duration_render'),
+                'udemy',
+                'udemy_general'
+            );
+
+            add_settings_field(
+                'udemy_affiliate',
+                __('Affiliate Links', 'udemy'),
+                array(&$this, 'affiliate_render'),
                 'udemy',
                 'udemy_general'
             );
@@ -115,10 +123,19 @@ if (!class_exists('Udemy_Settings')) {
 
             // SECTION: Debug
             add_settings_section(
-                'udemy_debug',
-                __('Debug Settings', 'udemy'),
+                'udemy_other',
+                __('Other Settings', 'udemy'),
                 false,
                 'udemy'
+            );
+
+            add_settings_field(
+                'udemy_credits',
+                __('You love this plugin?', 'udemy'),
+                array(&$this, 'credits_render'),
+                'udemy',
+                'udemy_other',
+                array('label_for' => 'udemy_credits')
             );
 
             add_settings_field(
@@ -126,7 +143,7 @@ if (!class_exists('Udemy_Settings')) {
                 __('Developer Mode', 'udemy'),
                 array(&$this, 'developer_mode_render'),
                 'udemy',
-                'udemy_debug',
+                'udemy_other',
                 array('label_for' => 'udemy_developer_mode')
             );
 
@@ -137,7 +154,7 @@ if (!class_exists('Udemy_Settings')) {
                     __('Debug Information', 'udemy'),
                     array(&$this, 'debug_information_render'),
                     'udemy',
-                    'udemy_debug'
+                    'udemy_other'
                 );
             }
         }
@@ -168,6 +185,11 @@ if (!class_exists('Udemy_Settings')) {
 
             $input['api_status'] = $validation;
             $input['api_error'] = $error;
+
+            // Affiliate Links
+            if ( empty ( $input['affiliate_publisher_id'] ) && isset ( $input['affiliate_links'] ) && $input['affiliate_links'] != 'disabled' ) {
+                $input['affiliate_links'] = 'disabled';
+            }
 
             // Handle cache deletion
             if ( isset ( $input['delete_cache'] ) && $input['delete_cache'] === '1' ) {
@@ -267,6 +289,44 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
+        function affiliate_render() {
+
+            $link_types = array(
+                'disabled' => __('Disabled', 'udemy'),
+                'standard' => __('Standard', 'udemy')
+            );
+
+            $links = ( isset ( $this->options['affiliate_links'] ) ) ? $this->options['affiliate_links'] : 'disabled';
+            $publisher_id = ( !empty($this->options['affiliate_publisher_id'] ) ) ? esc_attr( trim( $this->options['affiliate_publisher_id'] ) ) : '';
+
+            ?>
+            <h4 style="margin: 5px 0;"><?php _e('Status', 'udemy'); ?></h4>
+            <p>
+                <select id="udemy_affiliate_links" name="udemy[affiliate_links]">
+                    <?php foreach ( $link_types as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $links, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
+                <small><?php _e('Short / Cloaked links coming soon!', 'udemy'); ?></small>
+            </p>
+
+            <br />
+
+            <h4 style="margin: 5px 0"><?php _e('Publisher ID', 'udemy'); ?> <span class="req">*</span></h4>
+            <p>
+                <input type='text' name='udemy[affiliate_publisher_id]' id="udemy_affiliate_publisher_id"
+                       value='<?php echo esc_attr( trim( $publisher_id ) ); ?>' style="width: 125px;">
+                <span><?php _e('e.g.', 'udemy'); ?> <code>rAHrr6IQKiQ</code></span>
+            </p>
+
+            <p>
+                <small>
+                    <?php printf( wp_kses( __( 'More information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate' ) ); ?>
+                </small>
+            </p>
+            <?php
+        }
+
         function default_templates_render() {
 
             $templates = array(
@@ -325,6 +385,16 @@ if (!class_exists('Udemy_Settings')) {
             <?php
         }
 
+        function credits_render() {
+
+            $credits = ( isset ( $this->options['credits'] ) && $this->options['credits'] == '1' ) ? 1 : 0;
+
+            ?>
+            <input type="checkbox" id="udemy_credits" name="udemy[credits]" value="1" <?php echo($credits == 1 ? 'checked' : ''); ?>>
+            <label for="udemy_credits"><?php _e('Activate if you love this plugin and want to support my work by affiliating the Udemy links.', 'udemy'); ?></label>
+            <?php
+        }
+
         function developer_mode_render() {
 
             $developer_mode = ( isset ( $this->options['developer_mode'] ) && $this->options['developer_mode'] == '1' ) ? 1 : 0;
@@ -343,16 +413,6 @@ if (!class_exists('Udemy_Settings')) {
             $disabled = '<span style="color: red;"><strong><span class="dashicons dashicons-no"></span> ' . __('Disabled', 'udemy') . '</strong></span>';
 
             ?>
-
-            <style type="text/css">
-                .udemy-debug-table {
-                    margin-bottom: 10px;
-                }
-                .udemy-debug-table th,
-                .udemy-debug-table td {
-                    padding: 10px;
-                }
-            </style>
 
             <table class="widefat udemy-debug-table">
                 <thead>
@@ -431,15 +491,6 @@ if (!class_exists('Udemy_Settings')) {
                                     settings_fields('udemy');
                                     udemy_do_settings_sections('udemy');
                                     ?>
-
-                                    <script type="application/javascript">
-                                        jQuery( document ).on( 'click', '#udemy-delete-cache-submit', function(event) {
-                                            jQuery('#udemy_delete_cache').val('1');
-                                        });
-                                        jQuery( document ).on( 'click', '#udemy-reset-log-submit', function(event) {
-                                            jQuery('#udemy_reset_log').val('1');
-                                        });
-                                    </script>
 
                                     <p>
                                         <?php submit_button( 'Save Changes', 'button-primary', 'submit', false ); ?>

@@ -18,21 +18,22 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @return      void
  */
 function udemy_admin_scripts( $hook ) {
-    global $edd_settings_page, $post_type;
 
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || UDEMY_DEBUG ) ? '' : '.min';
 
     /**
-     *				EDD settings page.
+     *	Settings page only
      */
-    if( $hook == $edd_settings_page ) {
+    $screen = get_current_screen();
+
+    if ( ! empty( $screen->base ) && $screen->base == 'settings_page_udemy' ) {
 
         wp_enqueue_script( 'udemy_admin_js', UDEMY_URL . '/assets/js/admin' . $suffix . '.js', array( 'jquery' ), UDEMY_VER );
         wp_enqueue_style( 'udemy_admin_css', UDEMY_URL . '/assets/css/admin' . $suffix . '.css', false, UDEMY_VER );
     }
 }
-//add_action( 'admin_enqueue_scripts', 'udemy_admin_scripts', 100 );
+add_action( 'admin_enqueue_scripts', 'udemy_admin_scripts', 100 );
 
 /**
  * Load frontend scripts

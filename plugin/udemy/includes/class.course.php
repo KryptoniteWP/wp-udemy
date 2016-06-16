@@ -65,6 +65,9 @@ if (!class_exists('Udemy_Course')) {
             if ( isset ( $this->course['url'] ) )
                 $url .= $this->course['url'];
 
+            // Maybe build affiliate link
+            $url = udemy_get_affiliate_link( $url );
+
             return $url;
         }
 

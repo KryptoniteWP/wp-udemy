@@ -1,0 +1,11 @@
+.udemy-debug-table {
+  margin-bottom: 10px;
+}
+.udemy-debug-table th,
+.udemy-debug-table td {
+  padding: 10px;
+}
+.req {
+  color: red;
+  font-weight: bold;
+}

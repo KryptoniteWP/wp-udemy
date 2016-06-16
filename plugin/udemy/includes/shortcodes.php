@@ -31,7 +31,7 @@ function udemy_add_shortcode( $atts ) {
 
         // Shortcode atts
         if ( isset ( $atts['url'] ) )
-            $output_args['url'] = sanitize_text_field( $atts['url'] );
+            $output_args['url'] = $atts['url'];
 
     // Type: Lists
     } else {

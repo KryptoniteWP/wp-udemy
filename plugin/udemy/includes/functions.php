@@ -449,12 +449,25 @@ function udemy_get_categories() {
 /*
  * Get affiliate link
  */
-function udemy_get_affiliate_link( $url ) {
+function udemy_get_affiliate_url( $url ) {
 
     $options = udemy_get_options();
 
     if ( ( ! isset ( $options['affiliate_links'] ) || $options['affiliate_links'] == 'disabled' ) && ! isset ( $options['credits'] ) )
         return $url;
+
+    // Building final url
+    $url = udemy_get_redirect_affiliate_url( $url );
+
+    return $url;
+}
+
+/*
+ * Get redirect affiliate url
+ */
+function udemy_get_redirect_affiliate_url( $url, $encode = true ) {
+
+    $options = udemy_get_options();
 
     if ( empty ( $options['affiliate_publisher_id'] ) && ! isset ( $options['credits'] ) )
         return $url;
@@ -466,7 +479,7 @@ function udemy_get_affiliate_link( $url ) {
     $merchant_id = '39197';
 
     // Encoding url
-    $encoded_url = urlencode( $url );
+    $encoded_url = ( $encode ) ? urlencode( $url ) : $url;
 
     // Building final url
     $url = 'http://click.linksynergy.com/deeplink?id=' . $publisher_id . '&type=10&mid=' . $merchant_id . '&murl=' . $encoded_url;

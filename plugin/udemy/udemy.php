@@ -102,6 +102,7 @@ if( !class_exists( 'Udemy' ) ) {
             require_once UDEMY_DIR . 'includes/api-functions.php';
             require_once UDEMY_DIR . 'includes/functions.php';
             require_once UDEMY_DIR . 'includes/shortcodes.php';
+            require_once UDEMY_DIR . 'includes/rewrites.php';
         }
 
         /**

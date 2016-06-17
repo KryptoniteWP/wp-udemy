@@ -27,7 +27,7 @@ function udemy_admin_scripts( $hook ) {
      */
     $screen = get_current_screen();
 
-    if ( ! empty( $screen->base ) && $screen->base == 'settings_page_udemy' ) {
+    if ( ! empty( $screen->base ) && ( $screen->base == 'settings_page_udemy' || $screen->base == 'widgets' ) ) {
 
         wp_enqueue_script( 'udemy_admin_js', UDEMY_URL . '/assets/js/admin' . $suffix . '.js', array( 'jquery' ), UDEMY_VER );
         wp_enqueue_style( 'udemy_admin_css', UDEMY_URL . '/assets/css/admin' . $suffix . '.css', false, UDEMY_VER );

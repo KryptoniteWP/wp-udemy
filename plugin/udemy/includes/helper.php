@@ -35,6 +35,10 @@ function udemy_get_datetime( $timestamp ) {
     return get_date_from_gmt( date( $date_format . ' ' . $time_format, $timestamp ), $date_format . ' - ' . $time_format );
 }
 
+function udemy_the_assets() {
+    echo UDEMY_URL . 'assets';
+}
+
 /**
  * Output data to a log for debugging reasons
  **/

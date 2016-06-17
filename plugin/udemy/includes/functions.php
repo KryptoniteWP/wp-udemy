@@ -283,7 +283,7 @@ function udemy_get_courses( $atts ) {
     // IDs
     if ( isset ( $atts['id'] ) ) {
 
-        $course_ids = explode(',', str_replace(' ', '', sanitize_text_field( $atts['id'] ) ) );
+        $course_ids = explode(',', str_replace( array( ' ', ';'), array( '', ','), sanitize_text_field( $atts['id'] ) ) );
 
         foreach ( $course_ids as $id ) {
 

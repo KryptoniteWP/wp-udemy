@@ -130,6 +130,15 @@ if (!class_exists('Udemy_Settings')) {
             );
 
             add_settings_field(
+                'udemy_widget_text_shortcodes',
+                __('Widgets & Shortcodes', 'udemy'),
+                array(&$this, 'widget_text_shortcodes_render'),
+                'udemy',
+                'udemy_other',
+                array('label_for' => 'udemy_widget_text_shortcodes')
+            );
+
+            add_settings_field(
                 'udemy_credits',
                 __('You love this plugin?', 'udemy'),
                 array(&$this, 'credits_render'),
@@ -421,6 +430,16 @@ if (!class_exists('Udemy_Settings')) {
                 <?php } ?>
             </select>
             <p><small><?php _e('This will be applied to grid and list templates. The standard template already shows both information.', 'udemy'); ?></small></p>
+            <?php
+        }
+
+        function widget_text_shortcodes_render() {
+
+            $shortcodes = ( isset ( $this->options['widget_text_shortcodes'] ) && $this->options['widget_text_shortcodes'] == '1' ) ? 1 : 0;
+
+            ?>
+            <input type="checkbox" id="udemy_widget_text_shortcodes" name="udemy[widget_text_shortcodes]" value="1" <?php echo($shortcodes == 1 ? 'checked' : ''); ?>>
+            <label for="udemy_widget_text_shortcodes"><?php _e("Activate if your theme doesn't support shortocdes within text widgets.", 'udemy'); ?></label>
             <?php
         }
 

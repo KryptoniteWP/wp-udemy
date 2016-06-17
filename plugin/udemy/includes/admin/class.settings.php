@@ -90,7 +90,7 @@ if (!class_exists('Udemy_Settings')) {
 
             add_settings_field(
                 'udemy_affiliate_links',
-                __('Affiliate Links', 'udemy'),
+                __('Affiliate', 'udemy'),
                 array(&$this, 'affiliate_links_render'),
                 'udemy',
                 'udemy_general'
@@ -303,6 +303,13 @@ if (!class_exists('Udemy_Settings')) {
             ?>
 
             <p>
+                <?php printf( wp_kses( __( 'Information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate-program' ) ); ?>
+            </p>
+
+            <br />
+
+            <h4 style="margin: 5px 0"><?php _e('Affiliate Links', 'udemy'); ?></h4>
+            <p>
                 <select id="udemy_affiliate_links" name="udemy[affiliate_links]">
                     <?php foreach ( $link_types as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $links, $key ); ?>><?php echo $label; ?></option>
@@ -312,7 +319,7 @@ if (!class_exists('Udemy_Settings')) {
 
             <p>
                 <small>
-                    <?php printf( wp_kses( __( 'Information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate' ) ); ?>
+                    <?php _e('After switching over to masked links you might have to update your permalinks.', 'udemy'); ?>
                 </small>
             </p>
 
@@ -349,6 +356,12 @@ if (!class_exists('Udemy_Settings')) {
                     </tr>
                 </tbody>
             </table>
+
+            <p>
+                <small>
+                    <?php printf( wp_kses( __( 'More information about all types of affiliate links can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate-links' ) ); ?>
+                </small>
+            </p>
 
             <?php
         }

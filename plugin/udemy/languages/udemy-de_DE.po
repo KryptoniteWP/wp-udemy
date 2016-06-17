@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Udemy for WordPress\n"
-"POT-Creation-Date: 2016-06-16 09:37+0200\n"
-"PO-Revision-Date: 2016-06-16 09:41+0200\n"
+"POT-Creation-Date: 2016-06-17 07:58+0200\n"
+"PO-Revision-Date: 2016-06-17 08:01+0200\n"
 "Last-Translator: flowdee <coder@flowdee.de>\n"
 "Language-Team: flowdee <coder@flowdee.de>\n"
 "Language: de_DE\n"
@@ -38,8 +38,8 @@ msgid "Cache Duration"
 msgstr "Aktualisierungs-Intervall"
 
 #: includes/admin/class.settings.php:93
-msgid "Affiliate Links"
-msgstr "Affiliate-Links"
+msgid "Affiliate"
+msgstr "Affiliate-Partnerprogram"
 
 #: includes/admin/class.settings.php:102
 msgid "Output Settings"
@@ -114,7 +114,7 @@ msgstr ""
 "Weitere Anpassungsmöglichkeiten findest du in der <a href=\"%s"
 "\">Dokumentation</a>."
 
-#: includes/admin/class.settings.php:246 includes/admin/class.settings.php:303
+#: includes/admin/class.settings.php:246
 msgid "Status"
 msgstr "Status"
 
@@ -167,52 +167,94 @@ msgstr "3 Tage"
 msgid "1 Week"
 msgstr "1 Woche"
 
-#: includes/admin/class.settings.php:295 includes/admin/class.settings.php:413
+#: includes/admin/class.settings.php:295 includes/admin/class.settings.php:452
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: includes/admin/class.settings.php:296 includes/admin/class.settings.php:333
+#: includes/admin/class.settings.php:296 includes/admin/class.settings.php:345
+#: includes/admin/class.settings.php:372
 msgid "Standard"
 msgstr "Standard"
 
-#: includes/admin/class.settings.php:310
-msgid "Short / Cloaked links coming soon!"
-msgstr "Kurze bzw. maskierte Links sind bald verfügbar!"
+#: includes/admin/class.settings.php:297 includes/admin/class.settings.php:350
+msgid "Masked by plugin"
+msgstr "Maskierung durch das Plugin"
 
-#: includes/admin/class.settings.php:315
+#: includes/admin/class.settings.php:306
+#, php-format
+msgid ""
+"Information about how to join the affiliate program can be found <a href=\"%s"
+"\">here</a>."
+msgstr ""
+"Informationen darüber, wie du dem Affiliate-Partnerprogramm beitreten "
+"kannst, findest du <a href=\"%s\">hier</a>."
+
+#: includes/admin/class.settings.php:311
+msgid "Affiliate Links"
+msgstr "Affiliate-Links"
+
+#: includes/admin/class.settings.php:322
+msgid ""
+"After switching over to masked links you might have to update your "
+"permalinks."
+msgstr ""
+"Bitte aktualisiere die „Permalinks“, nachdem du die Maskierung der Links "
+"aktiviert hast."
+
+#: includes/admin/class.settings.php:328
 msgid "Publisher ID"
 msgstr "Publisher-ID"
 
-#: includes/admin/class.settings.php:319
+#: includes/admin/class.settings.php:332
 msgid "e.g."
 msgstr "z.B."
 
-#: includes/admin/class.settings.php:324
+#: includes/admin/class.settings.php:335
+msgid "Comparison of the different affiliate links"
+msgstr "Vergleich der verschiedenen Affiliate-Links"
+
+#: includes/admin/class.settings.php:339
+msgid "Type"
+msgstr "﻿Typ"
+
+#: includes/admin/class.settings.php:340
+msgid "Example"
+msgstr "Beispiel"
+
+#: includes/admin/class.settings.php:354
+msgid "Masked via bit.ly"
+msgstr "Maskierung über bit.ly"
+
+#: includes/admin/class.settings.php:354
+msgid "Coming soon!"
+msgstr "Bald verfügbar!"
+
+#: includes/admin/class.settings.php:362
 #, php-format
 msgid ""
-"More information about how to join the affiliate program can be found <a "
-"href=\"%s\">here</a>."
+"More information about all types of affiliate links can be found <a href=\"%s"
+"\">here</a>."
 msgstr ""
-"Weitere Informationen, wie du dem Affiliate-Partnerprogramm beitreten "
-"kannst, findest du <a href=\"%s\">hier</a>."
+"Weitere Informationen über die unterschiedlichen Affiliate-Links findest du "
+"<a href=\"%s\">hier</a>."
 
-#: includes/admin/class.settings.php:334
+#: includes/admin/class.settings.php:373
 msgid "Grid"
 msgstr "Grid"
 
-#: includes/admin/class.settings.php:335
+#: includes/admin/class.settings.php:374
 msgid "List"
 msgstr "Liste"
 
-#: includes/admin/class.settings.php:342
+#: includes/admin/class.settings.php:381
 msgid "Single Course"
 msgstr "Einzelner Kurs"
 
-#: includes/admin/class.settings.php:353
+#: includes/admin/class.settings.php:392
 msgid "Multiple Courses"
 msgstr "Mehrere Kurse"
 
-#: includes/admin/class.settings.php:364
+#: includes/admin/class.settings.php:403
 #, php-format
 msgid ""
 "Available templates (%1$s) can be used to overwrite each shortcode "
@@ -221,15 +263,15 @@ msgstr ""
 "Die verfügbaren Templates (%1$s) können über jeden Shortcode individuell "
 "ausgewählt werden: z.B."
 
-#: includes/admin/class.settings.php:372
+#: includes/admin/class.settings.php:411
 msgid "Course Subtitle"
 msgstr "Kurs-Untertitel"
 
-#: includes/admin/class.settings.php:373
+#: includes/admin/class.settings.php:412
 msgid "Instructor information"
 msgstr "Dozenten-Information"
 
-#: includes/admin/class.settings.php:384
+#: includes/admin/class.settings.php:423
 msgid ""
 "This will be applied to grid and list templates. The standard template "
 "already shows both information."
@@ -237,7 +279,7 @@ msgstr ""
 "Diese Auswahl wird nur bei Grid- und Listen-Templates angewandt. Das "
 "Standard-Template gibt bereits beide Informationen aus."
 
-#: includes/admin/class.settings.php:394
+#: includes/admin/class.settings.php:433
 msgid ""
 "Activate if you love this plugin and want to support my work by affiliating "
 "the Udemy links."
@@ -245,49 +287,49 @@ msgstr ""
 "Aktivieren, wenn du das Plugin toll findest und meine Arbeit durch "
 "Hinzufügen meines Affiliate-Links unterstützen möchtest."
 
-#: includes/admin/class.settings.php:404
+#: includes/admin/class.settings.php:443
 msgid "Please activate for debugging reasons only"
 msgstr "Bitte nur zur Fehlerbehebung aktivieren."
 
-#: includes/admin/class.settings.php:412
+#: includes/admin/class.settings.php:451
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: includes/admin/class.settings.php:420
+#: includes/admin/class.settings.php:459
 msgid "Setting"
 msgstr "Einstellung"
 
-#: includes/admin/class.settings.php:421
+#: includes/admin/class.settings.php:460
 msgid "Values"
 msgstr "Werte"
 
-#: includes/admin/class.settings.php:434
+#: includes/admin/class.settings.php:473
 #, php-format
 msgid "PHP \"%1$s\" extension"
 msgstr "PHP „%1$s“-Erweiterung"
 
-#: includes/admin/class.settings.php:441
+#: includes/admin/class.settings.php:480
 msgid "Cache"
 msgstr "Cache"
 
-#: includes/admin/class.settings.php:445
+#: includes/admin/class.settings.php:484
 msgid "Size"
 msgstr "Größe"
 
-#: includes/admin/class.settings.php:446
+#: includes/admin/class.settings.php:485
 #, php-format
 msgid "%1$s courses and %2$s lists."
 msgstr "%1$s Kurse und %2$s Listen."
 
-#: includes/admin/class.settings.php:448
+#: includes/admin/class.settings.php:487
 msgid "Last update"
 msgstr "Letzte Aktualisierung"
 
-#: includes/admin/class.settings.php:453
+#: includes/admin/class.settings.php:492
 msgid "Next Cron Execution"
 msgstr "Nächste Cronjob-Ausführung"
 
-#: includes/admin/class.settings.php:460
+#: includes/admin/class.settings.php:499
 msgid ""
 "In case one of the values above is <span style=\"color: red;\"><strong>red</"
 "strong></span>, please get in contact with your webhoster in order to enable "
@@ -297,24 +339,24 @@ msgstr ""
 "span> ist, kontaktiere bitte deinen WebHoster, um die fehlenden PHP-"
 "Erweiterungen zu aktivieren."
 
-#: includes/admin/class.settings.php:466
+#: includes/admin/class.settings.php:505
 msgid "Log file"
 msgstr "Log-Datei"
 
-#: includes/admin/class.settings.php:467
+#: includes/admin/class.settings.php:506
 msgid "No entries yet. "
 msgstr "Keine Einträge vorhanden."
 
 #. Plugin Name of the plugin/theme
-#: includes/admin/class.settings.php:482
+#: includes/admin/class.settings.php:521
 msgid "Udemy"
 msgstr "Udemy"
 
-#: includes/admin/class.settings.php:532
+#: includes/admin/class.settings.php:571
 msgid "Connected"
 msgstr "Verbunden"
 
-#: includes/admin/class.settings.php:532
+#: includes/admin/class.settings.php:571
 msgid "Disconnected"
 msgstr "Nicht verbunden"
 
@@ -350,7 +392,7 @@ msgstr "Keine Kurse gefunden."
 msgid "Courses could not be fetched. Please try again."
 msgstr "Die Kurse konnten nicht abgerufen werden. Bitte versuche es erneut."
 
-#: includes/class.course.php:119
+#: includes/class.course.php:132
 msgid "No info available"
 msgstr "Keine Information verfügabar"
 
@@ -358,7 +400,7 @@ msgstr "Keine Information verfügabar"
 msgid "Please activate PHP curl in order to display Udemy courses."
 msgstr "Bitte aktiviere die PHP curl Erweiterung, um Kurse auszugeben."
 
-#: includes/functions.php:414
+#: includes/functions.php:417
 msgid "Template not found."
 msgstr "Template wurde nicht gefunden."
 
@@ -413,6 +455,16 @@ msgstr "flowdee"
 #. Author URI of the plugin/theme
 msgid "http://flowdee.de"
 msgstr "http://flowdee.de"
+
+#~ msgid "Short / Cloaked links coming soon!"
+#~ msgstr "Kurze bzw. maskierte Links sind bald verfügbar!"
+
+#~ msgid ""
+#~ "More information about how to join the affiliate program can be found <a "
+#~ "href=\"%s\">here</a>."
+#~ msgstr ""
+#~ "Weitere Informationen, wie du dem Affiliate-Partnerprogramm beitreten "
+#~ "kannst, findest du <a href=\"%s\">hier</a>."
 
 #~ msgid "Cache duration"
 #~ msgstr "Aktualisierungs-Intervall"

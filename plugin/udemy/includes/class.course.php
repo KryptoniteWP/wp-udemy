@@ -41,6 +41,9 @@ if (!class_exists('Udemy_Course')) {
             if ( 'list' === $size )
                 $image = 'image_200_H';
 
+            if ( 'widget_small' === $size )
+                $image = 'image_75x75';
+
             return ( isset ( $this->course[$image] ) ) ? $this->course[$image] : '';
         }
 

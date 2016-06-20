@@ -43,8 +43,6 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
             }
 
-            $cache = get_option('udemy_cache');
-
             if ( ! empty ( $instance['ids'] ) ) {
 
                 // IDs
@@ -59,6 +57,10 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 } elseif ( ! empty ( $instance['template'] ) ) {
                     $shortcode_atts['template'] = $instance['template'];
                 }
+
+                // Style
+                if ( ! empty ( $instance['style'] ) )
+                    $shortcode_atts['style'] = $instance['style'];
 
                 // URL
                 if ( ! empty ( $instance['url'] ) )
@@ -87,6 +89,7 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             $ids = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
             $template = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
             $template_custom = ! empty( $instance['template_custom'] ) ? $instance['template_custom'] : '';
+            $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
             $url = ! empty( $instance['url'] ) ? $instance['url'] : '';
 
             ?>
@@ -109,7 +112,7 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             <?php
             $templates = array(
                 'widget' => __('Standard', 'udemy'),
-                'widget_list' => __('List', 'udemy'),
+                'widget_small' => __('Small', 'udemy')
             );
             ?>
             <p>
@@ -132,6 +135,23 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 <small>
                     <?php _e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'udemy' ); ?>
                 </small>
+            </p>
+
+            <?php
+            $styles = array(
+                '' => __('Standard', 'udemy'),
+                'clean' => __('Clean', 'udemy'),
+                'light' => __('Light', 'udemy'),
+                'dark' => __('Dark', 'udemy')
+            );
+            ?>
+            <p>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>"><?php _e( 'Style:', 'udemy' ); ?></label>
+                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'style' ) ); ?>">
+                    <?php foreach ( $styles as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $style, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
             </p>
 
             <p>
@@ -159,6 +179,7 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             $instance['ids'] = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
             $instance['template'] = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
             $instance['template_custom'] = ( ! empty( $new_instance['template_custom'] ) ) ? strip_tags( $new_instance['template_custom'] ) : '';
+            $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
             $instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
 
             return $instance;

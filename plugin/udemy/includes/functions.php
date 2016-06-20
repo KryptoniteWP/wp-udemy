@@ -388,13 +388,15 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
     if ( isset ( $args['template'] ) ) {
-        $template = str_replace(' ', '', $args['template'] );
+        $template = str_replace(' ', '', $args['template']);
+    } elseif ( 'widget' === $type ) {
+        $template = 'widget';
     } else {
         $template = ( sizeof( $courses ) > 1 ) ? $template_courses : $template_course;
     }
 
     // Get template file
-    $file = udemy_get_template_file( $template );
+    $file = udemy_get_template_file( $template, $type );
 
     // Output
     ob_start();
@@ -417,7 +419,7 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
 /*
  * Get template file
  */
-function udemy_get_template_file( $template ) {
+function udemy_get_template_file( $template, $type ) {
 
     $template_file = UDEMY_DIR . 'templates/' . $template . '.php';
 
@@ -429,7 +431,7 @@ function udemy_get_template_file( $template ) {
     if ( file_exists( $template_file ) )
         return $template_file;
 
-    return UDEMY_DIR . 'templates/standard.php';
+    return ( 'widget' === $type ) ? UDEMY_DIR . 'templates/widget.php' : UDEMY_DIR . 'templates/standard.php';
 }
 
 /*

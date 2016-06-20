@@ -1,0 +1,94 @@
+@import "../common";
+
+//== Widget
+.udemy-widget {
+
+    .udemy-course__footer {
+        .clearfix();
+    }
+
+    .udemy-course__price,
+    .udemy-course__rating {
+        margin-bottom: 0;
+    }
+
+    .udemy-course__price {
+        float: left;
+    }
+
+    .udemy-course__rating {
+        float: right;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    //== Light Style
+    &.udemy-style-light {
+
+        .udemy-course {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+    }
+
+    //== Clean Style
+    &.udemy-style-clean {
+
+        .udemy-course {
+            background: none;
+            box-shadow: none;
+            color: inherit;
+
+            a {
+                color: inherit;
+
+                &:visited {
+                    color: inherit;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: inherit;
+                }
+            }
+        }
+
+        .udemy-course__details {
+            color: inherit;
+        }
+    }
+
+    //== Dark Style
+    &.udemy-style-dark {
+
+        .udemy-course {
+            background-color: #222;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            color: darken(#fff, 5%);
+
+            a {
+                color: #fff;
+
+                &:visited {
+                    color: #fff;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #fff;
+                }
+            }
+        }
+
+        .udemy-course__details {
+            color: #ccc;
+        }
+
+        .udemy-course__price {
+            color: #fff;
+        }
+    }
+}

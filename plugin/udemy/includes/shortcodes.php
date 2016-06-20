@@ -44,7 +44,12 @@ function udemy_add_shortcode( $atts ) {
 
     if ( is_array( $courses ) & sizeof( $courses ) > 0 ) {
 
-        $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
+        // Set type
+        if ( isset ( $atts['type'] ) ) {
+            $output_args['type'] = $atts['type'];
+        } else {
+            $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
+        }
 
         // Shortcode atts
         if ( isset ( $atts['style'] ) )

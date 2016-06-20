@@ -1,0 +1,116 @@
+@import "../common";
+
+@image-size: 75px;
+
+//== Widget Small
+.udemy-widget-small {
+
+    .udemy-course {
+        position: relative;
+    }
+
+    .udemy-course__img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+        height: 100%;
+        width: @image-size;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .udemy-course__content {
+        margin-left: 75px;
+        min-height: @image-size;
+        padding: 5px 10px;
+    }
+
+    .udemy-course__title {
+        margin-bottom: 5px;
+
+        font-size: 12px;
+    }
+
+    .udemy-course__footer {
+        .clearfix();
+
+        margin-top: 5px;
+    }
+
+    .udemy-course__price,
+    .udemy-course__rating {
+        margin-bottom: 0;
+    }
+
+    //== Light Style
+    &.udemy-style-light {
+
+        .udemy-course {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+    }
+
+    //== Clean Style
+    &.udemy-style-clean {
+
+        .udemy-course {
+            background: none;
+            box-shadow: none;
+            color: inherit;
+
+            a {
+                color: inherit;
+
+                &:visited {
+                    color: inherit;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: inherit;
+                }
+            }
+        }
+
+        .udemy-course__details {
+            color: inherit;
+        }
+    }
+
+    //== Dark Style
+    &.udemy-style-dark {
+
+        .udemy-course {
+            background-color: #222;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            color: darken(#fff, 5%);
+
+            a {
+                color: #fff;
+
+                &:visited {
+                    color: #fff;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #fff;
+                }
+            }
+        }
+
+        .udemy-course__details {
+            color: #ccc;
+        }
+
+        .udemy-course__price {
+            color: #fff;
+        }
+    }
+}

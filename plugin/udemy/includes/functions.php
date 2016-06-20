@@ -280,20 +280,15 @@ function udemy_get_courses( $atts ) {
             // Cache available
             if ( $course_cache ) {
 
-                udemy_debug(false, 'Cache available');
-
                 $courses[] = $course_cache;
 
                 // Cache not available, fetch from API
             } else {
 
-                udemy_debug(false, 'Cache not available, fetch from API');
-
                 $course = udemy_get_course_from_api( $id );
                 $courses[] = $course;
 
                 if ( is_array( $course ) ) {
-                    udemy_debug(false, 'Updating Cache');
                     udemy_update_cache( $course );
                 }
             }

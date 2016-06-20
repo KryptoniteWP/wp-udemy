@@ -43,11 +43,13 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
             }
 
+            $cache = get_option('udemy_cache');
+
             if ( ! empty ( $instance['ids'] ) ) {
 
                 // IDs
                 $shortcode_atts = array(
-                    'type' => $instance['widget'],
+                    'type' => 'widget',
                     'id' => $instance['ids'],
                 );
 

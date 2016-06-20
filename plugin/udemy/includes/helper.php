@@ -11,10 +11,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function udemy_debug( $args ) {
-    echo '<pre>';
-    print_r($args);
-    echo '</pre>';
+function udemy_debug( $args, $title = false ) {
+
+    if ( $title ) {
+        echo '<h3>' . $title . '</h3>';
+    }
+
+    if ( $args ) {
+        echo '<pre>';
+        print_r($args);
+        echo '</pre>';
+    }
 }
 
 function udemy_cleanup_category_name( $category ) {

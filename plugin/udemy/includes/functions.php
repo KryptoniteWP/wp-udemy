@@ -61,20 +61,8 @@ function udemy_update_cache( $items, $key = false ) {
     // Single or multiple courses
     } else {
 
-        // Multiple courses
-        if ( is_array( $items ) ) {
-
-            foreach ( $items as $item ) {
-
-                if ( is_object( $item ) && method_exists( $item, 'get_id' ) )
-                    $cache['items'][$item->get_id()] = $item;
-            }
-
-            // Single course
-        } else {
-
-            if ( is_object( $items ) && method_exists( $items, 'get_id' ) )
-                $cache['items'][$items->get_id()] = $items;
+        if ( isset ( $items['id'] ) ) {
+            $cache['items'][$items['id']] = $items;
         }
     }
 
@@ -205,7 +193,7 @@ function udemy_bulk_update_items( $items ) {
             // Fetch course
             $course = udemy_get_course_from_api( $id );
 
-            if ( is_object( $course ) )
+            if ( is_array( $course ) )
                 $items[$id] = $course;
 
             // Update item count
@@ -291,14 +279,21 @@ function udemy_get_courses( $atts ) {
 
             // Cache available
             if ( $course_cache ) {
+
+                udemy_debug(false, 'Cache available');
+
                 $courses[] = $course_cache;
 
                 // Cache not available, fetch from API
             } else {
+
+                udemy_debug(false, 'Cache not available, fetch from API');
+
                 $course = udemy_get_course_from_api( $id );
                 $courses[] = $course;
 
-                if ( is_object( $course ) ) {
+                if ( is_array( $course ) ) {
+                    udemy_debug(false, 'Updating Cache');
                     udemy_update_cache( $course );
                 }
             }

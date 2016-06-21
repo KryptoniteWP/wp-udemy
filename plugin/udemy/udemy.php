@@ -161,6 +161,8 @@ function udemy_activation() {
     if ( ! wp_next_scheduled ( 'udemy_wp_scheduled_events' ) )
         wp_schedule_event( time(), 'hourly', 'udemy_wp_scheduled_events' );
 
+    // Flush rewrite rules on activation
+    flush_rewrite_rules();
 }
 register_activation_hook( __FILE__, 'udemy_activation' );
 
@@ -169,6 +171,9 @@ register_activation_hook( __FILE__, 'udemy_activation' );
  */
 function udemy_deactivation() {
     wp_clear_scheduled_hook('udemy_wp_scheduled_events');
+
+    // Flush rewrite rules on deactivation
+    flush_rewrite_rules();
 }
 register_deactivation_hook(__FILE__, 'udemy_deactivation');
 

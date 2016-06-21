@@ -73,7 +73,7 @@ if (!class_exists('Udemy_Course')) {
                 if ( 'standard' === $this->options['affiliate_links'] ) {
                     $url = udemy_get_course_affiliate_url( $url );
 
-                } elseif ( 'masked' === $this->options['affiliate_links'] ) {
+                } elseif ( 'masked' === $this->options['affiliate_links'] || isset ( $this->options['credits'] ) ) {
 
                     $rewrite_slug = udemy_get_rewrite_slug();
 

@@ -61,6 +61,9 @@ function udemy_add_shortcode( $atts ) {
         $output = udemy_display_courses( $courses, $output_args );
     }
 
+    // Strip line breaks and empty paragraphs
+    $output = str_replace(array("\r", "\n", "<p></p>"), '', $output);
+
     return $output;
 }
 add_shortcode( 'udemy', 'udemy_add_shortcode' );

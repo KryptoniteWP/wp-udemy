@@ -439,7 +439,7 @@ if (!class_exists('Udemy_Settings')) {
 
             ?>
             <input type="checkbox" id="udemy_widget_text_shortcodes" name="udemy[widget_text_shortcodes]" value="1" <?php echo($shortcodes == 1 ? 'checked' : ''); ?>>
-            <label for="udemy_widget_text_shortcodes"><?php _e("Activate if your theme doesn't support shortocdes within text widgets.", 'udemy'); ?></label>
+            <label for="udemy_widget_text_shortcodes"><?php _e("Activate if your theme doesn't support shortcodes within text widgets.", 'udemy'); ?></label>
             <?php
         }
 

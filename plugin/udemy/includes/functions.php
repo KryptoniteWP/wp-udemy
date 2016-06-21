@@ -294,7 +294,7 @@ function udemy_get_courses( $atts ) {
             }
         }
 
-        // Lists
+    // Lists
     } else {
 
         // Page size

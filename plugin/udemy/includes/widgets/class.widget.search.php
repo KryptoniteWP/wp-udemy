@@ -1,20 +1,20 @@
 <?php
 /**
- * Widget: Courses
+ * Widget: Search
  *
- * @package     Udemy\WidgetCourses
+ * @package     Udemy\WidgetSearch
  * @since       1.0.0
  */
 
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
+if ( ! class_exists( 'Udemy_Search_Widget' ) ) {
 
     /**
-     * Adds Udemy_Courses widget.
+     * Adds Udemy_Search widget.
      */
-    class Udemy_Courses_Widget extends WP_Widget {
+    class Udemy_Search_Widget extends WP_Widget {
 
         protected static $did_script = false;
 
@@ -23,9 +23,9 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
          */
         function __construct() {
             parent::__construct(
-                'udemy_single_widget', // Base ID
-                __( 'Udemy - Courses', 'udemy' ), // Name
-                array( 'description' => __( 'Displaying Udemy courses by their ids.', 'udemy' ), ) // Args
+                'udemy_search_widget', // Base ID
+                __( 'Udemy - Search', 'udemy' ), // Name
+                array( 'description' => __( 'Searching for Udemy courses by keyword or category.', 'udemy' ), ) // Args
             );
 
             add_action('wp_enqueue_scripts', array( $this, 'scripts' ) );
@@ -47,13 +47,31 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
             }
 
-            if ( ! empty ( $instance['ids'] ) ) {
+            if ( ! empty ( $instance['keywords'] ) ) {
 
-                // IDs
                 $shortcode_atts = array(
-                    'type' => 'widget',
-                    'id' => $instance['ids'],
+                    'type' => 'widget'
                 );
+
+                // Keywords
+                if ( ! empty ( $instance['keywords'] ) )
+                    $shortcode_atts['search'] = $instance['keywords'];
+
+                // Category/subcategory TODO
+                //if ( ! empty ( $instance['category'] ) )
+                    //$shortcode_atts['category'] = $instance['category'];
+
+                // Items
+                if ( ! empty ( $instance['items'] ) && is_numeric( $instance['items'] ) )
+                    $shortcode_atts['items'] = $instance['items'];
+
+                // Lang
+                if ( ! empty ( $instance['lang'] ) )
+                    $shortcode_atts['lang'] = $instance['lang'];
+
+                // Orderby
+                if ( ! empty ( $instance['orderby'] ) )
+                    $shortcode_atts['orderby'] = $instance['orderby'];
 
                 // Template
                 if ( ! empty ( $instance['template_custom'] ) ) {
@@ -66,15 +84,11 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 if ( ! empty ( $instance['style'] ) )
                     $shortcode_atts['style'] = $instance['style'];
 
-                // URL
-                if ( ! empty ( $instance['url'] ) )
-                    $shortcode_atts['url'] = $instance['url'];
-
                 // Execute Shortcode
                 udemy_widget_do_shortcode( $shortcode_atts );
 
             } else {
-                _e( 'Please enter a course ID.', 'udemy' );
+                _e( 'Please at least a keyword.', 'udemy' );
             }
 
             echo $args['after_widget'];
@@ -90,11 +104,13 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
         public function form( $instance ) {
 
             $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
-            $ids = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
+            $keywords = ! empty( $instance['keywords'] ) ? $instance['keywords'] : '';
+            $items = ! empty( $instance['items'] ) ? $instance['items'] : '3';
+            $lang = ! empty( $instance['lang'] ) ? $instance['lang'] : '';
+            $orderby = ! empty( $instance['orderby'] ) ? $instance['orderby'] : 'date';
             $template = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
             $template_custom = ! empty( $instance['template_custom'] ) ? $instance['template_custom'] : '';
             $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
-            $url = ! empty( $instance['url'] ) ? $instance['url'] : '';
 
             ?>
             <img src="<?php udemy_the_assets(); ?>/img/logo-udemy-green.svg" class="udemy-widget-logo" />
@@ -105,12 +121,49 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             </p>
 
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>"><?php _e( 'Course IDs:', 'udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'ids' ) ); ?>" type="text" value="<?php echo esc_attr( $ids ); ?>">
-                <br />
-                <small>
-                    <?php _e( 'You can enter multiple course IDs and separate them by comma.', 'udemy' ); ?>
-                </small>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>"><?php _e( 'Keywords:', 'udemy' ); ?></label>
+                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'keywords' ) ); ?>" type="text" value="<?php echo esc_attr( $keywords ); ?>">
+            </p>
+
+            <p>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>"><?php _e( 'Items:', 'udemy' ); ?></label>
+                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>" type="number" value="<?php echo esc_attr( $items ); ?>">
+            </p>
+
+            <?php
+            $orderby_options = array(
+                'sales' => __('Sales', 'udemy'),
+                'date' => __('Date', 'udemy'),
+                'trends' => __('Trends', 'udemy')
+            );
+            ?>
+            <p>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php _e( 'Order by:', 'udemy' ); ?></label>
+                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'orderby' ) ); ?>">
+                    <?php foreach ( $orderby_options as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $orderby, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
+            </p>
+
+            <?php
+            $lang_options = array(
+                '' => __('All'),
+                'en' => __('English', 'udemy'),
+                'fr' => __('French', 'udemy'),
+                'de' => __('German', 'udemy'),
+                'it' => __('Italian', 'udemy'),
+                'es' => __('Spanish', 'udemy'),
+                'ru' => __('Russian', 'udemy')
+            );
+            ?>
+            <p>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'lang' ) ); ?>"><?php _e( 'Language:', 'udemy' ); ?></label>
+                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'lang' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'lang' ) ); ?>">
+                    <?php foreach ( $lang_options as $key => $label ) { ?>
+                        <option value="<?php echo $key; ?>" <?php selected( $lang, $key ); ?>><?php echo $label; ?></option>
+                    <?php } ?>
+                </select>
             </p>
 
             <?php
@@ -158,15 +211,6 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 </select>
             </p>
 
-            <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'url' ) ); ?>"><?php _e( 'Custom URL:', 'udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'url' ) ); ?>" type="text" value="<?php echo esc_attr( $url ); ?>">
-                <br />
-                <small>
-                    <?php _e( 'Only working when entering one course id.', 'udemy' ); ?>
-                </small>
-            </p>
-
             <?php
         }
 
@@ -184,11 +228,13 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             $instance = array();
 
             $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-            $instance['ids'] = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
+            $instance['keywords'] = ( ! empty( $new_instance['keywords'] ) ) ? strip_tags( $new_instance['keywords'] ) : '';
+            $instance['items'] = ( ! empty( $new_instance['items'] ) ) ? strip_tags( $new_instance['items'] ) : '';
+            $instance['lang'] = ( ! empty( $new_instance['lang'] ) ) ? strip_tags( $new_instance['lang'] ) : '';
+            $instance['orderby'] = ( ! empty( $new_instance['orderby'] ) ) ? strip_tags( $new_instance['orderby'] ) : '';
             $instance['template'] = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
             $instance['template_custom'] = ( ! empty( $new_instance['template_custom'] ) ) ? strip_tags( $new_instance['template_custom'] ) : '';
             $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
-            $instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
 
             return $instance;
         }

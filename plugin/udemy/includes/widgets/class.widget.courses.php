@@ -16,6 +16,8 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
      */
     class Udemy_Courses_Widget extends WP_Widget {
 
+        protected static $did_script = false;
+
         /**
          * Register widget with WordPress.
          */
@@ -25,6 +27,8 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
                 __( 'Udemy - Courses', 'udemy' ), // Name
                 array( 'description' => __( 'Udemy Widget', 'udemy' ), ) // Args
             );
+
+            add_action('wp_enqueue_scripts', array( $this, 'scripts' ) );
         }
 
         /**
@@ -185,6 +189,16 @@ if ( ! class_exists( 'Udemy_Courses_Widget' ) ) {
             return $instance;
         }
 
+        /**
+         * Enqueue scripts
+         */
+        public function scripts() {
+
+            if( !self::$did_script && is_active_widget(false, false, $this->id_base, true) ) {
+                udemy_load_scripts();
+                self::$did_script = true;
+            }
+        }
     }
 
 }

@@ -27,6 +27,42 @@ if (!class_exists('Udemy_Course')) {
             return ( isset ( $this->course['id'] ) ) ? $this->course['id'] : 0;
         }
 
+        public function the_container( $echo = true ) {
+
+            $output = '';
+
+            $attributes = array();
+
+            // Course ID
+            $attributes['course-id'] = $this->get_id();
+
+            // Click Tracking
+            if ( isset ( $this->options['click_tracking'] ) ) {
+                $attributes['click-tracking'] = 'true';
+                $attributes['course-title'] = str_replace('"', "'", $this->get_title() );
+            }
+
+            // Add more via filter
+            $attributes = apply_filters( 'udemy_course_container_attributes', $attributes );
+
+            if ( sizeof( $attributes ) != 0 ) {
+
+                foreach ( $attributes as $key => $value ) {
+
+                    // Add attribute to output
+                    if ( ! empty ( $value ) )
+                        $output .= ' data-udemy-' . $key . '="' . str_replace('"', "'", $value) . '"';
+                }
+            }
+
+            if ( ! $echo )
+                return $output;
+
+            if ( ! empty ( $output ) )
+                echo $output;
+
+        }
+
         public function get_title() {
             return ( isset ( $this->course['title'] ) ) ? $this->course['title'] : '';
         }

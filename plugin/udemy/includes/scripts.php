@@ -59,7 +59,7 @@ function udemy_load_scripts() {
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UDEMY_DEBUG ) ? '' : '.min';
 
-    //wp_enqueue_script( 'udemy_scripts', UDEMY_URL . 'assets/js/scripts' . $suffix . '.js', array( 'jquery' ), UDEMY_VER, true );
+    wp_enqueue_script( 'udemy_scripts', UDEMY_URL . 'assets/js/scripts' . $suffix . '.js', array( 'jquery' ), UDEMY_VER, true );
     wp_enqueue_style( 'udemy_styles', UDEMY_URL . 'assets/css/styles' . $suffix . '.css', false, UDEMY_VER );
 
     /*

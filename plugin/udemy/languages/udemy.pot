@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Udemy for WordPress\n"
-"POT-Creation-Date: 2016-06-21 08:44+0200\n"
+"POT-Creation-Date: 2016-06-22 08:28+0200\n"
 "PO-Revision-Date: 2016-06-14 08:59+0200\n"
 "Last-Translator: flowdee <coder@flowdee.de>\n"
 "Language-Team: flowdee <coder@flowdee.de>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
 
-#: includes/admin/class.settings.php:62 includes/admin/class.settings.php:222
+#: includes/admin/class.settings.php:62 includes/admin/class.settings.php:231
 msgid "Quickstart Guide"
 msgstr ""
 
@@ -41,132 +41,136 @@ msgstr ""
 msgid "Affiliate"
 msgstr ""
 
-#: includes/admin/class.settings.php:102
+#: includes/admin/class.settings.php:101
+msgid "Click Tracking"
+msgstr ""
+
+#: includes/admin/class.settings.php:111
 msgid "Output Settings"
 msgstr ""
 
-#: includes/admin/class.settings.php:109
+#: includes/admin/class.settings.php:118
 msgid "Standard Templates"
 msgstr ""
 
-#: includes/admin/class.settings.php:117
+#: includes/admin/class.settings.php:126
 msgid "Course Details"
 msgstr ""
 
-#: includes/admin/class.settings.php:127
+#: includes/admin/class.settings.php:136
 msgid "Other Settings"
 msgstr ""
 
-#: includes/admin/class.settings.php:134
+#: includes/admin/class.settings.php:143
 msgid "Widgets & Shortcodes"
 msgstr ""
 
-#: includes/admin/class.settings.php:143
+#: includes/admin/class.settings.php:152
 msgid "You love this plugin?"
 msgstr ""
 
-#: includes/admin/class.settings.php:152
+#: includes/admin/class.settings.php:161
 msgid "Developer Mode"
 msgstr ""
 
-#: includes/admin/class.settings.php:163
+#: includes/admin/class.settings.php:172
 msgid "Debug Information"
 msgstr ""
 
-#: includes/admin/class.settings.php:224
+#: includes/admin/class.settings.php:233
 msgid "There are two ways of displaying courses:"
 msgstr ""
 
-#: includes/admin/class.settings.php:226
+#: includes/admin/class.settings.php:235
 msgid "Single course by ID"
 msgstr ""
 
-#: includes/admin/class.settings.php:227
+#: includes/admin/class.settings.php:236
 msgid ""
 "In order to get the course ID, simply add the course to the cart and take "
 "the ID out of the url of your browser."
 msgstr ""
 
-#: includes/admin/class.settings.php:230 includes/admin/class.settings.php:237
+#: includes/admin/class.settings.php:239 includes/admin/class.settings.php:246
 msgid "or"
 msgstr ""
 
-#: includes/admin/class.settings.php:234
+#: includes/admin/class.settings.php:243
 msgid "Search for courses"
 msgstr ""
 
-#: includes/admin/class.settings.php:235
+#: includes/admin/class.settings.php:244
 msgid ""
 "Alternatively you can search for courses and display grids or lists of "
 "multiple courses."
 msgstr ""
 
-#: includes/admin/class.settings.php:235
+#: includes/admin/class.settings.php:244
 msgid "This feature requires API keys!"
 msgstr ""
 
-#: includes/admin/class.settings.php:240
+#: includes/admin/class.settings.php:249
 #, php-format
 msgid ""
 "Please take a look into the <a href=\"%s\">documentation</a> for more "
 "options."
 msgstr ""
 
-#: includes/admin/class.settings.php:255
+#: includes/admin/class.settings.php:264
 msgid "Status"
 msgstr ""
 
-#: includes/admin/class.settings.php:259
+#: includes/admin/class.settings.php:268 includes/admin/class.settings.php:397
 msgid "Note:"
 msgstr ""
 
-#: includes/admin/class.settings.php:259
+#: includes/admin/class.settings.php:268
 msgid ""
 "API credentials are currently only required when searching courses or "
 "displaying categories."
 msgstr ""
 
-#: includes/admin/class.settings.php:262
+#: includes/admin/class.settings.php:271
 msgid "Client ID"
 msgstr ""
 
-#: includes/admin/class.settings.php:266
+#: includes/admin/class.settings.php:275
 msgid "Client Password"
 msgstr ""
 
-#: includes/admin/class.settings.php:272
+#: includes/admin/class.settings.php:281
 #, php-format
 msgid ""
 "Before entering your API credentials you have to create a new API Client <a "
 "href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/admin/class.settings.php:281
+#: includes/admin/class.settings.php:290
 msgid "6 Hours"
 msgstr ""
 
-#: includes/admin/class.settings.php:282
+#: includes/admin/class.settings.php:291
 msgid "12 Hours"
 msgstr ""
 
-#: includes/admin/class.settings.php:283
+#: includes/admin/class.settings.php:292
 msgid "1 Day"
 msgstr ""
 
-#: includes/admin/class.settings.php:284
+#: includes/admin/class.settings.php:293
 msgid "3 Days"
 msgstr ""
 
-#: includes/admin/class.settings.php:285
+#: includes/admin/class.settings.php:294
 msgid "1 Week"
 msgstr ""
 
-#: includes/admin/class.settings.php:304 includes/admin/class.settings.php:471
+#: includes/admin/class.settings.php:313 includes/admin/class.settings.php:494
 msgid "Disabled"
 msgstr ""
 
-#: includes/admin/class.settings.php:305 includes/admin/class.settings.php:354
-#: includes/admin/class.settings.php:381
+#: includes/admin/class.settings.php:314 includes/admin/class.settings.php:363
+#: includes/admin/class.settings.php:404
 #: includes/widgets/class.widget.courses.php:118
 #: includes/widgets/class.widget.courses.php:146
 #: includes/widgets/class.widget.search.php:171
@@ -174,176 +178,192 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
-#: includes/admin/class.settings.php:306 includes/admin/class.settings.php:359
+#: includes/admin/class.settings.php:315 includes/admin/class.settings.php:368
 msgid "Masked by plugin"
 msgstr ""
 
-#: includes/admin/class.settings.php:315
+#: includes/admin/class.settings.php:324
 #, php-format
 msgid ""
 "Information about how to join the affiliate program can be found <a href=\"%s"
 "\">here</a>."
 msgstr ""
 
-#: includes/admin/class.settings.php:320
+#: includes/admin/class.settings.php:329
 msgid "Affiliate Links"
 msgstr ""
 
-#: includes/admin/class.settings.php:331
+#: includes/admin/class.settings.php:340
 msgid ""
 "After switching over to masked links you might have to update your "
 "permalinks."
 msgstr ""
 
-#: includes/admin/class.settings.php:337
+#: includes/admin/class.settings.php:346
 msgid "Publisher ID"
 msgstr ""
 
-#: includes/admin/class.settings.php:341
+#: includes/admin/class.settings.php:350
 msgid "e.g."
 msgstr ""
 
-#: includes/admin/class.settings.php:344
+#: includes/admin/class.settings.php:353
 msgid "Comparison of the different affiliate links"
 msgstr ""
 
-#: includes/admin/class.settings.php:348
+#: includes/admin/class.settings.php:357
 msgid "Type"
 msgstr ""
 
-#: includes/admin/class.settings.php:349
+#: includes/admin/class.settings.php:358
 msgid "Example"
 msgstr ""
 
-#: includes/admin/class.settings.php:363
+#: includes/admin/class.settings.php:372
 msgid "Masked via bit.ly"
 msgstr ""
 
-#: includes/admin/class.settings.php:363
+#: includes/admin/class.settings.php:372
 msgid "Coming soon!"
 msgstr ""
 
-#: includes/admin/class.settings.php:371
+#: includes/admin/class.settings.php:380
 #, php-format
 msgid ""
 "More information about all types of affiliate links can be found <a href=\"%s"
 "\">here</a>."
 msgstr ""
 
-#: includes/admin/class.settings.php:382
+#: includes/admin/class.settings.php:394
+msgid ""
+"Activate in order to track clicks on Udemy links by creating events via your "
+"favorite tracking tool. "
+msgstr ""
+
+#: includes/admin/class.settings.php:397
+msgid "Currently supported:"
+msgstr ""
+
+#: includes/admin/class.settings.php:397
+msgid ""
+"In case you created custom templates, please take a look into the "
+"documentation."
+msgstr ""
+
+#: includes/admin/class.settings.php:405
 msgid "Grid"
 msgstr ""
 
-#: includes/admin/class.settings.php:383
+#: includes/admin/class.settings.php:406
 msgid "List"
 msgstr ""
 
-#: includes/admin/class.settings.php:390
+#: includes/admin/class.settings.php:413
 msgid "Single Course"
 msgstr ""
 
-#: includes/admin/class.settings.php:401
+#: includes/admin/class.settings.php:424
 msgid "Multiple Courses"
 msgstr ""
 
-#: includes/admin/class.settings.php:412
+#: includes/admin/class.settings.php:435
 #, php-format
 msgid ""
 "Available templates (%1$s) can be used to overwrite each shortcode "
 "individually: e.g."
 msgstr ""
 
-#: includes/admin/class.settings.php:420
+#: includes/admin/class.settings.php:443
 msgid "Course Subtitle"
 msgstr ""
 
-#: includes/admin/class.settings.php:421
+#: includes/admin/class.settings.php:444
 msgid "Instructor information"
 msgstr ""
 
-#: includes/admin/class.settings.php:432
+#: includes/admin/class.settings.php:455
 msgid ""
 "This will be applied to grid and list templates. The standard template "
 "already shows both information."
 msgstr ""
 
-#: includes/admin/class.settings.php:442
+#: includes/admin/class.settings.php:465
 msgid "Activate if your theme doesn't support shortcodes within text widgets."
 msgstr ""
 
-#: includes/admin/class.settings.php:452
+#: includes/admin/class.settings.php:475
 msgid ""
 "Activate if you love this plugin and want to support my work by affiliating "
 "the Udemy links."
 msgstr ""
 
-#: includes/admin/class.settings.php:462
+#: includes/admin/class.settings.php:485
 msgid "Please activate for debugging reasons only"
 msgstr ""
 
-#: includes/admin/class.settings.php:470
+#: includes/admin/class.settings.php:493
 msgid "Enabled"
 msgstr ""
 
-#: includes/admin/class.settings.php:478
+#: includes/admin/class.settings.php:501
 msgid "Setting"
 msgstr ""
 
-#: includes/admin/class.settings.php:479
+#: includes/admin/class.settings.php:502
 msgid "Values"
 msgstr ""
 
-#: includes/admin/class.settings.php:492
+#: includes/admin/class.settings.php:515
 #, php-format
 msgid "PHP \"%1$s\" extension"
 msgstr ""
 
-#: includes/admin/class.settings.php:499
+#: includes/admin/class.settings.php:522
 msgid "Cache"
 msgstr ""
 
-#: includes/admin/class.settings.php:503
+#: includes/admin/class.settings.php:526
 msgid "Size"
 msgstr ""
 
-#: includes/admin/class.settings.php:504
+#: includes/admin/class.settings.php:527
 #, php-format
 msgid "%1$s courses and %2$s lists."
 msgstr ""
 
-#: includes/admin/class.settings.php:506
+#: includes/admin/class.settings.php:529
 msgid "Last update"
 msgstr ""
 
-#: includes/admin/class.settings.php:511
+#: includes/admin/class.settings.php:534
 msgid "Next Cron Execution"
 msgstr ""
 
-#: includes/admin/class.settings.php:518
+#: includes/admin/class.settings.php:541
 msgid ""
 "In case one of the values above is <span style=\"color: red;\"><strong>red</"
 "strong></span>, please get in contact with your webhoster in order to enable "
 "the missing PHP extensions."
 msgstr ""
 
-#: includes/admin/class.settings.php:524
+#: includes/admin/class.settings.php:547
 msgid "Log file"
 msgstr ""
 
-#: includes/admin/class.settings.php:525
+#: includes/admin/class.settings.php:548
 msgid "No entries yet. "
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: includes/admin/class.settings.php:540
+#: includes/admin/class.settings.php:563
 msgid "Udemy"
 msgstr ""
 
-#: includes/admin/class.settings.php:590
+#: includes/admin/class.settings.php:613
 msgid "Connected"
 msgstr ""
 
-#: includes/admin/class.settings.php:590
+#: includes/admin/class.settings.php:613
 msgid "Disconnected"
 msgstr ""
 
@@ -379,7 +399,7 @@ msgstr ""
 msgid "Courses could not be fetched. Please try again."
 msgstr ""
 
-#: includes/class.course.php:135
+#: includes/class.course.php:171
 msgid "No info available"
 msgstr ""
 

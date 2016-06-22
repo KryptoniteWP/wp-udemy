@@ -96,6 +96,15 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy_general'
             );
 
+            add_settings_field(
+                'udemy_click_tracking',
+                __('Click Tracking', 'udemy'),
+                array(&$this, 'click_tracking_render'),
+                'udemy',
+                'udemy_general',
+                array('label_for' => 'udemy_click_tracking')
+            );
+
             // SECTION: Output
             add_settings_section(
                 'udemy_output',
@@ -372,6 +381,20 @@ if (!class_exists('Udemy_Settings')) {
                 </small>
             </p>
 
+            <?php
+        }
+
+        function click_tracking_render() {
+
+            $click_tracking = ( isset ( $this->options['click_tracking'] ) && $this->options['click_tracking'] == '1' ) ? 1 : 0;
+            ?>
+
+            <p>
+                <input type="checkbox" id="udemy_click_tracking" name="udemy[click_tracking]" value="1" <?php echo($click_tracking == 1 ? 'checked' : ''); ?>>
+                <label for="udemy_click_tracking"><?php _e('Activate in order to track clicks on Udemy links by creating events via your favorite tracking tool. ', 'udemy'); ?></label>
+            </p>
+
+            <p><small><strong><?php _e('Note:'); ?></strong> <?php _e('Currently supported:', 'udemy'); ?> Google Analytics & Piwik. <?php _e('In case you created custom templates, please take a look into the documentation.', 'udemy'); ?></small></p>
             <?php
         }
 

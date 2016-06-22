@@ -19,7 +19,7 @@ if ( ! isset ( $courses ) )
 
         <?php if ( is_string ( $course ) ) { echo '<p>' . $course . '</p>'; } else { ?>
 
-            <div class="udemy-course" data-udemy-course-id="<?php echo $course->get_id(); ?>">
+            <div class="udemy-course"<?php $course->the_container(); ?>>
                 <a class="udemy-course__link" href="<?php echo $course->get_url(); ?>" target="_blank" rel="nofollow" title="<?php echo $course->get_title(); ?>">
                     <span class="udemy-course__img" style="background-image: url('<?php echo $course->get_image('widget_small'); ?>');"></span>
 

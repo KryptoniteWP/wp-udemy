@@ -21,7 +21,7 @@ if ( ! isset ( $courses ) )
 
         <div class="udemy-list__item">
 
-            <div class="udemy-course" data-udemy-course-id="<?php echo $course->get_id(); ?>">
+            <div class="udemy-course"<?php $course->the_container(); ?>>
                 <a class="udemy-course__link" href="<?php echo $course->get_url(); ?>" target="_blank" rel="nofollow" title="<?php echo $course->get_title(); ?>">
 
                     <img class="udemy-course__img" src="<?php echo $course->get_image(); ?>" alt="<?php echo $course->get_image_alt(); ?>">

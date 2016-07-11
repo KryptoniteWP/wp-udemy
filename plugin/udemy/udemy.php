@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Udemy
- * Plugin URI:      https://coder.flowdee.de/downloads/udemy-for-wordpress/
+ * Plugin URI:      https://wordpress.org/plugins/udemy/
  * Description:     Display Udemy courses inside your WordPress posts and pages.
  * Version:         1.0.0
  * Author:          flowdee
@@ -104,6 +104,8 @@ if( !class_exists( 'Udemy' ) ) {
             require_once UDEMY_DIR . 'includes/shortcodes.php';
             require_once UDEMY_DIR . 'includes/rewrites.php';
             require_once UDEMY_DIR . 'includes/widgets.php';
+
+            require_once UDEMY_DIR . 'includes/pro.php';
         }
 
         /**
@@ -176,23 +178,3 @@ function udemy_deactivation() {
     flush_rewrite_rules();
 }
 register_deactivation_hook(__FILE__, 'udemy_deactivation');
-
-/**
- * Plugin Updater
- */
-include( dirname( __FILE__ ) . '/vendor/plugin-update-checker/plugin-update-checker.php' );
-
-function udemy_plugin_updater() {
-
-    try {
-        $udemy_update_checker = PucFactory::buildUpdateChecker(
-            'https://updates.flowdee.de/?action=get_metadata&slug=udemy-for-wordpress',
-            __FILE__, //Full path to the main plugin file.
-            'udemy-for-wordpress'
-        );
-
-    } catch (Exception $e) {
-        // do nothing
-    }
-}
-add_action( 'admin_init', 'udemy_plugin_updater', 0 );

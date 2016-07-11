@@ -15,12 +15,14 @@ if (!class_exists('Udemy_Course')) {
     {
         public $course;
         public $options;
+        public $args;
 
-        public function __construct( $course ) {
+        public function __construct( $course, $args ) {
 
             // Variables
             $this->options = get_option('udemy');
             $this->course = $course;
+            $this->args = $args;
         }
 
         public function get_id() {
@@ -93,32 +95,15 @@ if (!class_exists('Udemy_Course')) {
 
         public function get_url() {
 
-            global $udemy_args;
-
-            if ( isset ( $udemy_args['url'] ) )
-                return $udemy_args['url'];
+            if ( isset ( $this->args['url'] ) )
+                return $this->args['url'];
 
             $url = 'https://www.udemy.com';
 
             if ( isset ( $this->course['url'] ) )
                 $url .= $this->course['url'];
 
-            // Maybe build affiliate url
-            if ( ( isset ( $this->options['affiliate_links'] ) && $this->options['affiliate_links'] != 'disabled' ) || isset ( $this->options['credits'] ) ) {
-
-                if ( 'standard' === $this->options['affiliate_links'] ) {
-                    $url = udemy_get_course_affiliate_url( $url );
-
-                } elseif ( 'masked' === $this->options['affiliate_links'] || isset ( $this->options['credits'] ) ) {
-
-                    $rewrite_slug = udemy_get_rewrite_slug();
-
-                    if ( ! empty ( $rewrite_slug ) && isset ( $this->course['url'] ) )
-                        $url = get_bloginfo( 'url' ) . '/' . $rewrite_slug . $this->course['url'];
-                }
-
-                // TODO: Bit.ly
-            }
+            $url = apply_filters( 'udemy_course_url', $url, $this->course['url'] );
 
             return $url;
         }

@@ -88,22 +88,10 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy_general'
             );
 
-            add_settings_field(
-                'udemy_affiliate_links',
-                __('Affiliate', 'udemy'),
-                array(&$this, 'affiliate_links_render'),
-                'udemy',
-                'udemy_general'
-            );
-
-            add_settings_field(
-                'udemy_click_tracking',
-                __('Click Tracking', 'udemy'),
-                array(&$this, 'click_tracking_render'),
-                'udemy',
-                'udemy_general',
-                array('label_for' => 'udemy_click_tracking')
-            );
+            /*
+             * Action to add more settings within this section
+             */
+            do_action( 'udemy_settings_general_register' );
 
             // SECTION: Output
             add_settings_section(
@@ -129,6 +117,11 @@ if (!class_exists('Udemy_Settings')) {
                 'udemy_output',
                 array('label_for' => 'udemy_course_details')
             );
+
+            /*
+             * Action to add more settings within this section
+             */
+            do_action( 'udemy_settings_output_register' );
 
             // SECTION: Debug
             add_settings_section(
@@ -175,6 +168,11 @@ if (!class_exists('Udemy_Settings')) {
                     'udemy_other'
                 );
             }
+
+            /*
+             * Action to add more settings within this section
+             */
+            do_action( 'udemy_settings_debug_register' );
         }
 
         function validate_input_callback( $input ) {
@@ -204,11 +202,6 @@ if (!class_exists('Udemy_Settings')) {
             $input['api_status'] = $validation;
             $input['api_error'] = $error;
 
-            // Affiliate Links
-            if ( empty ( $input['affiliate_publisher_id'] ) && isset ( $input['affiliate_links'] ) && $input['affiliate_links'] != 'disabled' ) {
-                $input['affiliate_links'] = 'disabled';
-            }
-
             // Handle cache deletion
             if ( isset ( $input['delete_cache'] ) && $input['delete_cache'] === '1' ) {
                 udemy_delete_cache();
@@ -220,6 +213,8 @@ if (!class_exists('Udemy_Settings')) {
                 delete_option('udemy_log');
                 $input['reset_log'] = '0';
             }
+
+            $input = apply_filters( 'udemy_settings_validate_input', $input );
 
             return $input;
         }
@@ -236,7 +231,7 @@ if (!class_exists('Udemy_Settings')) {
                         <?php _e( 'In order to get the course ID, simply add the course to the cart and take the ID out of the url of your browser.', 'udemy' ); ?>
                     </p>
                     <p>
-                        <code>[udemy id="480986"]</code> <?php _e( 'or', 'udemy' ); ?> <code>[udemy id="480986" url="https://my-affiliate-link.com/"]</code>
+                        <code>[udemy id="480986"]</code>
                     </p>
 
                     <p>
@@ -246,7 +241,9 @@ if (!class_exists('Udemy_Settings')) {
                         <code>[udemy search="css" items="3" template="grid"]</code> <?php _e( 'or', 'udemy' ); ?> <code>[udemy search="html" items="6" template="list"]</code>
                     </p>
 
-                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/' ) ); ?></p>
+                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://wordpress.org/plugins/udemy/faq/' ) ); ?></p>
+
+                    <?php do_action( 'udemy_settings_quickstart_render' ); ?>
                 </div>
             </div>
 
@@ -257,8 +254,6 @@ if (!class_exists('Udemy_Settings')) {
 
             $api_client_id = ( !empty($this->options['api_client_id'] ) ) ? esc_attr( trim( $this->options['api_client_id'] ) ) : '';
             $api_client_password = ( !empty($this->options['api_client_password'] ) ) ? esc_attr( trim($this->options['api_client_password'] ) ) : '';
-
-            //udemy_debug(udemy_api_validate_credentials( $api_client_id, $api_client_password ) );
 
             ?>
             <h4 style="margin: 5px 0"><?php _e('Status', 'udemy'); ?></h4>
@@ -304,97 +299,6 @@ if (!class_exists('Udemy_Settings')) {
             </select>
 
             <input type="hidden" id="udemy_delete_cache" name="udemy[delete_cache]" value="0" />
-            <?php
-        }
-
-        function affiliate_links_render() {
-
-            $link_types = array(
-                'disabled' => __('Disabled', 'udemy'),
-                'standard' => __('Standard', 'udemy'),
-                'masked' => __('Masked by plugin', 'udemy')
-            );
-
-            $links = ( isset ( $this->options['affiliate_links'] ) ) ? $this->options['affiliate_links'] : 'disabled';
-            $publisher_id = ( !empty($this->options['affiliate_publisher_id'] ) ) ? esc_attr( trim( $this->options['affiliate_publisher_id'] ) ) : '';
-
-            ?>
-
-            <p>
-                <?php printf( wp_kses( __( 'Information about how to join the affiliate program can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate-program' ) ); ?>
-            </p>
-
-            <br />
-
-            <h4 style="margin: 5px 0"><?php _e('Affiliate Links', 'udemy'); ?></h4>
-            <p>
-                <select id="udemy_affiliate_links" name="udemy[affiliate_links]">
-                    <?php foreach ( $link_types as $key => $label ) { ?>
-                        <option value="<?php echo $key; ?>" <?php selected( $links, $key ); ?>><?php echo $label; ?></option>
-                    <?php } ?>
-                </select>
-            </p>
-
-            <p>
-                <small>
-                    <?php _e('After switching over to masked links you might have to update your permalinks.', 'udemy'); ?>
-                </small>
-            </p>
-
-            <br />
-
-            <h4 style="margin: 5px 0"><?php _e('Publisher ID', 'udemy'); ?> <span class="req">*</span></h4>
-            <p>
-                <input type='text' name='udemy[affiliate_publisher_id]' id="udemy_affiliate_publisher_id"
-                       value='<?php echo esc_attr( trim( $publisher_id ) ); ?>' style="width: 125px;">
-                <span><?php _e('e.g.', 'udemy'); ?> <code>rAHrr6IQKiQ</code></span>
-            </p>
-
-            <h4><?php _e('Comparison of the different affiliate links', 'udemy'); ?></h4>
-            <table class="widefat udemy-settings-table udemy-settings-table--slim">
-                <thead>
-                    <tr>
-                        <th><?php _e('Type', 'udemy'); ?></th>
-                        <th><?php _e('Example', 'udemy'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php _e('Standard', 'udemy'); ?></td>
-                        <td style="word-break: break-all;"><a href="http://click.linksynergy.com/deeplink?id=rAHrr6IQKiQ&type=10&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Funofficial-udemy-launch-become-a-bestselling-instructor%2F" target="_blank" rel="nofollow">http://click.linksynergy.com/deeplink?id=rAHrr6IQKiQ&type=10&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Funofficial-udemy-launch-become-a-bestselling-instructor%2F</a></td>
-                    </tr>
-                    <tr class="alternate">
-                        <?php $rewrite_slug = udemy_get_rewrite_slug(); ?>
-                        <td><?php _e('Masked by plugin', 'udemy'); ?></td>
-                        <td style="word-break: break-all;"><a href="<?php echo get_bloginfo('url'); ?>/<?php echo $rewrite_slug; ?>/unofficial-udemy-launch-become-a-bestselling-instructor/" target="_blank" rel="nofollow"><?php echo get_bloginfo('url'); ?>/<?php echo $rewrite_slug; ?>/unofficial-udemy-launch-become-a-bestselling-instructor/</a></td>
-                    </tr>
-                    <tr>
-                        <td><?php _e('Masked via bit.ly', 'udemy'); ?><br /><small style="font-weight: bold; color: cornflowerblue;"><?php _e('Coming soon!', 'udemy'); ?></small></td>
-                        <td style="word-break: break-all;"><a href="http://bit.ly/1tyo0Oi" target="_blank" rel="nofollow">http://bit.ly/1tyo0Oi</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>
-                <small>
-                    <?php printf( wp_kses( __( 'More information about all types of affiliate links can be found <a href="%s">here</a>.', 'udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/#affiliate-links' ) ); ?>
-                </small>
-            </p>
-
-            <?php
-        }
-
-        function click_tracking_render() {
-
-            $click_tracking = ( isset ( $this->options['click_tracking'] ) && $this->options['click_tracking'] == '1' ) ? 1 : 0;
-            ?>
-
-            <p>
-                <input type="checkbox" id="udemy_click_tracking" name="udemy[click_tracking]" value="1" <?php echo($click_tracking == 1 ? 'checked' : ''); ?>>
-                <label for="udemy_click_tracking"><?php _e('Activate in order to track clicks on Udemy links by creating events via your favorite tracking tool. ', 'udemy'); ?></label>
-            </p>
-
-            <p><small><strong><?php _e('Note:'); ?></strong> <?php _e('Currently supported:', 'udemy'); ?> Google Analytics & Piwik. <?php _e('In case you created custom templates, please take a look into the documentation.', 'udemy'); ?></small></p>
             <?php
         }
 

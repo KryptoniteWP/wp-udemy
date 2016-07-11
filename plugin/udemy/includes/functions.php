@@ -19,14 +19,14 @@ function udemy_get_options() {
 /*
  * Build course objects from result arrays
  */
-function udemy_get_course_objects_from_array( $items = array() ) {
+function udemy_get_course_objects_from_array( $items = array(), $args = array() ) {
 
     $objects = array();
 
     if ( sizeof( $items ) > 0 ) {
 
         foreach ( $items as $item ) {
-            $objects[] = ( is_array( $item ) ) ? new Udemy_Course( $item ) : $item;
+            $objects[] = ( is_array( $item ) ) ? new Udemy_Course( $item, $args ) : $item;
         }
     }
 
@@ -362,20 +362,11 @@ function udemy_get_courses( $atts ) {
 /*
  * Display courses
  */
-$udemy_args = array();
-
 function udemy_display_courses( $courses = array(), $args = array() ) {
 
     //udemy_debug($courses);
 
     $options = get_option('udemy');
-
-    global $udemy_args;
-
-    $udemy_args = $args;
-
-    // Prepare courses
-    $courses = udemy_get_course_objects_from_array( $courses );
 
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
@@ -384,6 +375,10 @@ function udemy_display_courses( $courses = array(), $args = array() ) {
     if ( isset ( $args['style'] ) )
         $style = $args['style'];
 
+    // Prepare courses
+    $courses = udemy_get_course_objects_from_array( $courses, $args );
+
+    // Template
     $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
@@ -423,10 +418,7 @@ function udemy_get_template_file( $template, $type ) {
 
     $template_file = UDEMY_DIR . 'templates/' . $template . '.php';
 
-    // Check theme folder
-    if ( $custom_template_file = locate_template( array( 'udemy/' . $template . '.php' ) ) ) {
-        return $custom_template_file;
-    }
+    $template_file = apply_filters( 'udemy_template_file', $template_file, $template, $type );
 
     if ( file_exists( $template_file ) )
         return $template_file;
@@ -442,17 +434,34 @@ function udemy_get_categories() {
 }
 
 /*
+ * Credits urls
+ */
+function udemy_credits_course_url( $url, $basic_url ) {
+
+    $options = udemy_get_options();
+
+    if ( isset ( $options['credits'] ) ) {
+        $rewrite_slug = udemy_get_rewrite_slug();
+
+        if ( ! empty ( $rewrite_slug ) )
+            $url = get_bloginfo( 'url' ) . '/' . $rewrite_slug . $basic_url;
+    }
+
+    return $url;
+}
+add_filter( 'udemy_course_url', 'udemy_credits_course_url', 10, 2 );
+
+/*
  * Get redirect affiliate url
  */
 function udemy_get_course_affiliate_url( $url, $encode = true ) {
 
-    $options = udemy_get_options();
+    // Credits publisher id
+    $publisher_id = 'rAHrr6IQKiQ';
 
-    if ( empty ( $options['affiliate_publisher_id'] ) && ! isset ( $options['credits'] ) )
-        return $url;
-
-    // Take publisher id, only if empty and credits activated the the other one
-    $publisher_id = ( ! empty ( $options['affiliate_publisher_id'] ) ) ? esc_attr( trim( $options['affiliate_publisher_id'] ) ) : 'rAHrr6IQKiQ';
+    if ( ! empty ( $options['affiliate_publisher_id'] ) ) {
+        $publisher_id = esc_attr( trim( $options['affiliate_publisher_id'] ) );
+    }
 
     // Static ID for Udemys advertiser program
     $merchant_id = '39197';

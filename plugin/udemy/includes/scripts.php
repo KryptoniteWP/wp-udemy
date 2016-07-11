@@ -30,6 +30,8 @@ function udemy_admin_scripts( $hook ) {
 
         wp_enqueue_script( 'udemy_admin_js', UDEMY_URL . '/assets/js/admin' . $suffix . '.js', array( 'jquery' ), UDEMY_VER );
         wp_enqueue_style( 'udemy_admin_css', UDEMY_URL . '/assets/css/admin' . $suffix . '.css', false, UDEMY_VER );
+
+        do_action( 'udemy_admin_enqueue_scripts' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'udemy_admin_scripts', 100 );
@@ -60,4 +62,6 @@ function udemy_load_scripts() {
 
     wp_enqueue_script( 'udemy_scripts', UDEMY_URL . 'assets/js/scripts' . $suffix . '.js', array( 'jquery' ), UDEMY_VER, true );
     wp_enqueue_style( 'udemy_styles', UDEMY_URL . 'assets/css/styles' . $suffix . '.css', false, UDEMY_VER );
+
+    do_action( 'udemy_enqueue_scripts' );
 }

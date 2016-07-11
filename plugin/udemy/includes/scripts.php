@@ -13,7 +13,6 @@ if( !defined( 'ABSPATH' ) ) exit;
  * Load admin scripts
  *
  * @since       1.0.0
- * @global      array $edd_settings_page The slug for the EDD settings page
  * @global      string $post_type The type of post that we are editing
  * @return      void
  */
@@ -61,10 +60,4 @@ function udemy_load_scripts() {
 
     wp_enqueue_script( 'udemy_scripts', UDEMY_URL . 'assets/js/scripts' . $suffix . '.js', array( 'jquery' ), UDEMY_VER, true );
     wp_enqueue_style( 'udemy_styles', UDEMY_URL . 'assets/css/styles' . $suffix . '.css', false, UDEMY_VER );
-
-    /*
-    wp_localize_script( 'udemy_scripts', 'udemy_post', array(
-        'ajax_url' => admin_url( 'admin-ajax.php' )
-    ));
-    */
 }

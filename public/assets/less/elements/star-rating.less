@@ -1,0 +1,43 @@
+.ufwp-star-rating {
+    position: relative;
+
+    display: inline-block;
+    height: 16px;
+    width: 80px;
+
+    background-image: url('../img/star.png');
+    background-repeat: repeat-x;
+    background-position: left center;
+
+    vertical-align: top;
+
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        background-image: url('../img/star@2x.png');
+    }
+
+    & > span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+        height: 16px;
+        width: 80px;
+
+        background-image: url('../img/star-active.png');
+        background-repeat: repeat-x;
+        background-position: left center;
+
+        vertical-align: top;
+
+        @media
+        (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: url('../img/star-active@2x.png');
+        }
+    }
+}

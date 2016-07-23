@@ -1,0 +1,116 @@
+@import "../common";
+
+@image-size: 75px;
+
+//== Widget Small
+.ufwp-widget-small {
+
+    .ufwp-course {
+        position: relative;
+    }
+
+    .ufwp-course__img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block !important;
+        height: 100% !important;
+        width: @image-size !important;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .ufwp-course__content {
+        margin-left: 75px;
+        min-height: @image-size !important;
+        padding: 5px 10px;
+    }
+
+    .ufwp-course__title {
+        margin-bottom: 5px;
+
+        font-size: 12px;
+    }
+
+    .ufwp-course__footer {
+        .clearfix();
+
+        margin-top: 5px;
+    }
+
+    .ufwp-course__price,
+    .ufwp-course__rating {
+        margin-bottom: 0;
+    }
+
+    //== Light Style
+    &.ufwp-style-light {
+
+        .ufwp-course {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+    }
+
+    //== Clean Style
+    &.ufwp-style-clean {
+
+        .ufwp-course {
+            background: none;
+            box-shadow: none;
+            color: inherit;
+
+            a {
+                color: inherit;
+
+                &:visited {
+                    color: inherit;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: inherit;
+                }
+            }
+        }
+
+        .ufwp-course__details {
+            color: inherit;
+        }
+    }
+
+    //== Dark Style
+    &.ufwp-style-dark {
+
+        .ufwp-course {
+            background-color: #222;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            color: darken(#fff, 5%);
+
+            a {
+                color: #fff;
+
+                &:visited {
+                    color: #fff;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #fff;
+                }
+            }
+        }
+
+        .ufwp-course__details {
+            color: #ccc;
+        }
+
+        .ufwp-course__price {
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+@import "../common";
+
+//== List
+.ufwp-list {
+    margin: 0 0 20px;
+
+    .ufwp-course {
+        margin: 0;
+
+        background: none;
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .ufwp-course__link {
+        position: relative;
+        padding: @spacing 0;
+
+        @media (max-width: @breakpoint-mobile) {
+            padding: @spacing;
+        }
+    }
+
+    .ufwp-course__content {
+        margin-left: 165px;
+        min-height: 84px;
+        padding: 0;
+
+        @media (max-width: @breakpoint-mobile) {
+            margin: @spacing 0 0;
+            min-height: 0;
+        }
+    }
+
+    .ufwp-course__img {
+        position: absolute;
+        top: @spacing;
+        left: 0;
+
+        display: block;
+        height: auto;
+        max-width: 150px !important;
+
+        @media (max-width: @breakpoint-mobile) {
+            position: static;
+
+            max-width: 100% !important;
+            margin: 0 auto;
+        }
+    }
+
+    .ufwp-course__title {
+        margin-bottom: 5px;
+    }
+
+    .ufwp-course__footer {
+        margin-top: 7px;
+
+        @media (max-width: 900px) {
+
+            .ufwp-course__meta {
+                display: none;
+            }
+        }
+    }
+}
+
+.ufwp-list__item {
+    background: #fff;
+    border-bottom: 1px solid @color-border;
+    transition: background @animation-time @animation-ease;
+
+    &:hover {
+        background: @color-border;
+    }
+
+    &:first-child {
+        border-top: 1px solid @color-border;
+    }
+}

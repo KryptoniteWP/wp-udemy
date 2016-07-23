@@ -1,0 +1,548 @@
+# Copyright (C) 2016 flowdee
+# This file is distributed under the same license as the Udemy package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Udemy 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-udemy\n"
+"POT-Creation-Date: 2016-07-21 18:25+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: flowdee <coder@flowdee.de>\n"
+"Language-Team: flowdee <coder@flowdee.de>\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: public/assets\n"
+"X-Poedit-SearchPathExcluded-1: build\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: includes/admin/class.settings.php:62 includes/admin/class.settings.php:235
+msgid "Quickstart Guide"
+msgstr ""
+
+#: includes/admin/class.settings.php:70
+msgid "General Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:77
+msgid "Udemy API"
+msgstr ""
+
+#: includes/admin/class.settings.php:85
+msgid "Cache Duration"
+msgstr ""
+
+#: includes/admin/class.settings.php:99
+msgid "Output Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:106
+msgid "Standard Templates"
+msgstr ""
+
+#: includes/admin/class.settings.php:114
+msgid "Course Details"
+msgstr ""
+
+#: includes/admin/class.settings.php:123
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/admin/class.settings.php:138
+msgid "Other Settings"
+msgstr ""
+
+#: includes/admin/class.settings.php:145
+msgid "Widgets & Shortcodes"
+msgstr ""
+
+#: includes/admin/class.settings.php:154
+msgid "You love this plugin?"
+msgstr ""
+
+#: includes/admin/class.settings.php:163
+msgid "Developer Mode"
+msgstr ""
+
+#: includes/admin/class.settings.php:174
+msgid "Debug Information"
+msgstr ""
+
+#: includes/admin/class.settings.php:237
+msgid "There are two ways of displaying courses:"
+msgstr ""
+
+#: includes/admin/class.settings.php:239
+msgid "Single course by ID"
+msgstr ""
+
+#: includes/admin/class.settings.php:240
+msgid ""
+"In order to get the course ID, simply add the course to the cart and take "
+"the ID out of the url of your browser."
+msgstr ""
+
+#: includes/admin/class.settings.php:247
+msgid "Search for courses"
+msgstr ""
+
+#: includes/admin/class.settings.php:248
+msgid ""
+"Alternatively you can search for courses and display grids or lists of "
+"multiple courses."
+msgstr ""
+
+#: includes/admin/class.settings.php:248
+msgid "This feature requires API keys!"
+msgstr ""
+
+#: includes/admin/class.settings.php:250
+msgid "or"
+msgstr ""
+
+#: includes/admin/class.settings.php:253
+#, php-format
+msgid ""
+"Please take a look into the <a href=\"%s\">documentation</a> for more "
+"options."
+msgstr ""
+
+#: includes/admin/class.settings.php:268
+msgid "Status"
+msgstr ""
+
+#: includes/admin/class.settings.php:272
+msgid ""
+"API credentials are currently only required when searching courses or "
+"displaying categories."
+msgstr ""
+
+#: includes/admin/class.settings.php:275
+msgid "Client ID"
+msgstr ""
+
+#: includes/admin/class.settings.php:279
+msgid "Client Password"
+msgstr ""
+
+#: includes/admin/class.settings.php:285
+#, php-format
+msgid ""
+"Before entering your API credentials you have to create a new API Client <a "
+"href=\"%s\">here</a>."
+msgstr ""
+
+#: includes/admin/class.settings.php:294
+msgid "6 Hours"
+msgstr ""
+
+#: includes/admin/class.settings.php:295
+msgid "12 Hours"
+msgstr ""
+
+#: includes/admin/class.settings.php:296
+msgid "1 Day"
+msgstr ""
+
+#: includes/admin/class.settings.php:297
+msgid "3 Days"
+msgstr ""
+
+#: includes/admin/class.settings.php:298
+msgid "1 Week"
+msgstr ""
+
+#: includes/admin/class.settings.php:317
+#: includes/widgets/class.widget.courses.php:118
+#: includes/widgets/class.widget.courses.php:146
+#: includes/widgets/class.widget.search.php:171
+#: includes/widgets/class.widget.search.php:199
+msgid "Standard"
+msgstr ""
+
+#: includes/admin/class.settings.php:318
+msgid "Grid"
+msgstr ""
+
+#: includes/admin/class.settings.php:319
+msgid "List"
+msgstr ""
+
+#: includes/admin/class.settings.php:326
+msgid "Single Course"
+msgstr ""
+
+#: includes/admin/class.settings.php:337
+msgid "Multiple Courses"
+msgstr ""
+
+#: includes/admin/class.settings.php:348
+#, php-format
+msgid ""
+"Available templates (%1$s) can be used to overwrite each shortcode "
+"individually: e.g."
+msgstr ""
+
+#: includes/admin/class.settings.php:356
+msgid "Course Subtitle"
+msgstr ""
+
+#: includes/admin/class.settings.php:357
+msgid "Instructor information"
+msgstr ""
+
+#: includes/admin/class.settings.php:368
+msgid ""
+"This will be applied to grid and list templates. The standard template "
+"already shows both information."
+msgstr ""
+
+#: includes/admin/class.settings.php:380
+msgid "Output custom CSS styles"
+msgstr ""
+
+#: includes/admin/class.settings.php:385
+msgid ""
+"Please don't use the <code>style</code> tag. Simply paste you CSS classes/"
+"definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: "
+"#fff; }</code>"
+msgstr ""
+
+#: includes/admin/class.settings.php:397
+msgid "Activate if your theme doesn't support shortcodes within text widgets."
+msgstr ""
+
+#: includes/admin/class.settings.php:407
+msgid "Activate if you love this plugin and spread it to the world!"
+msgstr ""
+
+#: includes/admin/class.settings.php:417
+msgid "Please activate for debugging reasons only"
+msgstr ""
+
+#: includes/admin/class.settings.php:425
+msgid "Enabled"
+msgstr ""
+
+#: includes/admin/class.settings.php:426
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/class.settings.php:433
+msgid "Setting"
+msgstr ""
+
+#: includes/admin/class.settings.php:434
+msgid "Values"
+msgstr ""
+
+#: includes/admin/class.settings.php:447
+#, php-format
+msgid "PHP \"%1$s\" extension"
+msgstr ""
+
+#: includes/admin/class.settings.php:454
+msgid "Cache"
+msgstr ""
+
+#: includes/admin/class.settings.php:458
+msgid "Size"
+msgstr ""
+
+#: includes/admin/class.settings.php:459
+#, php-format
+msgid "%1$s courses and %2$s lists."
+msgstr ""
+
+#: includes/admin/class.settings.php:461
+msgid "Last update"
+msgstr ""
+
+#: includes/admin/class.settings.php:466
+msgid "Next Cron Execution"
+msgstr ""
+
+#: includes/admin/class.settings.php:473
+msgid ""
+"In case one of the values above is <span style=\"color: red;\"><strong>red</"
+"strong></span>, please get in contact with your webhoster in order to "
+"enable the missing PHP extensions."
+msgstr ""
+
+#: includes/admin/class.settings.php:479
+msgid "Log file"
+msgstr ""
+
+#: includes/admin/class.settings.php:480
+msgid "No entries yet. "
+msgstr ""
+
+#: includes/admin/class.settings.php:496
+msgid "Udemy"
+msgstr ""
+
+#: includes/admin/class.settings.php:534
+msgid "Upgrade to PRO Version"
+msgstr ""
+
+#: includes/admin/class.settings.php:537
+msgid ""
+"Do you want to <strong>earn money</strong> with course sales? The PRO "
+"version extends the plugin exclusively with our affiliate links feature."
+msgstr ""
+
+#: includes/admin/class.settings.php:540
+msgid "Affiliate Links"
+msgstr ""
+
+#: includes/admin/class.settings.php:541
+msgid "Masked Links"
+msgstr ""
+
+#: includes/admin/class.settings.php:542
+msgid "Click Tracking"
+msgstr ""
+
+#: includes/admin/class.settings.php:543
+msgid "Custom Templates"
+msgstr ""
+
+#: includes/admin/class.settings.php:547
+msgid "I would be happy if you give it a chance!"
+msgstr ""
+
+#: includes/admin/class.settings.php:559
+msgid "More details"
+msgstr ""
+
+#: includes/admin/class.settings.php:583
+msgid "Connected"
+msgstr ""
+
+#: includes/admin/class.settings.php:583
+msgid "Disconnected"
+msgstr ""
+
+#: includes/admin/plugins.php:23
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/plugins.php:54
+msgid "Documentation"
+msgstr ""
+
+#: includes/api-functions.php:35
+msgid "Undefined error"
+msgstr ""
+
+#: includes/api-functions.php:47 includes/api-functions.php:134
+msgid "Client ID and/or password invalid."
+msgstr ""
+
+#: includes/api-functions.php:62
+msgid "Course ID must be a number."
+msgstr ""
+
+#: includes/api-functions.php:83
+msgid "Course not found."
+msgstr ""
+
+#: includes/api-functions.php:130
+msgid "No courses found."
+msgstr ""
+
+#: includes/api-functions.php:138
+msgid "Courses could not be fetched. Please try again."
+msgstr ""
+
+#: includes/class.course.php:153
+msgid "No info available"
+msgstr ""
+
+#: includes/functions.php:259
+msgid "Please activate PHP curl in order to display Udemy courses."
+msgstr ""
+
+#: includes/functions.php:398
+msgid "Template not found."
+msgstr ""
+
+#: includes/hooks.php:28
+msgid "Udemy for WordPress"
+msgstr ""
+
+#: includes/hooks.php:30
+msgid "Presentation of the video courses powered by "
+msgstr ""
+
+#: includes/widgets.php:47
+msgid "Shortcode arguments missing."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:27
+msgid "Udemy - Courses"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:28
+msgid "Displaying Udemy courses by their ids."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:77
+msgid "Please enter a course ID."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:108
+msgid "Course IDs:"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:112
+msgid "You can enter multiple course IDs and separate them by comma."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:119
+#: includes/widgets/class.widget.search.php:172
+msgid "Small"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:123
+#: includes/widgets/class.widget.search.php:176
+msgid "Template:"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:131
+#: includes/widgets/class.widget.search.php:184
+msgid "The templates listed above are optimized for widgets."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:136
+#: includes/widgets/class.widget.search.php:189
+msgid "Custom Template:"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:140
+#: includes/widgets/class.widget.search.php:193
+msgid ""
+"You can use another template by entering the the name: e.g. "
+"<strong>my_widget</strong>."
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:147
+#: includes/widgets/class.widget.search.php:200
+msgid "Clean"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:148
+#: includes/widgets/class.widget.search.php:201
+msgid "Light"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:149
+#: includes/widgets/class.widget.search.php:202
+msgid "Dark"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:153
+#: includes/widgets/class.widget.search.php:206
+msgid "Style:"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:162
+msgid "Custom URL:"
+msgstr ""
+
+#: includes/widgets/class.widget.courses.php:166
+msgid "Only working when entering one course id."
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:27
+msgid "Udemy - Search"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:28
+msgid "Searching for Udemy courses by keyword or category."
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:91
+msgid "Please at least a keyword."
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:124
+msgid "Keywords:"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:129
+msgid "Items:"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:135
+msgid "Sales"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:136
+msgid "Date"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:137
+msgid "Trends"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:141
+msgid "Order by:"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:151
+msgid "All"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:152
+msgid "English"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:153
+msgid "French"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:154
+msgid "German"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:155
+msgid "Italian"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:156
+msgid "Spanish"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:157
+msgid "Russian"
+msgstr ""
+
+#: includes/widgets/class.widget.search.php:161
+msgid "Language:"
+msgstr ""
+
+#: templates/list.php:36 templates/standard.php:33
+#, php-format
+msgid "%1$s ratings"
+msgstr ""
+
+#: templates/list.php:37 templates/standard.php:34
+#, php-format
+msgid "%1$s lectures"
+msgstr ""
+
+#: templates/list.php:37 templates/standard.php:34
+#, php-format
+msgid "%1$s hours"
+msgstr ""

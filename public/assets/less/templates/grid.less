@@ -1,0 +1,101 @@
+@import "../common";
+@import "../../../node_modules/gee.less/gee";
+@import "../../../node_modules/dotsunited-equal-height-blocks/lib/mixins";
+
+//== Grid
+.ufwp-grid {
+    .gee-grid(@gutter);
+
+    @media (min-width: (@breakpoint-mobile + 1px)) {
+        .dotsunited-equal-height-blocks-container();
+    }
+}
+
+.ufwp-grid__item {
+    .gee-unit(12, 12, @gutter);
+
+    @media (min-width: (@breakpoint-mobile + 1px)) {
+        .dotsunited-equal-height-blocks-item-wrapper();
+    }
+}
+
+@media (min-width: (@breakpoint-mobile + 1px)) {
+    .ufwp-grid--col-2 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(6, 12, @gutter);
+        }
+    }
+
+    .ufwp-grid--col-3 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(4, 12, @gutter);
+        }
+    }
+
+    .ufwp-grid--col-4 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(3, 12, @gutter);
+        }
+    }
+
+    .ufwp-grid--col-5 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(12/5, 12, @gutter);
+        }
+    }
+
+    .ufwp-grid--col-6 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(2, 12, @gutter);
+        }
+    }
+}
+
+@media (min-width: (@breakpoint-mobile + 1px)) and (max-width: @breakpoint-default) {
+    .ufwp-grid--col-3,
+    .ufwp-grid--col-4,
+    .ufwp-grid--col-5,
+    .ufwp-grid--col-6 {
+
+        .ufwp-grid__item {
+            .gee-unit-width(6, 12, @gutter);
+        }
+    }
+}
+
+// Grid: Styles
+.ufwp-grid {
+
+    .ufwp-course {
+        position: relative;
+
+        padding-bottom: 30px;
+    }
+
+    .ufwp-course__img {
+
+    }
+
+    .ufwp-course__content {
+
+    }
+
+    .ufwp-course__rating {
+        position: absolute;
+
+        bottom: @spacing;
+        right: @spacing;
+    }
+
+    .ufwp-course__price {
+        position: absolute;
+
+        bottom: @spacing;
+        left: @spacing;
+    }
+}

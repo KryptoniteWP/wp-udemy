@@ -39,10 +39,10 @@
   display: block;
   padding: 10px;
 }
-.ufwp .ufwp-course__img {
-  display: block !important;
-  max-width: 100% !important;
-  height: auto !important;
+.ufwp .ufwp-course .ufwp-course__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 .ufwp .ufwp-course__title {
   display: block;
@@ -95,9 +95,9 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  display: block !important;
-  height: auto !important;
-  max-width: 225px !important;
+  display: block;
+  height: auto;
+  max-width: 225px;
 }
 @media (max-width: 900px) {
   .ufwp .ufwp-standard .ufwp-course__img {
@@ -107,7 +107,7 @@
 @media (max-width: 480px) {
   .ufwp .ufwp-standard .ufwp-course__img {
     position: static;
-    max-width: 100% !important;
+    max-width: 100%;
     margin: 0 auto;
   }
 }
@@ -334,12 +334,12 @@
   left: 0;
   display: block;
   height: auto;
-  max-width: 150px !important;
+  max-width: 150px;
 }
 @media (max-width: 480px) {
   .ufwp .ufwp-list .ufwp-course__img {
     position: static;
-    max-width: 100% !important;
+    max-width: 100%;
     margin: 0 auto;
   }
 }

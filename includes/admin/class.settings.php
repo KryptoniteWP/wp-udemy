@@ -371,6 +371,12 @@ if (!class_exists('UFWP_Settings')) {
                 <?php } ?>
             </select>
             <p><small><?php _e('This will be applied to grid and list templates. The standard template already shows both information.', 'wp-udemy'); ?></small></p>
+
+            <?php $course_meta = ( isset ( $this->options['course_meta'] ) && $this->options['course_meta'] == '1' ) ? 1 : 0; ?>
+            <p>
+                <input type="checkbox" id="ufwp_course_meta" name="ufwp_settings[course_meta]" value="1" <?php echo($course_meta == 1 ? 'checked' : ''); ?>>
+                <label for="ufwp_course_meta"><?php _e('Show lectures and playing time', 'ufwp'); ?></label>
+            </p>
             <?php
         }
 

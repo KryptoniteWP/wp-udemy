@@ -31,7 +31,9 @@ if ( ! isset ( $courses ) )
                         <span class="ufwp-course__footer">
                             <span class="ufwp-course__price"><?php echo $course->get_price(); ?></span>
                             <span class="ufwp-course__rating"><?php $course->the_star_rating(); ?> <?php echo $course->get_rating(); ?> (<?php printf( esc_html__( '%1$s ratings', 'wp-udemy' ), $course->get_reviews() ); ?>)</span>
-                            <span class="ufwp-course__meta"><?php printf( esc_html__( '%1$s lectures', 'wp-udemy' ), $course->get_lectures() ); ?>, <?php printf( esc_html__( '%1$s hours', 'wp-udemy' ), $course->get_playing_time() ); ?></span>
+                            <?php if ( $course->show_meta() ) { ?>
+                                <span class="ufwp-course__meta"><?php printf( esc_html__( '%1$s lectures', 'wp-udemy' ), $course->get_lectures() ); ?>, <?php printf( esc_html__( '%1$s hours', 'wp-udemy' ), $course->get_playing_time() ); ?></span>
+                            <?php } ?>
                         </span>
                     </span>
                 </a>

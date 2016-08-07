@@ -172,6 +172,10 @@ if (!class_exists('UFWP_Course')) {
             return ( isset ( $this->course['num_reviews'] ) ) ? $this->course['num_reviews'] : '';
         }
 
+        public function show_meta() {
+            return ( isset ( $this->options['course_meta'] ) ) ? true : false;
+        }
+
         public function get_lectures() {
             return ( isset ( $this->course['num_published_lectures'] ) ) ? $this->course['num_published_lectures'] : 0;
         }

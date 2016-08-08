@@ -3,7 +3,7 @@
  * Plugin Name:     Udemy
  * Plugin URI:      https://wordpress.org/plugins/wp-udemy/
  * Description:     Display Udemy courses inside your WordPress posts and pages.
- * Version:         1.0.0
+ * Version:         1.0.1
  * Author:          flowdee
  * Author URI:      http://flowdee.de
  * Text Domain:     wp-udemy
@@ -65,7 +65,7 @@ if( !class_exists( 'UFWP' ) ) {
             define( 'UFWP_NAME', 'Udemy' );
 
             // Plugin version
-            define( 'UFWP_VER', '1.0.0' );
+            define( 'UFWP_VER', '1.0.1' );
 
             // Plugin path
             define( 'UFWP_DIR', plugin_dir_path( __FILE__ ) );

@@ -7,6 +7,17 @@ Display Udemy courses inside your WordPress posts and pages.
 
 [Official WordPress.org Plugin](https://wordpress.org/plugins/wp-udemy/)
 
+## Upgrade to PRO Version
+
+Do you want to earn money with course sales? The PRO version extends the plugin exclusively with our affiliate links feature.
+
+*   Affiliate Links
+*   Masked Links
+*   Click Tracking
+*   Custom Templates
+
+I would be happy if you give it a chance! [Upgrade to Udemy PRO](https://coder.flowdee.de/downloads/udemy-for-wordpress-pro/)
+
 ## More information
 
 * Follow me on Twitter [@flowdee](https://twitter.com/flowdee/) to stay in contact and informed about updates

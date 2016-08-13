@@ -4,7 +4,7 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, flowdee
 Requires at least: 3.5.1
 Tested up to: 4.5.3
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -117,6 +117,11 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.2 (13th August 2016) =
+* Improvement: Optimized course img styles in order to prevent theme issues
+* Added settings quickstart grid col example
+* Templates updated: grid, list, standard, widget, widget_small
+
 = Version 1.0.1 (8th August 2016) =
 * New: Enable/disable meta via settings
 * Improvement: Optimized course image responsive styles and removed important rules
@@ -125,6 +130,11 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.2 (13th August 2016) =
+* Improvement: Optimized course img styles in order to prevent theme issues
+* Added settings quickstart grid col example
+* Templates updated: grid, list, standard, widget, widget_small
 
 = Version 1.0.1 (8th August 2016) =
 * New: Enable/disable meta via settings

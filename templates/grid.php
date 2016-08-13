@@ -23,7 +23,9 @@ if ( ! isset ( $courses ) )
 
             <div class="ufwp-course"<?php $course->the_container(); ?>>
                 <a class="ufwp-course__link" href="<?php echo $course->get_url(); ?>" target="_blank" rel="nofollow" title="<?php echo $course->get_title(); ?>">
-                    <img class="ufwp-course__img" src="<?php echo $course->get_image(); ?>" alt="<?php echo $course->get_image_alt(); ?>">
+                    <span class="ufwp-course__img">
+                        <img src="<?php echo $course->get_image(); ?>" alt="<?php echo $course->get_image_alt(); ?>">
+                    </span>
 
                     <span class="ufwp-course__content">
                         <span class="ufwp-course__title"><?php echo $course->get_title(); ?></span>

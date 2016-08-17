@@ -2,7 +2,7 @@
 /**
  * Plugins
  *
- * @package     Udemy\Admin\Plugins
+ * @package     UFWP\Admin\Plugins
  * @since       1.0.0
  */
 
@@ -46,8 +46,8 @@ function ufwp_row_meta( $input, $file ) {
     $docs_link = esc_url( add_query_arg( array(
             'utm_source'   => 'plugins-page',
             'utm_medium'   => 'plugin-row',
-            'utm_campaign' => 'Udemy for WordPress',
-        ), 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/' )
+            'utm_campaign' => 'WP Udemy',
+        ), 'https://coder.flowdee.de/docs/article/wp-udemy/' )
     );
 
     $links = array(

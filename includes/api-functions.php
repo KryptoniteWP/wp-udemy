@@ -2,7 +2,7 @@
 /**
  * API Functions
  *
- * @package     Udemy\APIFunctions
+ * @package     UFWP\APIFunctions
  * @since       1.0.0
  */
 

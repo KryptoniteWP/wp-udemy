@@ -2,7 +2,7 @@
 /**
  * Helper
  *
- * @package     Udemy\Helper
+ * @package     UFWP\Helper
  * @since       1.0.0
  */
 

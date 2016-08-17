@@ -2,7 +2,7 @@
 /**
  * Course
  *
- * @package     Udemy\Course
+ * @package     UFWP\Course
  * @since       1.0.0
  */
 
@@ -63,7 +63,12 @@ if (!class_exists('UFWP_Course')) {
         }
 
         public function get_title() {
-            return ( isset ( $this->course['title'] ) ) ? $this->course['title'] : '';
+
+            $title = ( isset ( $this->course['title'] ) ) ? $this->course['title'] : '';
+
+            $title = apply_filters( 'ufwp_course_title', $title );
+
+            return $title;
         }
 
         public function get_image( $size = null ) {
@@ -83,7 +88,10 @@ if (!class_exists('UFWP_Course')) {
         }
 
         public function get_image_alt() {
-            return ( isset ( $this->course['title'] ) ) ? str_replace('"', "'", $this->course['title'] ) : '';
+
+            $title = $this->get_title();
+
+            return str_replace('"', "'", $title );
         }
 
         public function get_headline() {

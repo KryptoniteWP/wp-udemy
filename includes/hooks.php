@@ -2,7 +2,7 @@
 /**
  * Hooks
  *
- * @package     Udemy\Hooks
+ * @package     UFWP\Hooks
  * @since       1.0.0
  */
 

@@ -2,7 +2,7 @@
 /**
  * Settings
  *
- * @package     Udemy\Settings
+ * @package     UFWP\Settings
  * @since       1.0.0
  */
 
@@ -39,8 +39,8 @@ if (!class_exists('UFWP_Settings')) {
         {
 
             add_options_page(
-                'Udemy',
-                'Udemy',
+                'UFWP Courses',
+                'UFWP Courses',
                 'manage_options',
                 'wp-udemy',
                 array( &$this, 'options_page' )
@@ -79,7 +79,7 @@ if (!class_exists('UFWP_Settings')) {
 
             add_settings_field(
                 'ufwp_api_client',
-                __('Udemy API', 'wp-udemy'),
+                __('API', 'wp-udemy'),
                 array(&$this, 'api_client_render'),
                 'ufwp_settings',
                 'ufwp_settings_general'
@@ -245,17 +245,17 @@ if (!class_exists('UFWP_Settings')) {
                         <?php _e( 'In order to get the course ID, simply add the course to the cart and take the ID out of the url of your browser.', 'wp-udemy' ); ?>
                     </p>
                     <p>
-                        <code>[udemy id="480986"]</code>
+                        <code>[ufwp id="480986"]</code>
                     </p>
 
                     <p>
                         <strong><?php _e( 'Search for courses', 'wp-udemy' ); ?></strong><br />
                         <?php _e('Alternatively you can search for courses and display grids or lists of multiple courses.', 'wp-udemy'); ?> <span style="color: darkorange; font-weight: bold;"><?php _e( 'This feature requires API keys!', 'wp-udemy' ); ?></span>
                     <p>
-                        <code>[udemy search="css" items="6" template="grid" grid="3"]</code> <?php _e( 'or', 'wp-udemy' ); ?> <code>[udemy search="html" items="6" template="list"]</code>
+                        <code>[ufwp search="css" items="6" template="grid" grid="3"]</code> <?php _e( 'or', 'wp-udemy' ); ?> <code>[ufwp search="html" items="6" template="list"]</code>
                     </p>
 
-                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'wp-udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/udemy-for-wordpress/' ) ); ?></p>
+                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'wp-udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/wp-udemy/' ) ); ?></p>
 
                     <?php do_action( 'ufwp_settings_quickstart_render' ); ?>
                 </div>
@@ -350,7 +350,7 @@ if (!class_exists('UFWP_Settings')) {
 
             <br />
 
-            <p><?php printf( esc_html__( 'Available templates (%1$s) can be used to overwrite each shortcode individually: e.g.', 'wp-udemy' ), 'standard, grid, list' ); ?> <code>[udemy id="1234,6789" template="list"]</code></p>
+            <p><?php printf( esc_html__( 'Available templates (%1$s) can be used to overwrite each shortcode individually: e.g.', 'wp-udemy' ), 'standard, grid, list' ); ?> <code>[ufwp id="1234,6789" template="list"]</code></p>
             <p></p>
             <?php
         }
@@ -504,7 +504,7 @@ if (!class_exists('UFWP_Settings')) {
             <div class="ufwp-settings">
                 <div class="wrap">
                     <?php screen_icon(); ?>
-                    <h2><?php _e('Udemy', 'wp-udemy'); ?></h2>
+                    <h2><?php _e('Online Learning Courses', 'wp-udemy'); ?></h2>
 
                     <div id="poststuff">
                         <div id="post-body" class="metabox-holder columns-2">
@@ -564,7 +564,7 @@ if (!class_exists('UFWP_Settings')) {
                                                         'utm_source'   => 'settings-page',
                                                         'utm_medium'   => 'infobox',
                                                         'utm_campaign' => 'Udemy for WordPress - PRO',
-                                                    ), 'https://coder.flowdee.de/downloads/udemy-for-wordpress-pro/' )
+                                                    ), 'https://coder.flowdee.de/downloads/wp-udemy-pro/' )
                                                 );
                                                 ?>
                                                 <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo $upgrade_link; ?>" rel="nofollow"><?php _e('More details', 'wp-udemy'); ?></a>

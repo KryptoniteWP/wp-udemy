@@ -2,7 +2,7 @@
 /**
  * Widget: Search
  *
- * @package     Udemy\WidgetSearch
+ * @package     UFWP\WidgetSearch
  * @since       1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
         function __construct() {
             parent::__construct(
                 'ufwp_search_widget', // Base ID
-                __( 'Udemy - Search', 'wp-udemy' ), // Name
-                array( 'description' => __( 'Searching for Udemy courses by keyword or category.', 'wp-udemy' ), ) // Args
+                __( 'UFWP - Search', 'wp-udemy' ), // Name
+                array( 'description' => __( 'Searching for courses by keyword or category.', 'wp-udemy' ), ) // Args
             );
 
             add_action('wp_enqueue_scripts', array( $this, 'scripts' ) );
@@ -113,8 +113,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
 
             ?>
-            <img src="<?php ufwp_the_assets(); ?>/img/logo-udemy-green.svg" class="ufwp-widget-logo" />
-
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">

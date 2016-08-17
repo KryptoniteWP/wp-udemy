@@ -2,7 +2,7 @@
 /**
  * Widgets
  *
- * @package     Udemy\Widgets
+ * @package     UFWP\Widgets
  * @since       1.0.0
  */
 
@@ -32,7 +32,7 @@ function ufwp_widget_do_shortcode( $atts = array() ) {
     if ( sizeof( $atts ) > 0 ) {
 
         // Build Shortcode
-        $shortcode = '[udemy';
+        $shortcode = '[ufwp';
 
         foreach ( $atts as $key => $value ) {
             $shortcode .= ' ' . $key . '="' . $value . '"';
@@ -68,7 +68,7 @@ function ufwp_widget_text( $widget_text, $instance, $widget ) {
 
         // Add widget template if missing
         if ( strpos( $instance['text'], 'template') === false ) {
-            $widget_text = str_replace( '[udemy', '[udemy template="widget"', $widget_text );
+            $widget_text = str_replace( '[ufwp', '[ufwp template="widget"', $widget_text );
 
         // Reset invalid templates
         } elseif ( strpos( $instance['text'], 'template="standard"') !== false ) {

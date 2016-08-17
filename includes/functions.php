@@ -2,7 +2,7 @@
 /**
  * Functions
  *
- * @package     Udemy\Functions
+ * @package     UFWP\Functions
  * @since       1.0.0
  */
 

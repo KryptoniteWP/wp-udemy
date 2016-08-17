@@ -2,7 +2,7 @@
 /**
  * Widget: Courses
  *
- * @package     Udemy\WidgetCourses
+ * @package     UFWP\WidgetCourses
  * @since       1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
         function __construct() {
             parent::__construct(
                 'ufwp_single_widget', // Base ID
-                __( 'Udemy - Courses', 'wp-udemy' ), // Name
-                array( 'description' => __( 'Displaying Udemy courses by their ids.', 'wp-udemy' ), ) // Args
+                __( 'UFWP - Courses', 'wp-udemy' ), // Name
+                array( 'description' => __( 'Displaying courses by their ids.', 'wp-udemy' ), ) // Args
             );
 
             add_action('wp_enqueue_scripts', array( $this, 'scripts' ) );
@@ -97,8 +97,6 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
             $url = ! empty( $instance['url'] ) ? $instance['url'] : '';
 
             ?>
-            <img src="<?php ufwp_the_assets(); ?>/img/logo-udemy-green.svg" class="ufwp-widget-logo" />
-
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">

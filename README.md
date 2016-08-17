@@ -1,7 +1,7 @@
-# Udemy for WordPress
+# Online Learning Courses
 [![Plugin Version](https://img.shields.io/wordpress/plugin/v/wp-udemy.svg)](https://wordpress.org/plugins/wp-udemy/) [![WordPress Version Compatibility](https://img.shields.io/wordpress/v/wp-udemy.svg)](https://wordpress.org/plugins/wp-udemy/) [![Downloads](https://img.shields.io/wordpress/plugin/dt/wp-udemy.svg)](https://wordpress.org/plugins/wp-udemy/) [![Rating](https://img.shields.io/wordpress/plugin/r/wp-udemy.svg)](https://wordpress.org/plugins/wp-udemy/)
 
-Display Udemy courses inside your WordPress posts and pages.
+Display Online Learning Courses from the best platform inside your WordPress posts and pages.
 
 ## Description
 
@@ -16,7 +16,7 @@ Do you want to earn money with course sales? The PRO version extends the plugin 
 *   Click Tracking
 *   Custom Templates
 
-I would be happy if you give it a chance! [Upgrade to Udemy PRO](https://coder.flowdee.de/downloads/udemy-for-wordpress-pro/)
+I would be happy if you give it a chance! [Upgrade to Udemy PRO](https://coder.flowdee.de/downloads/wp-udemy-pro/)
 
 ## More information
 

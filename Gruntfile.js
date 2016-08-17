@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                     cleancss: false
                 },
                 src: [
-                    'public/assets/less/admin.less'
+                    'assets/less/admin.less'
                 ],
                 dest: 'public/assets/css/admin.css'
             },
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 src: [
-                    'public/assets/less/admin.less'
+                    'assets/less/admin.less'
                 ],
                 dest: 'public/assets/css/admin.min.css'
             },
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     cleancss: false
                 },
                 src: [
-                    'public/assets/less/style.less'
+                    'assets/less/style.less'
                 ],
                 dest: 'public/assets/css/styles.css'
             },
@@ -41,21 +41,39 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 src: [
-                    'public/assets/less/style.less'
+                    'assets/less/style.less'
                 ],
                 dest: 'public/assets/css/styles.min.css'
             }
         },
         uglify: {
+            admin: {
+                options: {
+                    beautify: true
+                },
+                src: [
+                    'assets/js/admin.js'
+                ],
+                dest: 'public/assets/js/admin.js'
+            },
             admin_min: {
                 src: [
-                    'public/assets/js/admin.js'
+                    'assets/js/admin.js'
                 ],
                 dest: 'public/assets/js/admin.min.js'
             },
+            scripts: {
+                options: {
+                    beautify: true
+                },
+                src: [
+                    'assets/js/scripts.js'
+                ],
+                dest: 'public/assets/js/scripts.js'
+            },
             scripts_min: {
                 src: [
-                    'public/assets/js/scripts.js'
+                    'assets/js/scripts.js'
                 ],
                 dest: 'public/assets/js/scripts.min.js'
             }
@@ -117,60 +135,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        makepot: {
-            target: {
-                options: {
-                    domainPath: '<%= pkg.directories.languages %>', // Where to save the POT file.
-                    exclude: ['build/.*'],
-                    mainFile: '<%= pkg.pot.src %>', // Main project file.
-                    potFilename: '<%= pkg.pot.textdomain %>' + '.pot', // Name of the POT file.
-                    potHeaders: {
-                        poedit: true, // Includes common Poedit headers.
-                        'x-poedit-keywordslist': true, // Include a list of all possible gettext functions.
-                        'report-msgid-bugs-to': '<%= pkg.pot.header.bugs %>',
-                        'last-translator': '<%= pkg.pot.header.last_translator %>',
-                        'language-team': '<%= pkg.pot.header.team %>',
-                        'language': 'en_US'
-                    },
-                    type: '<%= pkg.pot.type %>', // Type of project (wp-plugin or wp-theme).
-                    updateTimestamp: true, // Whether the POT-Creation-Date should be updated without other changes.
-                    updatePoFiles: true, // Whether to update PO files in the same directory as the POT file.
-                    processPot: function (pot, options) {
-                        var translation, // Exclude meta data from pot.
-                            excluded_meta = [
-                                'Plugin Name of the plugin/theme',
-                                'Plugin URI of the plugin/theme',
-                                'Author of the plugin/theme',
-                                'Author URI of the plugin/theme'
-                            ];
-                        for (translation in pot.translations['']) {
-                            if ('undefined' !== typeof pot.translations[''][translation].comments.extracted) {
-                                if (excluded_meta.indexOf(pot.translations[''][translation].comments.extracted) >= 0) {
-                                    console.log('Excluded meta: ' + pot.translations[''][translation].comments.extracted);
-                                    delete pot.translations[''][translation];
-                                }
-                            }
-                        }
-                        return pot;
-                    }
-                }
-            }
-        },
-        potomo: {
-            dist: {
-                options: {
-                    poDel: false // Set to true if you want to erase the .po
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= pkg.directories.languages %>',
-                    src: ['*.po'],
-                    dest: '<%=  pkg.directories.languages %>',
-                    ext: '.mo',
-                    nonull: true
-                }]
-            }
-        },
         watch: {
             less: {
                 files: 'public/assets/**/*.less',
@@ -193,7 +157,6 @@ module.exports = function (grunt) {
                     '!node_modules/**',
                     '!build/**',
                     '!assets/**',
-                    '!public/assets/less/**',
                     '!.git/**',
                     '!Gruntfile.js',
                     '!deploy.sh',
@@ -231,6 +194,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['less', 'uglify', 'autoprefixer']);
 
     // Build task(s).
-    grunt.registerTask( 'build:translations', [ 'checktextdomain', 'makepot', 'newer:potomo' ] );
+    grunt.registerTask( 'build:translations', [ 'checktextdomain' ] );
     grunt.registerTask( 'build', [ 'clean', 'copy', 'compress' ] );
 };

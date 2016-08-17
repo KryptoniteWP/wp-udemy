@@ -2,7 +2,7 @@
 /**
  * Scripts
  *
- * @package     Udemy\Scripts
+ * @package     UFWP\Scripts
  * @since       1.0.0
  */
 

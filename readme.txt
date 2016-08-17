@@ -1,33 +1,34 @@
-=== Udemy ===
+=== Online Learning Courses ===
 Contributors: flowdee
 Donate link: https://donate.flowdee.de
-Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, flowdee
+Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee
 Requires at least: 3.5.1
 Tested up to: 4.5.3
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Display Udemy courses inside your WordPress posts and pages.
+Display Online Learning Courses from the best platform inside your WordPress posts and pages.
 
 == Description ==
-With Udemy for WordPress you can display single courses by their ID or even search for courses by keywords and language.
+With Online Learning Courses you can display single courses by their ID or even search for courses by keywords and language.
 
 = Features =
 
+*   This plugin allows you to display Udemy™ courses and lead your visitors directly to the course pages
 *   Display single courses by ID
 *   Search for courses by keyword (API keys required)
 *   Select between the following layouts: Standard Boxes, Grids & Lists
 *   Select between the following styles: Standard, Clean, Light & Dark
 *   Two separate widgets for single courses and searches
 *   Configuration page for more options
-*   Try out the **[online demo](https://coder.flowdee.de/demo/udemy-for-wordpress/)**
+*   Try out the **[online demo](https://coder.flowdee.de/demo/wp-udemy/)**
 *   Regular updates and improvements: Go though the [changelog](https://wordpress.org/plugins/wp-udemy/changelog/)
 
 = Quickstart Examples =
 
-* Single courses: [udemy id="518498"]
-* Keyword search: [udemy search="css" items="3" lang="de"]
+* Single courses: [ufwp id="518498"]
+* Keyword search: [ufwp search="css" items="3" lang="de"]
 
 = More features with the PRO version =
 
@@ -38,17 +39,17 @@ The PRO version extends this plugins exclusively with our affiliate link feature
 *   Click Tracking
 *   Custom Templates
 
-Details and upgrade can be found **[here](https://coder.flowdee.de/downloads/udemy-for-wordpress-pro/)**.
+Details and upgrade can be found **[here](https://coder.flowdee.de/downloads/wp-udemy-pro/)**.
 
 = Support =
 
-* Detailed online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/)
+* Detailed online [documentation](https://coder.flowdee.de/docs/article/wp-udemy/)
 * Browse [issue tracker](https://github.com/flowdee/wp-udemy/issues) on GitHub
 * [Follow me on Twitter](https://twitter.com/flowdee) to stay in contact and informed about updates
 
 = Credits =
 
-* This plugin is not officially made by Udemy. All data provided through the official Udemy API.
+* This plugin is not official made or maintained by Udemy™. All data provided through the official Udemy™ API.
 
 == Installation ==
 
@@ -57,7 +58,7 @@ The installation and configuration of the plugin is as simple as it can be.
 = Using The WordPress Dashboard =
 
 1. Navigate to the 'Add New' in the plugins dashboard
-2. Search for 'udemy'
+2. Search for 'online learning courses'
 3. Click 'Install Now'
 4. Activate the plugin on the Plugin dashboard
 
@@ -65,15 +66,15 @@ The installation and configuration of the plugin is as simple as it can be.
 
 1. Navigate to the 'Add New' in the plugins dashboard
 2. Navigate to the 'Upload' area
-3. Select `wp-udemy.zip` from your computer
+3. Select zip file from your computer
 4. Click 'Install Now'
 5. Activate the plugin in the Plugin dashboard
 
 = Using FTP =
 
-1. Download `wp-udemy.zip`
-2. Extract the `wp-udemy` directory to your computer
-3. Upload the `wp-udemy` directory to the `/wp-content/plugins/` directory
+1. Download the plugin
+2. Extract the directory to your computer
+3. Upload the directory to the `/wp-content/plugins/` directory
 4. Activate the plugin in the Plugin dashboard
 
 == Frequently Asked Questions ==
@@ -82,11 +83,11 @@ The installation and configuration of the plugin is as simple as it can be.
 
 The default shortcode expects a course ID which can be found after adding the course to the cart and taking the ID out of the url of your browser.
 
-[udemy id="518498"]
+[ufwp id="518498"]
 
 Additionally you can string together multiple ids and display multiple courses at once:
 
-[udemy id="41305,597898"]
+[ufwp id="41305,597898"]
 
 More information about the shortcodes can be found in our online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/).
 
@@ -94,13 +95,13 @@ More information about the shortcodes can be found in our online [documentation]
 
 Instead of selecting specific ids you can search for courses by keywords.
 
-[udemy search="css" items="3" lang="de"]
+[ufwp search="css" items="3" lang="de"]
 
 More information about the shortcodes can be found in our online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/).
 
 = How do I change the template or style? =
 
-All available templates and styles, as well as further instructions, can be found in our online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/).
+All available templates and styles, as well as further instructions, can be found in our online [documentation](https://coder.flowdee.de/docs/article/wp-udemy/).
 
 = Multisite supported? =
 
@@ -117,6 +118,9 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.3 (17th August 2016) =
+* Plugin rebranding
+
 = Version 1.0.2 (13th August 2016) =
 * Improvement: Optimized course img styles in order to prevent theme issues
 * Added settings quickstart grid col example
@@ -130,6 +134,9 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.3 (17th August 2016) =
+* Plugin rebranding
 
 = Version 1.0.2 (13th August 2016) =
 * Improvement: Optimized course img styles in order to prevent theme issues

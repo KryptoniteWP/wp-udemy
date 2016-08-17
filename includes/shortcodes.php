@@ -2,7 +2,7 @@
 /**
  * Shortcodes
  *
- * @package     Udemy\Shortcodes
+ * @package     UFWP\Shortcodes
  * @since       1.0.0
  */
 
@@ -68,4 +68,5 @@ function ufwp_add_shortcode( $atts ) {
 
     return $output;
 }
+add_shortcode( 'ufwp', 'ufwp_add_shortcode' );
 add_shortcode( 'udemy', 'ufwp_add_shortcode' );

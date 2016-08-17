@@ -2,23 +2,13 @@
   "name": "wp-udemy",
   "version": "1.0.1",
   "private": true,
-  "description": "Udemy for WordPress",
+  "description": "Online Learning Courses",
   "directories": {
     "js": "",
     "sass": "",
     "css": "",
     "build": "./build",
     "languages": "./languages"
-  },
-  "pot": {
-    "type": "wp-plugin",
-    "textdomain": "wp-udemy",
-    "src": "wp-udemy.php",
-    "header": {
-      "bugs": "https://wordpress.org/support/plugin/wp-udemy",
-      "team": "flowdee <coder@flowdee.de>",
-      "last_translator": "flowdee <coder@flowdee.de>"
-    }
   },
   "dependencies": {
     "dotsunited-equal-height-blocks": "3.1.0",
@@ -35,10 +25,6 @@
     "grunt-contrib-less": "^1.3.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-newer": "^1.1.0",
-    "grunt-potomo": "~3.2.0",
-    "grunt-wp-i18n": "~0.5.1",
-    "grunt-wp-readme-to-markdown": "^0.9.0",
     "load-grunt-tasks": "~0.2.0"
   }
 }

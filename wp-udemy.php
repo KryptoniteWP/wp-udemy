@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:     Udemy
+ * Plugin Name:     UFWP - Online Learning Courses
  * Plugin URI:      https://wordpress.org/plugins/wp-udemy/
- * Description:     Display Udemy courses inside your WordPress posts and pages.
- * Version:         1.0.2
+ * Description:     Display Online Learning Courses from the best platform inside your WordPress posts and pages.
+ * Version:         1.0.3
  * Author:          flowdee
  * Author URI:      http://flowdee.de
  * Text Domain:     wp-udemy
  *
- * @package         Udemy
+ * @package         UFWP
  * @author          flowdee
  * @copyright       Copyright (c) flowdee
  *
@@ -27,7 +27,7 @@ if( !class_exists( 'UFWP' ) ) {
     class UFWP {
 
         /**
-         * @var         Udemy $instance The one true Udemy
+         * @var         UFWP $instance The one true UFWP
          * @since       1.0.0
          */
         private static $instance;
@@ -38,7 +38,7 @@ if( !class_exists( 'UFWP' ) ) {
          *
          * @access      public
          * @since       1.0.0
-         * @return      object self::$instance The one true Udemy
+         * @return      object self::$instance The one true UFWP
          */
         public static function instance() {
             if( !self::$instance ) {
@@ -62,10 +62,10 @@ if( !class_exists( 'UFWP' ) ) {
         private function setup_constants() {
 
             // Plugin name
-            define( 'UFWP_NAME', 'Udemy' );
+            define( 'UFWP_NAME', 'Online Learning Courses' );
 
             // Plugin version
-            define( 'UFWP_VER', '1.0.2' );
+            define( 'UFWP_VER', '1.0.3' );
 
             // Plugin path
             define( 'UFWP_DIR', plugin_dir_path( __FILE__ ) );
@@ -141,11 +141,11 @@ if( !class_exists( 'UFWP' ) ) {
 } // End if class_exists check
 
 /**
- * The main function responsible for returning the one true Udemy
+ * The main function responsible for returning the one true UFWP
  * instance to functions everywhere
  *
  * @since       1.0.0
- * @return      \Udemy The one true Udemy
+ * @return      \UFWP The one true UFWP
  *
  */
 function ufwp_load() {

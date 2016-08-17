@@ -16,7 +16,7 @@ Do you want to earn money with course sales? The PRO version extends the plugin 
 *   Click Tracking
 *   Custom Templates
 
-I would be happy if you give it a chance! [Upgrade to Udemy PRO](https://coder.flowdee.de/downloads/wp-udemy-pro/)
+I would be happy if you give it a chance! [Upgrade to PRO Version](https://coder.flowdee.de/downloads/wp-udemy-pro/)
 
 ## More information
 

@@ -6,6 +6,7 @@
   color: #1E2C35;
   font-size: 13px;
   line-height: 18px;
+  text-align: left;
   -webkit-transition: -webkit-box-shadow 0.3s ease;
   -o-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
@@ -43,6 +44,7 @@
   display: block;
   max-width: 100%;
   height: auto;
+  margin: 0;
 }
 .ufwp .ufwp-course__title {
   display: block;

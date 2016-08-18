@@ -10,6 +10,17 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Extend body classes
+ */
+function ufwp_add_body_classes( $classes ) {
+
+    $classes[] = 'ufwp';
+
+    return $classes;
+}
+add_filter( 'body_class', 'ufwp_add_body_classes' );
+
+/**
  * Maybe add credits
  */
 function ufwp_maybe_add_credits_to_the_content( $content ) {

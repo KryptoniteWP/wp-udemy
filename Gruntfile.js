@@ -137,11 +137,11 @@ module.exports = function (grunt) {
         },
         watch: {
             less: {
-                files: 'public/assets/**/*.less',
+                files: 'assets/**/*.less',
                 tasks: 'less'
             },
             uglify: {
-                files: 'public/assets/**/*.js',
+                files: 'assets/**/*.js',
                 tasks: 'uglify'
             }
         },

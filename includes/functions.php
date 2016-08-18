@@ -390,7 +390,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     // Output
     ob_start();
 
-    echo '<div class="ufwp">';
+    //echo '<div class="ufwp">';
 
     if ( file_exists( $file ) ) {
         include( $file );
@@ -398,7 +398,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
         _e('Template not found.', 'wp-udemy');
     }
 
-    echo '</div>';
+    //echo '</div>';
 
     $output = ob_get_clean();
 

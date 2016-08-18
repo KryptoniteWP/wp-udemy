@@ -3,8 +3,8 @@ Contributors: flowdee
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee
 Requires at least: 3.5.1
-Tested up to: 4.5.3
-Stable tag: 1.0.3
+Tested up to: 4.6.0
+Stable tag: 1.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.4 (18th August 2016) =
+* Improvement: Optimized styles in order to prevent theme issues
+* Fix: Styles weren't loaded correctly when using the new ufwp shortcode
+
 = Version 1.0.3 (17th August 2016) =
 * Plugin rebranding
 
@@ -134,6 +138,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.4 (18th August 2016) =
+* Improvement: Optimized styles in order to prevent theme issues
+* Fix: Styles weren't loaded correctly when using the new ufwp shortcode
 
 = Version 1.0.3 (17th August 2016) =
 * Plugin rebranding

@@ -434,7 +434,7 @@ function ufwp_has_plugin_content() {
 
     global $post;
 
-    if( ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'udemy') ) ) {
+    if( ( is_a( $post, 'WP_Post' ) && ( has_shortcode( $post->post_content, 'ufwp') || has_shortcode( $post->post_content, 'udemy') ) ) ) {
         return true;
     }
 

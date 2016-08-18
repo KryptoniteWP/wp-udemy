@@ -64,7 +64,7 @@ function ufwp_widget_text( $widget_text, $instance, $widget ) {
 
     static $text_widget_scripts_loaded = false;
 
-    if ( has_shortcode( $instance['text'], 'udemy' ) ) {
+    if ( has_shortcode( $instance['text'], 'ufwp' ) || has_shortcode( $instance['text'], 'udemy' ) ) {
 
         // Add widget template if missing
         if ( strpos( $instance['text'], 'template') === false ) {

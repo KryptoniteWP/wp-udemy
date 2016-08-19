@@ -39,8 +39,8 @@ if (!class_exists('UFWP_Settings')) {
         {
 
             add_options_page(
-                'UFWP Courses',
-                'UFWP Courses',
+                __('UFWP Courses', 'wp-udemy'),
+                __('UFWP Courses', 'wp-udemy'),
                 'manage_options',
                 'wp-udemy',
                 array( &$this, 'options_page' )
@@ -375,7 +375,7 @@ if (!class_exists('UFWP_Settings')) {
             <?php $course_meta = ( isset ( $this->options['course_meta'] ) && $this->options['course_meta'] == '1' ) ? 1 : 0; ?>
             <p>
                 <input type="checkbox" id="ufwp_course_meta" name="ufwp_settings[course_meta]" value="1" <?php echo($course_meta == 1 ? 'checked' : ''); ?>>
-                <label for="ufwp_course_meta"><?php _e('Show lectures and playing time', 'ufwp'); ?></label>
+                <label for="ufwp_course_meta"><?php _e('Show lectures and playing time', 'wp-udemy'); ?></label>
             </p>
             <?php
         }
@@ -388,7 +388,7 @@ if (!class_exists('UFWP_Settings')) {
 
             <p>
                 <input type="checkbox" id="ufwp_custom_css_activated" name="ufwp_settings[custom_css_activated]" value="1" <?php echo($custom_css_activated == 1 ? 'checked' : ''); ?>>
-                <label for="ufwp_custom_css_activated"><?php _e('Output custom CSS styles', 'ufwp'); ?></label>
+                <label for="ufwp_custom_css_activated"><?php _e('Output custom CSS styles', 'wp-udemy'); ?></label>
             </p>
             <br />
             <textarea id="ufwp_custom_css" name="ufwp_settings[custom_css]" rows="10" cols="80" style="width: 100%;"><?php echo stripslashes($custom_css); ?></textarea>

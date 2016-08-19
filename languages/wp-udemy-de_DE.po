@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Udemy for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-udemy\n"
-"POT-Creation-Date: 2016-08-16 09:42+0200\n"
-"PO-Revision-Date: 2016-08-16 09:43+0200\n"
+"POT-Creation-Date: 2016-08-19 10:17+0200\n"
+"PO-Revision-Date: 2016-08-19 10:18+0200\n"
 "Last-Translator: flowdee <coder@flowdee.de>\n"
 "Language-Team: flowdee <coder@flowdee.de>\n"
 "Language: de_DE\n"
@@ -21,6 +21,10 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
+
+#: includes/admin/class.settings.php:42 includes/admin/class.settings.php:43
+msgid "UFWP Courses"
+msgstr "UFWP Kurse"
 
 #: includes/admin/class.settings.php:62 includes/admin/class.settings.php:240
 msgid "Quickstart Guide"
@@ -391,7 +395,7 @@ msgstr "Keine Kurse gefunden."
 msgid "Courses could not be fetched. Please try again."
 msgstr "Die Kurse konnten nicht abgerufen werden. Bitte versuche es erneut."
 
-#: includes/class.course.php:153
+#: includes/class.course.php:161
 msgid "No info available"
 msgstr "Keine Information verfügabar"
 
@@ -403,11 +407,11 @@ msgstr "Bitte aktiviere die PHP curl Erweiterung, um Kurse auszugeben."
 msgid "Template not found."
 msgstr "Template wurde nicht gefunden."
 
-#: includes/hooks.php:28
+#: includes/hooks.php:39
 msgid "Udemy for WordPress"
 msgstr "Udemy for WordPress"
 
-#: includes/hooks.php:30
+#: includes/hooks.php:41
 msgid "Presentation of the video courses powered by "
 msgstr "Darstellung der Videokurse mit Hilfe durch "
 
@@ -416,12 +420,12 @@ msgid "Shortcode arguments missing."
 msgstr "Shortcode-Argumente fehlen."
 
 #: includes/widgets/class.widget.courses.php:27
-msgid "Udemy - Courses"
-msgstr "Udemy - Kurse"
+msgid "UFWP - Courses"
+msgstr "UFWP - Kurse"
 
 #: includes/widgets/class.widget.courses.php:28
-msgid "Displaying Udemy courses by their ids."
-msgstr "Ausgabe von Udemy-Kursen anhand deren IDs."
+msgid "Displaying courses by their ids."
+msgstr "Ausgabe von Kursen anhand deren IDs."
 
 #: includes/widgets/class.widget.courses.php:77
 msgid "Please enter a course ID."
@@ -493,12 +497,12 @@ msgid "Only working when entering one course id."
 msgstr "Funktioniert nur, wenn lediglich eine Kurs-ID eingegeben wurde."
 
 #: includes/widgets/class.widget.search.php:27
-msgid "Udemy - Search"
-msgstr "Udemy - Suche"
+msgid "UFWP - Search"
+msgstr "UFWP - Suche"
 
 #: includes/widgets/class.widget.search.php:28
-msgid "Searching for Udemy courses by keyword or category."
-msgstr "Ausgabe nach Udemy-Kursen anhand von Suchbegriffen oder Kategorien."
+msgid "Searching for courses by keyword or category."
+msgstr "Suche nach Kursen anhand von Keywords oder Kategorien."
 
 #: includes/widgets/class.widget.search.php:91
 msgid "Please at least a keyword."
@@ -574,6 +578,18 @@ msgstr "%1$s Lektionen"
 #, php-format
 msgid "%1$s hours"
 msgstr "%1$s Stunden"
+
+#~ msgid "Udemy - Courses"
+#~ msgstr "Udemy - Kurse"
+
+#~ msgid "Displaying Udemy courses by their ids."
+#~ msgstr "Ausgabe von Udemy-Kursen anhand deren IDs."
+
+#~ msgid "Udemy - Search"
+#~ msgstr "Udemy - Suche"
+
+#~ msgid "Searching for Udemy courses by keyword or category."
+#~ msgstr "Ausgabe nach Udemy-Kursen anhand von Suchbegriffen oder Kategorien."
 
 #~ msgid "Udemy API"
 #~ msgstr "Udemy API"

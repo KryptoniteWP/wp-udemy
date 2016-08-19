@@ -18,7 +18,7 @@ function ufwp_add_body_classes( $classes ) {
 
     return $classes;
 }
-add_filter( 'body_class', 'ufwp_add_body_classes' );
+//add_filter( 'body_class', 'ufwp_add_body_classes' );
 
 /**
  * Maybe add credits

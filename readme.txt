@@ -118,6 +118,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.5 (19th August 2016) =
+* Fix: Styles weren't loaded correctly when using older themes without body_class support
+* Updated translations
+
 = Version 1.0.4 (18th August 2016) =
 * Improvement: Optimized styles in order to prevent theme issues
 * Fix: Styles weren't loaded correctly when using the new ufwp shortcode
@@ -138,6 +142,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.5 (19th August 2016) =
+* Fix: Styles weren't loaded correctly when using older themes without body_class support
+* Updated translations
 
 = Version 1.0.4 (18th August 2016) =
 * Improvement: Optimized styles in order to prevent theme issues

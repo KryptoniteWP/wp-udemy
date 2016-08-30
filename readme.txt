@@ -4,7 +4,7 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee
 Requires at least: 3.5.1
 Tested up to: 4.6.0
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.6 (30th August 2016) =
+* Fix: Star Rating wasn't displayed correctly on Retina displays
+* Updated translations
+
 = Version 1.0.5 (19th August 2016) =
 * Fix: Styles weren't loaded correctly when using older themes without body_class support
 * Updated translations
@@ -142,6 +146,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.6 (30th August 2016) =
+* Fix: Star Rating wasn't displayed correctly on Retina displays
+* Updated translations
 
 = Version 1.0.5 (19th August 2016) =
 * Fix: Styles weren't loaded correctly when using older themes without body_class support

@@ -539,6 +539,8 @@
   background-image: url('../img/star.png');
   background-repeat: repeat-x;
   background-position: left center;
+  -webkit-background-size: 16px 16px;
+  background-size: 16px;
   vertical-align: top;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
@@ -558,6 +560,8 @@
   background-image: url('../img/star-active.png');
   background-repeat: repeat-x;
   background-position: left center;
+  -webkit-background-size: 16px 16px;
+  background-size: 16px;
   vertical-align: top;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {

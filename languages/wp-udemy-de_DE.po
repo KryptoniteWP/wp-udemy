@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Udemy for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-udemy\n"
-"POT-Creation-Date: 2016-08-19 10:17+0200\n"
-"PO-Revision-Date: 2016-08-19 10:18+0200\n"
+"POT-Creation-Date: 2016-08-30 12:36+0200\n"
+"PO-Revision-Date: 2016-08-30 12:36+0200\n"
 "Last-Translator: flowdee <coder@flowdee.de>\n"
 "Language-Team: flowdee <coder@flowdee.de>\n"
 "Language: de_DE\n"
@@ -505,8 +505,8 @@ msgid "Searching for courses by keyword or category."
 msgstr "Suche nach Kursen anhand von Keywords oder Kategorien."
 
 #: includes/widgets/class.widget.search.php:91
-msgid "Please at least a keyword."
-msgstr "Bitte mindestens einen Suchbegriff eingeben."
+msgid "Keyword missing."
+msgstr "Kein Suchbegriff eingegeben."
 
 #: includes/widgets/class.widget.search.php:122
 msgid "Keywords:"
@@ -578,6 +578,9 @@ msgstr "%1$s Lektionen"
 #, php-format
 msgid "%1$s hours"
 msgstr "%1$s Stunden"
+
+#~ msgid "Please at least a keyword."
+#~ msgstr "Bitte mindestens einen Suchbegriff eingeben."
 
 #~ msgid "Udemy - Courses"
 #~ msgstr "Udemy - Kurse"

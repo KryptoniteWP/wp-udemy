@@ -88,7 +88,7 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                 ufwp_widget_do_shortcode( $shortcode_atts );
 
             } else {
-                _e( 'Please at least a keyword.', 'wp-udemy' );
+                _e( 'Keyword missing.', 'wp-udemy' );
             }
 
             echo $args['after_widget'];

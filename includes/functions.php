@@ -139,7 +139,7 @@ function ufwp_update_cache_event() {
     $cache_duration = ( ! empty ( $options['cache_duration'] ) ) ? intval( $options['cache_duration'] ) : 1440;
     $last_update = ( isset ( $cache['last_update'] ) ) ? intval( $cache['last_update'] ) : 0;
 
-    $debug = true;
+    $debug = false;
 
     if ( ( time() - $last_update ) > ( $cache_duration * 60 ) || $debug ) {
 

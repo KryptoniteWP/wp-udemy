@@ -39,7 +39,7 @@ function ufwp_get_datetime( $timestamp ) {
     $date_format = get_option( 'date_format', 'm/d/Y' );
     $time_format = get_option( 'time_format', 'g:i:s A' );
 
-    return get_date_from_gmt( date( 'Y-m-d H:i:s', $timestamp ), $date_format . ' - ' . $time_format );
+    return date( $date_format . ' ' . $time_format, $timestamp );
 }
 
 function ufwp_the_assets() {

@@ -27,8 +27,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                 __( 'UFWP - Search', 'wp-udemy' ), // Name
                 array( 'description' => __( 'Searching for courses by keyword or category.', 'wp-udemy' ), ) // Args
             );
-
-            add_action('wp_enqueue_scripts', array( $this, 'scripts' ) );
         }
 
         /**
@@ -235,17 +233,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
 
             return $instance;
-        }
-
-        /**
-         * Enqueue scripts
-         */
-        public function scripts() {
-
-            if( !self::$did_script && is_active_widget(false, false, $this->id_base, true) ) {
-                ufwp_load_scripts();
-                self::$did_script = true;
-            }
         }
     }
 

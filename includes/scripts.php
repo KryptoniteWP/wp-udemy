@@ -44,17 +44,6 @@ add_action( 'admin_enqueue_scripts', 'ufwp_admin_scripts', 100 );
  */
 function ufwp_scripts( $hook ) {
 
-    if ( ufwp_has_plugin_content() ) {
-        ufwp_load_scripts();
-    }
-}
-add_action( 'wp_enqueue_scripts', 'ufwp_scripts' );
-
-/**
- * Load frontend scripts
- */
-function ufwp_load_scripts() {
-
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UFWP_DEBUG ) ? '' : '.min';
 
@@ -63,3 +52,4 @@ function ufwp_load_scripts() {
 
     do_action( 'ufwp_enqueue_scripts' );
 }
+add_action( 'wp_enqueue_scripts', 'ufwp_scripts' );

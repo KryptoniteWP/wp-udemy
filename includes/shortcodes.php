@@ -99,3 +99,12 @@ function ufwp_add_shortcode( $atts ) {
 }
 add_shortcode( 'ufwp', 'ufwp_add_shortcode' );
 add_shortcode( 'udemy', 'ufwp_add_shortcode' );
+
+/**
+ * Debug
+ */
+add_shortcode('udemy_debug', function( $atts ) {
+
+
+
+});

@@ -65,6 +65,8 @@ function ufwp_get_course_from_api( $id ) {
 
     $url = 'https://www.udemy.com/api-2.0/courses/' . $id . '?fields[course]=' . $data_args;
 
+    //ufwp_debug_log( 'ufwp_get_course_from_api >> $url >> ' . $url );
+
     $response = wp_remote_get( esc_url_raw( $url ), array(
         'timeout' => 15,
         'sslverify' => false
@@ -76,6 +78,8 @@ function ufwp_get_course_from_api( $id ) {
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
 
         $result = json_decode(wp_remote_retrieve_body($response), true);
+
+        //ufwp_debug($result);
 
         return $result;
     } else {

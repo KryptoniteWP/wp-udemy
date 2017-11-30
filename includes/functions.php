@@ -55,7 +55,7 @@ function ufwp_update_cache( $items, $key = false ) {
     } else {
 
         if ( isset ( $items['id'] ) ) {
-            $cache['items'][$items['id']] = $items;
+            $cache['items'][$items['id']] = ufwp_prepare_course_data_for_cache( $items );
         }
     }
 
@@ -541,4 +541,42 @@ function ufwp_get_settings_css( $apply_prefix = true ) {
     // Silence
 
     return $settings_css;
+}
+
+/**
+ * Prepare course data before being cached
+ *
+ * Only storing fields we need
+ *
+ * @param $data
+ * @return mixed
+ */
+function ufwp_prepare_course_data_for_cache( $data ) {
+
+    $fields = array(
+        'id',
+        'url', 'gift_url',
+        'image_480x270', 'image_125_H', 'image_200_H', 'image_75x75',
+        'title', 'headline', 'description',
+        'primary_category', 'primary_subcategory',
+        'num_subscribers',
+        'is_paid', 'price', 'discount',
+        'avg_rating', 'num_reviews',
+        'visible_instructors',
+        'num_published_lectures', 'estimated_content_length', 'instructional_level', 'content_info',
+        'bestseller_badge_content',
+        'published_time', 'last_update_date',
+        'is_published'
+    );
+
+    if ( is_array( $data ) && sizeof( $data ) > 0 ) {
+
+        foreach ( $data as $key => $values ) {
+
+            if ( ! in_array( $key, $fields ) )
+                unset( $data[$key] );
+        }
+    }
+
+    return $data;
 }

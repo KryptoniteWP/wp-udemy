@@ -21,14 +21,25 @@ if (!class_exists('UFWP_Course')) {
 
             // Variables
             $this->options = ufwp_get_options();
-            $this->course = $course;
+            $this->course = $course; // https://www.udemy.com/api-2.0/courses/1229104/?fields[course]=@all
             $this->args = $args;
         }
 
+        /**
+         * Get course id
+         *
+         * @return int
+         */
         public function get_id() {
             return ( isset ( $this->course['id'] ) ) ? $this->course['id'] : 0;
         }
 
+        /**
+         * Output container attributes
+         *
+         * @param bool $echo
+         * @return string
+         */
         public function the_container( $echo = true ) {
 
             $output = '';
@@ -62,6 +73,11 @@ if (!class_exists('UFWP_Course')) {
 
         }
 
+        /**
+         * Get title
+         *
+         * @return mixed|string
+         */
         public function get_title() {
 
             $title = ( isset ( $this->course['title'] ) ) ? $this->course['title'] : '';
@@ -71,6 +87,12 @@ if (!class_exists('UFWP_Course')) {
             return $title;
         }
 
+        /**
+         * Get image
+         *
+         * @param null $size
+         * @return string
+         */
         public function get_image( $size = null ) {
 
             $image = 'image_480x270';
@@ -87,6 +109,11 @@ if (!class_exists('UFWP_Course')) {
             return ( isset ( $this->course[$image] ) ) ? $this->course[$image] : '';
         }
 
+        /**
+         * Get image alt attribute
+         *
+         * @return mixed
+         */
         public function get_image_alt() {
 
             $title = $this->get_title();
@@ -94,10 +121,20 @@ if (!class_exists('UFWP_Course')) {
             return str_replace('"', "'", $title );
         }
 
+        /**
+         * Get headline
+         *
+         * @return string
+         */
         public function get_headline() {
             return ( isset ( $this->course['headline'] ) ) ? $this->course['headline'] : '';
         }
 
+        /**
+         * Get url
+         *
+         * @return mixed|string
+         */
         public function get_url() {
 
             if ( isset ( $this->args['url'] ) )
@@ -113,10 +150,20 @@ if (!class_exists('UFWP_Course')) {
             return $url;
         }
 
+        /**
+         * Get price
+         *
+         * @return string
+         */
         public function get_price() {
             return ( isset ( $this->course['price'] ) ) ? $this->course['price'] : '';
         }
 
+        /**
+         * Get instructors
+         *
+         * @return string
+         */
         public function get_instructors() {
 
             if ( ! isset ( $this->course['visible_instructors'] ) || ! is_array( $this->course['visible_instructors'] ) )
@@ -148,6 +195,11 @@ if (!class_exists('UFWP_Course')) {
             return $instructors;
         }
 
+        /**
+         * Get details
+         *
+         * @return string
+         */
         public function get_details() {
 
             $options_details = ( isset ( $this->options['course_details'] ) ) ? $this->options['course_details'] : 'course';
@@ -161,10 +213,18 @@ if (!class_exists('UFWP_Course')) {
             return __('No info available', 'wp-udemy');
         }
 
+        /**
+         * Get rating
+         *
+         * @return float|int
+         */
         public function get_rating() {
             return ( isset ( $this->course['avg_rating'] ) ) ? round( $this->course['avg_rating'], 1) : 0;
         }
 
+        /**
+         * Output star rating
+         */
         public function the_star_rating() {
 
             $rating = $this->get_rating();
@@ -176,22 +236,47 @@ if (!class_exists('UFWP_Course')) {
             echo $star_rating;
         }
 
+        /**
+         * Get reviews
+         *
+         * @return string
+         */
         public function get_reviews() {
             return ( isset ( $this->course['num_reviews'] ) ) ? $this->course['num_reviews'] : '';
         }
 
+        /**
+         * Check whether to show meta or not
+         *
+         * @return bool
+         */
         public function show_meta() {
             return ( isset ( $this->options['course_meta'] ) ) ? true : false;
         }
 
+        /**
+         * Get lectures
+         *
+         * @return int
+         */
         public function get_lectures() {
             return ( isset ( $this->course['num_published_lectures'] ) ) ? $this->course['num_published_lectures'] : 0;
         }
 
+        /**
+         * Get length
+         *
+         * @return int
+         */
         public function get_length() {
             return ( isset ( $this->course['estimated_content_length'] ) ) ? intval( $this->course['estimated_content_length'] ) : 0;
         }
 
+        /**
+         * Get playing time
+         *
+         * @return float|string
+         */
         public function get_playing_time() {
 
             $length = $this->get_length();
@@ -199,6 +284,11 @@ if (!class_exists('UFWP_Course')) {
             return ( ! empty ( $length ) ) ? round ( $length / 60 ) : '';
         }
 
+        /**
+         * Get level
+         *
+         * @return string
+         */
         public function get_level() {
             return ( isset ( $this->course['instructional_level'] ) ) ? $this->course['instructional_level'] : '';
         }

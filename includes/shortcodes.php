@@ -9,8 +9,31 @@
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 
-/*
- * Purchase code form
+/**
+ * Maybe cleanup content in order to remove empty p and br tags for our shortcodes
+ */
+function ufwp_maybe_cleanup_shortcode_output( $content ) {
+
+    // array of custom shortcodes requiring the fix
+    $block = join("|",array(
+        'ufwp', 'udemy'
+    ) );
+
+    // opening tag
+    $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
+
+    // closing tag
+    $rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
+
+    return $rep;
+}
+add_filter( 'the_content', 'ufwp_maybe_cleanup_shortcode_output' );
+
+/**
+ * Register our main shortcode
+ *
+ * @param $atts
+ * @return string|null
  */
 function ufwp_add_shortcode( $atts ) {
 
@@ -63,8 +86,11 @@ function ufwp_add_shortcode( $atts ) {
         $output = ufwp_display_courses( $courses, $output_args );
     }
 
-    // Strip line breaks and empty paragraphs
-    $output = str_replace(array("\r", "\n", "<p></p>"), '', $output);
+    // Remove empty paragraphs
+    //$output = str_replace(array("<p></p>"), '', $output);
+
+    // Remove unwanted line breaks from output
+    $output = preg_replace('/^\s+|\n|\r|\s+$/m', '', $output );
 
     return $output;
 }

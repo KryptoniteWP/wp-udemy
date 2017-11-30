@@ -1,8 +1,10 @@
 <?php
-/*
- * Standard template
+/**
+ * AMP template
  *
  * @package Udemy
+ *
+ * @var UFWP_Course $course
  */
 
 // Exit if accessed directly
@@ -11,7 +13,6 @@ if( !defined( 'ABSPATH' ) ) exit;
 // Check if course was forwarded
 if ( ! isset ( $courses ) )
     return;
-
 ?>
 
 <div class="ufwp-amp">

@@ -1,8 +1,10 @@
 <?php
-/*
+/**
  * Grid template
  *
  * @package Udemy
+ *
+ * @var UFWP_Course $course
  */
 
 // Exit if accessed directly

@@ -11,19 +11,48 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function ufwp_debug( $args, $title = false ) {
-
-    if ( $title ) {
-        echo '<h3>' . $title . '</h3>';
-    }
-
-    if ( $args ) {
-        echo '<pre>';
-        print_r($args);
-        echo '</pre>';
-    }
+/**
+ * Geto ptions
+ *
+ * @return array
+ */
+function ufwp_get_options() {
+    return get_option( 'ufwp_settings', array() );
 }
 
+/**
+ * Get single option
+ *
+ * @param $key
+ * @param null $default
+ * @return null
+ */
+function ufwp_get_option( $key, $default = null ) {
+    $options = ufwp_get_options();
+
+    return ( isset( $options[$key] ) ) ? $options[$key] : $default;
+}
+
+/**
+ * Check if AMP endpoint
+ */
+function ufwp_is_amp() {
+
+    if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() )
+        return true;
+
+    if ( function_exists( 'is_wp_amp' ) && is_wp_amp() )
+        return true;
+
+    return false;
+}
+
+/**
+ * Cleanup category name
+ *
+ * @param $category
+ * @return mixed
+ */
 function ufwp_cleanup_category_name( $category ) {
 
     $category = str_replace('And', 'and', ucwords( $category, '-' ) );
@@ -31,6 +60,12 @@ function ufwp_cleanup_category_name( $category ) {
     return $category;
 }
 
+/**
+ * Get WP global settings date time
+ *
+ * @param $timestamp
+ * @return false|null|string
+ */
 function ufwp_get_datetime( $timestamp ) {
 
     if ( ! is_numeric( $timestamp ) )
@@ -42,8 +77,18 @@ function ufwp_get_datetime( $timestamp ) {
     return date( $date_format . ' ' . $time_format, $timestamp );
 }
 
+/**
+ * Output the assets url
+ */
 function ufwp_the_assets() {
-    echo UFWP_URL . 'public/assets';
+    echo UFWP_URL . 'public';
+}
+
+/**
+ * Check whether it's development environment or not
+ */
+function ufwp_is_development() {
+    return ( strpos( get_bloginfo('url'), 'udemy-wp.dev' ) !== false ) ? true : false;
 }
 
 /**
@@ -62,9 +107,38 @@ function ufwp_addlog( $string ) {
     }
 }
 
-/*
- * Get options
+/**
+ * Debug function
+ *
+ * @param $args
+ * @param bool $title
  */
-function ufwp_get_options() {
-    return get_option( 'ufwp_settings', array() );
+function ufwp_debug( $args, $title = false ) {
+
+    if ( $title ) {
+        echo '<h3>' . $title . '</h3>';
+    }
+
+    if ( $args ) {
+        echo '<pre>';
+        print_r($args);
+        echo '</pre>';
+    }
+}
+
+/**
+ * Debug log
+ *
+ * @param $log
+ */
+function ufwp_debug_log ( $log )  {
+
+    if ( ! ufwp_is_development() )
+        return;
+
+    if ( is_array( $log ) || is_object( $log ) ) {
+        error_log( print_r( $log, true ) );
+    } else {
+        error_log( $log );
+    }
 }

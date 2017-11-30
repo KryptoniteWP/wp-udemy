@@ -78,8 +78,11 @@ function ufwp_add_shortcode( $atts ) {
         if ( isset ( $atts['style'] ) )
             $output_args['style'] = sanitize_text_field( $atts['style'] );
 
-        if ( isset ( $atts['template'] ) )
+        if ( ufwp_is_amp() ) {
+            $output_args['template'] = 'amp';
+        } elseif ( isset ( $atts['template'] ) ) {
             $output_args['template'] = sanitize_text_field( $atts['template'] );
+        }
 
         $output_args = apply_filters( 'ufwp_shortcode_output_args', $output_args, $atts );
 

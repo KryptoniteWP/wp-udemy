@@ -28,8 +28,8 @@ function ufwp_admin_scripts( $hook ) {
 
     if ( ! empty( $screen->base ) && ( $screen->base == 'settings_page_wp-udemy' || $screen->base == 'widgets' ) ) {
 
-        wp_enqueue_script( 'ufwp_admin_js', UFWP_URL . 'public/assets/js/admin' . $suffix . '.js', array( 'jquery' ), UFWP_VER );
-        wp_enqueue_style( 'ufwp_admin_css', UFWP_URL . 'public/assets/css/admin' . $suffix . '.css', false, UFWP_VER );
+        wp_enqueue_script( 'ufwp_admin_js', UFWP_URL . 'public/js/admin' . $suffix . '.js', array( 'jquery' ), UFWP_VER );
+        wp_enqueue_style( 'ufwp_admin_css', UFWP_URL . 'public/css/admin' . $suffix . '.css', false, UFWP_VER );
 
         do_action( 'ufwp_admin_enqueue_scripts' );
     }
@@ -47,8 +47,8 @@ function ufwp_scripts( $hook ) {
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UFWP_DEBUG ) ? '' : '.min';
 
-    //wp_enqueue_script( 'ufwp_scripts', UFWP_URL . 'public/assets/js/scripts' . $suffix . '.js', array( 'jquery' ), UFWP_VER, true );
-    wp_enqueue_style( 'ufwp_styles', UFWP_URL . 'public/assets/css/styles' . $suffix . '.css', false, UFWP_VER );
+    //wp_enqueue_script( 'ufwp_scripts', UFWP_URL . 'public/js/scripts' . $suffix . '.js', array( 'jquery' ), UFWP_VER, true );
+    wp_enqueue_style( 'ufwp_styles', UFWP_URL . 'public/css/styles' . $suffix . '.css', false, UFWP_VER );
 
     do_action( 'ufwp_enqueue_scripts' );
 }

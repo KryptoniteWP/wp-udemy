@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                 src: [
                     'assets/less/admin.less'
                 ],
-                dest: 'public/assets/css/admin.css'
+                dest: 'public/css/admin.css'
             },
             admin_min: {
                 options: {
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 src: [
                     'assets/less/admin.less'
                 ],
-                dest: 'public/assets/css/admin.min.css'
+                dest: 'public/css/admin.min.css'
             },
             styles: {
                 options: {
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                 src: [
                     'assets/less/style.less'
                 ],
-                dest: 'public/assets/css/styles.css'
+                dest: 'public/css/styles.css'
             },
             styles_min: {
                 options: {
@@ -43,7 +43,26 @@ module.exports = function (grunt) {
                 src: [
                     'assets/less/style.less'
                 ],
-                dest: 'public/assets/css/styles.min.css'
+                dest: 'public/css/styles.min.css'
+            },
+            styles_amp: {
+                options: {
+                    cleancss: false
+                },
+                src: [
+                    'assets/less/style-amp.less'
+                ],
+                dest: 'public/css/amp.css'
+            },
+            styles_amp_min: {
+                options: {
+                    cleancss: true,
+                    compress: true
+                },
+                src: [
+                    'assets/less/style-amp.less'
+                ],
+                dest: 'public/css/amp.min.css'
             }
         },
         uglify: {
@@ -54,13 +73,13 @@ module.exports = function (grunt) {
                 src: [
                     'assets/js/admin.js'
                 ],
-                dest: 'public/assets/js/admin.js'
+                dest: 'public/js/admin.js'
             },
             admin_min: {
                 src: [
                     'assets/js/admin.js'
                 ],
-                dest: 'public/assets/js/admin.min.js'
+                dest: 'public/js/admin.min.js'
             },
             scripts: {
                 options: {
@@ -69,13 +88,13 @@ module.exports = function (grunt) {
                 src: [
                     'assets/js/scripts.js'
                 ],
-                dest: 'public/assets/js/scripts.js'
+                dest: 'public/js/scripts.js'
             },
             scripts_min: {
                 src: [
                     'assets/js/scripts.js'
                 ],
-                dest: 'public/assets/js/scripts.min.js'
+                dest: 'public/js/scripts.min.js'
             }
         },
         autoprefixer: {
@@ -97,8 +116,8 @@ module.exports = function (grunt) {
                 },
                 expand: true,
                 flatten: true,
-                src: 'public/assets/css/*.css',
-                dest: 'public/assets/css/'
+                src: 'public/css/*.css',
+                dest: 'public/css/'
             }
         },
         checktextdomain: {

@@ -1,3 +1,15 @@
+.ufwp {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ufwp *,
+.ufwp *:before,
+.ufwp *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .ufwp .ufwp-course {
   margin: 0 0 20px;
   background: #fff;

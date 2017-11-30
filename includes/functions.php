@@ -440,3 +440,105 @@ function ufwp_has_plugin_content() {
 
     return false;
 }
+
+/**
+ * Embed AMP styles
+ *
+ * @param $file
+ * @return mixed|string
+ */
+function ufwp_asset_embed( $file ) {
+
+    $response = wp_remote_get( $file );
+
+    if ( ! is_array( $response ) || ! isset( $response['body'] ) )
+        return '';
+
+    $content = $response['body'];
+
+    $targetUrl = UFWP_URL . 'public/';
+
+    $rewriteUrl = function ($matches) use ($targetUrl) {
+        $url = $matches['url'];
+        // First check also matches protocol-relative urls like //example.com
+        if ((isset($url[0])  && '/' === $url[0]) || false !== strpos($url, '://') || 0 === strpos($url, 'data:')) {
+            return $matches[0];
+        }
+        return str_replace($url, $targetUrl . '/' . $url, $matches[0]);
+    };
+
+    $content = preg_replace_callback('/url\((["\']?)(?<url>.*?)(\\1)\)/', $rewriteUrl, $content);
+    $content = preg_replace_callback('/@import (?!url\()(\'|"|)(?<url>[^\'"\)\n\r]*)\1;?/', $rewriteUrl, $content);
+    // Handle 'src' values (used in e.g. calls to AlphaImageLoader, which is a proprietary IE filter)
+    $content = preg_replace_callback('/\bsrc\s*=\s*(["\']?)(?<url>.*?)(\\1)/i', $rewriteUrl, $content);
+
+    return $content;
+}
+
+/**
+ * Get AMP Styles
+ *
+ * @return mixed|null|string
+ */
+function ufwp_get_amp_styles() {
+
+    $options_output = ufwp_get_options();
+
+    // Core styles
+    if ( ! ufwp_is_development() )
+        $amp_styles = get_transient( 'ufwp_amp_styles' );
+
+    if ( empty( $amp_styles ) ) {
+        $amp_styles = ufwp_asset_embed( UFWP_URL . 'public/css/amp.min.css' );
+
+        set_transient( 'ufwp_amp_styles', $amp_styles, 60 * 60 * 24 * 7 );
+    }
+
+    // Custom styles
+    $custom_css_activated = ( isset ( $options_output['custom_css_activated'] ) && $options_output['custom_css_activated'] == '1' ) ? 1 : 0;
+    $custom_css = ( ! empty ( $options_output['custom_css'] ) ) ? $options_output['custom_css'] : '';
+
+    if ( $custom_css_activated == '1' && $custom_css != '' ) {
+        $amp_styles .= stripslashes( $custom_css );
+    }
+
+    if ( ! empty( $amp_styles ) )
+        $amp_styles = ufwp_cleanup_css_for_amp( $amp_styles );
+
+    return $amp_styles;
+}
+
+/**
+ * Cleanup css for AMP usage
+ *
+ * @param string $css
+ *
+ * @return mixed|string
+ */
+function ufwp_cleanup_css_for_amp( $css = '' ) {
+
+    $css = stripslashes( $css );
+
+    // Remove important declarations
+    $css = str_replace('!important', '', $css);
+
+    return $css;
+}
+
+/**
+ * Get settings css
+ *
+ * @param bool $apply_prefix
+ * @return string
+ */
+function ufwp_get_settings_css( $apply_prefix = true ) {
+
+    $options = ufwp_get_options();
+
+    $prefix = ( $apply_prefix ) ? '.ufwp ' : '';
+    $settings_css = '';
+
+    // Silence
+
+    return $settings_css;
+}

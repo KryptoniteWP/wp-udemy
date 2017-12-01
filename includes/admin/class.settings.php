@@ -255,7 +255,7 @@ if (!class_exists('UFWP_Settings')) {
                         <code>[ufwp search="css" items="6" template="grid" grid="3"]</code> <?php _e( 'or', 'wp-udemy' ); ?> <code>[ufwp search="html" items="6" template="list"]</code>
                     </p>
 
-                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'wp-udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://coder.flowdee.de/docs/article/wp-udemy/' ) ); ?></p>
+                    <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'wp-udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' ) ); ?></p>
 
                     <?php do_action( 'ufwp_settings_quickstart_render' ); ?>
                 </div>
@@ -563,7 +563,7 @@ if (!class_exists('UFWP_Settings')) {
                                                         'utm_source'   => 'settings-page',
                                                         'utm_medium'   => 'infobox',
                                                         'utm_campaign' => 'Udemy for WordPress - PRO',
-                                                    ), 'https://coder.flowdee.de/downloads/wp-udemy-pro/' )
+                                                    ), 'https://kryptonitewp.com/downloads/wp-udemy-pro/' )
                                                 );
                                                 ?>
                                                 <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo $upgrade_link; ?>" rel="nofollow"><?php _e('More details', 'wp-udemy'); ?></a>

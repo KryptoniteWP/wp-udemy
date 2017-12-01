@@ -46,8 +46,8 @@ function ufwp_row_meta( $input, $file ) {
     $docs_link = esc_url( add_query_arg( array(
             'utm_source'   => 'plugins-page',
             'utm_medium'   => 'plugin-row',
-            'utm_campaign' => 'WP Udemy',
-        ), 'https://coder.flowdee.de/docs/article/wp-udemy/' )
+            'utm_campaign' => 'Online Learning Courses',
+        ), 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' )
     );
 
     $links = array(

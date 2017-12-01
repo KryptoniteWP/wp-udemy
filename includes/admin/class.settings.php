@@ -123,6 +123,11 @@ if (!class_exists('UFWP_Settings')) {
                 array('label_for' => 'ufwp_course_details')
             );
 
+            /*
+             * Action to add more settings within this section
+             */
+            do_action( 'ufwp_settings_output_register' );
+
             add_settings_field(
                 'ufwp_custom_css',
                 __('Custom CSS', 'wp-udemy'),
@@ -131,11 +136,6 @@ if (!class_exists('UFWP_Settings')) {
                 'ufwp_settings_output',
                 array('label_for' => 'ufwp_custom_css')
             );
-
-            /*
-             * Action to add more settings within this section
-             */
-            do_action( 'ufwp_settings_output_register' );
 
             // SECTION: Debug
             add_settings_section(

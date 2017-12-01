@@ -163,48 +163,6 @@ module.exports = function (grunt) {
                 files: 'assets/**/*.js',
                 tasks: 'uglify'
             }
-        },
-        // Clean up build directory
-        clean: {
-            main: ['build/<%= pkg.name %>']
-        },
-        // Copy the plugin into the build directory
-        copy: {
-            main: {
-                src:  [
-                    '**',
-                    '!node_modules/**',
-                    '!build/**',
-                    '!assets/**',
-                    '!.git/**',
-                    '!Gruntfile.js',
-                    '!deploy.sh',
-                    '!package.json',
-                    '!.gitignore',
-                    '!.gitmodules',
-                    '!.tx/**',
-                    '!tests/**',
-                    '!**/Gruntfile.js',
-                    '!**/package.json',
-                    '!**/README.md',
-                    '!**/*~'
-                ],
-                dest: 'build/<%= pkg.name %>/'
-            }
-        },
-
-        //Compress build directory into <name>.zip and <name>-<version>.zip
-        compress: {
-            main: {
-                options: {
-                    mode: 'zip',
-                    archive: './build/<%= pkg.name %>.zip'
-                },
-                expand: true,
-                cwd: 'build/<%= pkg.name %>/',
-                src: ['**/*'],
-                dest: '<%= pkg.name %>/'
-            }
         }
     });
 
@@ -213,6 +171,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['less', 'uglify', 'autoprefixer']);
 
     // Build task(s).
-    grunt.registerTask( 'build:translations', [ 'checktextdomain' ] );
-    grunt.registerTask( 'build', [ 'clean', 'copy', 'compress' ] );
+    grunt.registerTask( 'translations', [ 'checktextdomain' ] );
 };

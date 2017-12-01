@@ -1,10 +1,10 @@
 === Online Learning Courses ===
 Contributors: flowdee
 Donate link: https://donate.flowdee.de
-Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee
+Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
-Tested up to: 4.7.3
-Stable tag: 1.0.7
+Tested up to: 4.9.1
+Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -22,7 +22,7 @@ With Online Learning Courses you can display single courses by their ID or even 
 *   Select between the following styles: Standard, Clean, Light & Dark
 *   Two separate widgets for single courses and searches
 *   Configuration page for more options
-*   Try out the **[online demo](https://coder.flowdee.de/demo/wp-udemy/)**
+*   Try out the **[online demo](https://kryptonitewp.com/demo/wp-udemy/)**
 *   Regular updates and improvements: Go though the [changelog](https://wordpress.org/plugins/wp-udemy/changelog/)
 
 = Quickstart Examples =
@@ -37,13 +37,15 @@ The PRO version extends this plugins exclusively with our affiliate link feature
 *   Affiliate Links
 *   Masked Links
 *   Click Tracking
+*   Highlight Bestselling Courses
+*   Highlight New Courses
 *   Custom Templates
 
-Details and upgrade can be found **[here](https://coder.flowdee.de/downloads/wp-udemy-pro/)**.
+Details and upgrade can be found **[here](https://kryptonitewp.com/downloads/wp-udemy-pro/)**.
 
 = Support =
 
-* Detailed online [documentation](https://coder.flowdee.de/docs/article/wp-udemy/)
+* Detailed online [documentation](https://kryptonitewp.com/support/knb/online-learning-courses-documentation/)
 * Browse [issue tracker](https://github.com/flowdee/wp-udemy/issues) on GitHub
 * [Follow me on Twitter](https://twitter.com/flowdee) to stay in contact and informed about updates
 
@@ -89,7 +91,7 @@ Additionally you can string together multiple ids and display multiple courses a
 
 [ufwp id="41305,597898"]
 
-More information about the shortcodes can be found in our online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/).
+More information about the shortcodes can be found in our online [documentation](https://kryptonitewp.com/support/knb/online-learning-courses-documentation/).
 
 = How do search for courses? =
 
@@ -97,11 +99,11 @@ Instead of selecting specific ids you can search for courses by keywords.
 
 [ufwp search="css" items="3" lang="de"]
 
-More information about the shortcodes can be found in our online [documentation](https://coder.flowdee.de/docs/article/udemy-for-wordpress/).
+More information about the shortcodes can be found in our online [documentation](https://kryptonitewp.com/support/knb/online-learning-courses-documentation/).
 
 = How do I change the template or style? =
 
-All available templates and styles, as well as further instructions, can be found in our online [documentation](https://coder.flowdee.de/docs/article/wp-udemy/).
+All available templates and styles, as well as further instructions, can be found in our online [documentation](https://kryptonitewp.com/support/knb/online-learning-courses-documentation/).
 
 = Multisite supported? =
 

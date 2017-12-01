@@ -23,6 +23,8 @@ if (!class_exists('UFWP_Course')) {
             $this->options = ufwp_get_options();
             $this->course = $course; // https://www.udemy.com/api-2.0/courses/1229104/?fields[course]=@all
             $this->args = $args;
+
+            //ufwp_debug( $course );
         }
 
         /**
@@ -32,6 +34,32 @@ if (!class_exists('UFWP_Course')) {
          */
         public function get_id() {
             return ( isset ( $this->course['id'] ) ) ? $this->course['id'] : 0;
+        }
+
+        /**
+         * Output course classes
+         *
+         * @param $classes
+         */
+        public function the_classes( $classes ) {
+
+            $add_classes = array();
+
+            // Sale?
+            if ( $this->is_on_sale() )
+                $add_classes[] = 'sale';
+
+            $add_classes = apply_filters( 'ufwp_course_add_classes', $add_classes, $this );
+
+            // Maybe add extra classes
+            if ( sizeof( $add_classes ) > 0 ) {
+                foreach ( $add_classes as $class ) {
+                    $classes .= ' ufwp-course--' . $class;
+                }
+            }
+
+            // Output
+            echo $classes;
         }
 
         /**
@@ -53,7 +81,7 @@ if (!class_exists('UFWP_Course')) {
             $attributes['course-id'] = $this->get_id();
 
             // Add more via filter
-            $attributes = apply_filters( 'ufwp_course_container_attributes', $attributes, $this->course );
+            $attributes = apply_filters( 'ufwp_course_container_attributes', $attributes, $this );
 
             if ( sizeof( $attributes ) != 0 ) {
 
@@ -70,7 +98,23 @@ if (!class_exists('UFWP_Course')) {
 
             if ( ! empty ( $output ) )
                 echo $output;
+        }
 
+        /**
+         * Output the course badges
+         */
+        public function the_badges() {
+
+            $badges = array();
+
+            $badges = apply_filters( 'ufwp_course_badges', $badges, $this );
+
+            // Output badges
+            if ( sizeof( $badges ) > 0 ) {
+                foreach ( $badges as $key => $text ) {
+                    ?><span class="ufwp-course__badge ufwp-badge ufwp-badge--<?php echo esc_html( $key ); ?>"><?php echo $text; ?></span><?php
+                }
+            }
         }
 
         /**
@@ -156,7 +200,49 @@ if (!class_exists('UFWP_Course')) {
          * @return string
          */
         public function get_price() {
-            return ( isset ( $this->course['price'] ) ) ? $this->course['price'] : '';
+
+            $price = ( isset ( $this->course['price'] ) ) ? $this->course['price'] : '';
+
+            if ( isset ( $this->course['discount']['price']['price_string'] ) )
+                $price = $this->course['discount']['price']['price_string'];
+
+            return $price;
+        }
+
+        /**
+         * Get list price
+         *
+         * @return string
+         */
+        public function get_list_price() {
+            return ( isset ( $this->course['discount']['list_price']['price_string'] ) ) ? $this->course['discount']['list_price']['price_string'] : '';
+        }
+
+        /**
+         * Check whether course is on sale
+         *
+         * @return bool
+         */
+        public function is_on_sale() {
+            return ( isset ( $this->course['discount_price'] ) && is_array( $this->course['discount_price'] ) ) ? true : false;
+        }
+
+        /**
+         * Check whether course is a bestseller
+         *
+         * @return bool
+         */
+        public function is_bestseller() {
+            return ( isset ( $this->course['bestseller_badge_content'] ) && is_array( $this->course['bestseller_badge_content'] ) ) ? true : false;
+        }
+
+        /**
+         * Check whether course is a bestseller
+         *
+         * @return bool
+         */
+        public function is_new() {
+            return ( isset ( $this->course['is_recently_published'] ) && true == $this->course['is_recently_published'] ) ? true : false;
         }
 
         /**
@@ -292,5 +378,7 @@ if (!class_exists('UFWP_Course')) {
         public function get_level() {
             return ( isset ( $this->course['instructional_level'] ) ) ? $this->course['instructional_level'] : '';
         }
+
+
     }
 }

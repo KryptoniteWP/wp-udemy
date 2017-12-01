@@ -1,4 +1,5 @@
 @import "../common";
+@import (reference) "../elements/badges";
 
 @image-size: 75px;
 
@@ -7,6 +8,19 @@
 
     .ufwp-course {
         position: relative;
+    }
+    
+    .ufwp-course__badge {
+        position: absolute;
+        top: @spacing;
+        left: 0;
+        z-index: 6;
+        
+        font-size: 8px;
+    }
+    
+    .ufwp-course__badge + .ufwp-course__badge {
+        margin-top: (@badge-height * 1.5);
     }
 
     .ufwp-course__img {
@@ -111,6 +125,10 @@
 
         .ufwp-course__price {
             color: #fff;
+        }
+    
+        .ufwp-course__price--list {
+            color: darken(#fff, 15%);
         }
     }
 }

@@ -1,4 +1,5 @@
 @import "../common";
+@import (reference) "../elements/badges";
 
 //== List
 .ufwp-list {
@@ -22,6 +23,17 @@
         @media (max-width: @breakpoint-mobile) {
             padding: @spacing;
         }
+    }
+    
+    .ufwp-course__badge {
+        position: absolute;
+        top: @spacing * 2;
+        left: 0;
+        z-index: 6;
+    }
+    
+    .ufwp-course__badge + .ufwp-course__badge {
+        margin-top: @badge-height * 1.5;
     }
 
     .ufwp-course__content {

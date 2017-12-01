@@ -503,7 +503,6 @@ if (!class_exists('UFWP_Settings')) {
 
             <div class="ufwp-settings">
                 <div class="wrap">
-                    <?php screen_icon(); ?>
                     <h2><?php _e('Online Learning Courses', 'wp-udemy'); ?></h2>
 
                     <div id="poststuff">

@@ -489,7 +489,18 @@ function ufwp_get_amp_styles() {
         $amp_styles = get_transient( 'ufwp_amp_styles' );
 
     if ( empty( $amp_styles ) ) {
-        $amp_styles = ufwp_asset_embed( UFWP_URL . 'public/css/amp.min.css' );
+
+        $amp_styles = '';
+
+        $embed_urls = array(
+            UFWP_URL . 'public/css/amp.min.css'
+        );
+
+        $embed_urls = apply_filters( 'ufwp_amp_embed_urls', $embed_urls );
+
+        foreach ( $embed_urls as $embed_url ) {
+            $amp_styles .= ufwp_asset_embed( $embed_url );
+        }
 
         set_transient( 'ufwp_amp_styles', $amp_styles, 60 * 60 * 24 * 7 );
     }
@@ -557,26 +568,28 @@ function ufwp_prepare_course_data_for_cache( $data ) {
         'id',
         'url', 'gift_url',
         'image_480x270', 'image_125_H', 'image_200_H', 'image_75x75',
-        'title', 'headline', 'description',
+        'title', 'headline', //'description',
         'primary_category', 'primary_subcategory',
         'num_subscribers',
-        'is_paid', 'price', 'discount',
+        'is_paid', 'price', 'discount', 'discount_price',
         'avg_rating', 'num_reviews',
         'visible_instructors',
         'num_published_lectures', 'estimated_content_length', 'instructional_level', 'content_info',
-        'bestseller_badge_content',
+        'bestseller_badge_content', 'is_recently_published', // Badges
         'published_time', 'last_update_date',
-        'is_published'
+        'is_published',
     );
+
+    $course_data = array();
 
     if ( is_array( $data ) && sizeof( $data ) > 0 ) {
 
         foreach ( $data as $key => $values ) {
 
-            if ( ! in_array( $key, $fields ) )
-                unset( $data[$key] );
+            if ( in_array( $key, $fields ) )
+                $course_data[$key] = $values;
         }
     }
 
-    return $data;
+    return $course_data;
 }

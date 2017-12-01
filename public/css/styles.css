@@ -1,3 +1,54 @@
+.ufwp-badge {
+  padding: 0 8px;
+  border-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  -webkit-box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+  box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.ufwp-star-rating {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+  width: 80px;
+  background-image: url('../img/star.png');
+  background-repeat: repeat-x;
+  background-position: left center;
+  -webkit-background-size: 16px 16px;
+  background-size: 16px;
+  vertical-align: top;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
+  .ufwp-star-rating {
+    background-image: url('../img/star@2x.png');
+  }
+}
+.ufwp-star-rating > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  height: 16px;
+  width: 80px;
+  background-image: url('../img/star-active.png');
+  background-repeat: repeat-x;
+  background-position: left center;
+  -webkit-background-size: 16px 16px;
+  background-size: 16px;
+  vertical-align: top;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
+  .ufwp-star-rating > span {
+    background-image: url('../img/star-active@2x.png');
+  }
+}
 .ufwp {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -93,6 +144,15 @@
   line-height: 16px;
   vertical-align: -6%;
 }
+.ufwp .ufwp-course__price + .ufwp-course__price {
+  margin-left: 5px;
+}
+.ufwp .ufwp-course__price--list {
+  color: #686f7a;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: line-through;
+}
 .ufwp .ufwp-standard .ufwp-course {
   -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
@@ -105,10 +165,20 @@
   position: relative;
   padding: 10px;
 }
+.ufwp .ufwp-standard .ufwp-course__badge {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 6;
+}
+.ufwp .ufwp-standard .ufwp-course__badge + .ufwp-course__badge {
+  margin-top: 30px;
+}
 .ufwp .ufwp-standard .ufwp-course__img {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 5;
   display: block;
   height: auto;
   max-width: 225px;
@@ -218,6 +288,9 @@
 .ufwp .ufwp-standard.ufwp-style-dark .ufwp-course__price {
   color: #fff;
 }
+.ufwp .ufwp-standard.ufwp-style-dark .ufwp-course__price--list {
+  color: #d9d9d9;
+}
 .ufwp .ufwp-grid {
   letter-spacing: -0.31em;
   text-rendering: optimizespeed;
@@ -299,6 +372,15 @@
   position: relative;
   padding-bottom: 30px;
 }
+.ufwp .ufwp-grid .ufwp-course__badge {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 6;
+}
+.ufwp .ufwp-grid .ufwp-course__badge + .ufwp-course__badge {
+  margin-top: 30px;
+}
 .ufwp .ufwp-grid .ufwp-course__rating {
   position: absolute;
   bottom: 10px;
@@ -308,6 +390,34 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+.ufwp .ufwp-grid .ufwp-course__price--list {
+  display: none;
+}
+.ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price {
+  margin-left: 0;
+}
+@media (max-width: 480px) {
+  .ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price {
+    left: 55px;
+  }
+  .ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price--list {
+    left: 10px;
+    display: block;
+  }
+}
+@media (min-width: 481px) {
+  .ufwp .ufwp-grid.ufwp-grid--col-1 .ufwp-course--sale .ufwp-course__price,
+  .ufwp .ufwp-grid.ufwp-grid--col-2 .ufwp-course--sale .ufwp-course__price,
+  .ufwp .ufwp-grid.ufwp-grid--col-3 .ufwp-course--sale .ufwp-course__price {
+    left: 55px;
+  }
+  .ufwp .ufwp-grid.ufwp-grid--col-1 .ufwp-course--sale .ufwp-course__price--list,
+  .ufwp .ufwp-grid.ufwp-grid--col-2 .ufwp-course--sale .ufwp-course__price--list,
+  .ufwp .ufwp-grid.ufwp-grid--col-3 .ufwp-course--sale .ufwp-course__price--list {
+    left: 10px;
+    display: block;
+  }
 }
 .ufwp .ufwp-list {
   margin: 0 0 20px;
@@ -330,6 +440,15 @@
   .ufwp .ufwp-list .ufwp-course__link {
     padding: 10px;
   }
+}
+.ufwp .ufwp-list .ufwp-course__badge {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 6;
+}
+.ufwp .ufwp-list .ufwp-course__badge + .ufwp-course__badge {
+  margin-top: 30px;
 }
 .ufwp .ufwp-list .ufwp-course__content {
   margin-left: 165px;
@@ -380,6 +499,18 @@
 }
 .ufwp .ufwp-list__item:first-child {
   border-top: 1px solid #eee;
+}
+.ufwp .ufwp-widget .ufwp-course__link {
+  position: relative;
+}
+.ufwp .ufwp-widget .ufwp-course__badge {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 6;
+}
+.ufwp .ufwp-widget .ufwp-course__badge + .ufwp-course__badge {
+  margin-top: 30px;
 }
 .ufwp .ufwp-widget .ufwp-course__footer {
   zoom: 1;
@@ -454,8 +585,21 @@
 .ufwp .ufwp-widget.ufwp-style-dark .ufwp-course__price {
   color: #fff;
 }
+.ufwp .ufwp-widget.ufwp-style-dark .ufwp-course__price--list {
+  color: #d9d9d9;
+}
 .ufwp .ufwp-widget-small .ufwp-course {
   position: relative;
+}
+.ufwp .ufwp-widget-small .ufwp-course__badge {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 6;
+  font-size: 8px;
+}
+.ufwp .ufwp-widget-small .ufwp-course__badge + .ufwp-course__badge {
+  margin-top: 30px;
 }
 .ufwp .ufwp-widget-small .ufwp-course__img {
   position: absolute;
@@ -543,41 +687,6 @@
 .ufwp .ufwp-widget-small.ufwp-style-dark .ufwp-course__price {
   color: #fff;
 }
-.ufwp-star-rating {
-  position: relative;
-  display: inline-block;
-  height: 16px;
-  width: 80px;
-  background-image: url('../img/star.png');
-  background-repeat: repeat-x;
-  background-position: left center;
-  -webkit-background-size: 16px 16px;
-  background-size: 16px;
-  vertical-align: top;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
-  .ufwp-star-rating {
-    background-image: url('../img/star@2x.png');
-  }
-}
-.ufwp-star-rating > span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  height: 16px;
-  width: 80px;
-  background-image: url('../img/star-active.png');
-  background-repeat: repeat-x;
-  background-position: left center;
-  -webkit-background-size: 16px 16px;
-  background-size: 16px;
-  vertical-align: top;
-}
-@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
-  .ufwp-star-rating > span {
-    background-image: url('../img/star-active@2x.png');
-  }
+.ufwp .ufwp-widget-small.ufwp-style-dark .ufwp-course__price--list {
+  color: #d9d9d9;
 }

@@ -1,4 +1,5 @@
 @import "../common";
+@import (reference) "../elements/badges";
 
 @image-width: 225px;
 @image-height: 127px;
@@ -45,10 +46,22 @@
         padding: @spacing;
     }
     
+    .ufwp-course__badge {
+        position: absolute;
+        top: @spacing * 2;
+        left: 0;
+        z-index: 6;
+    }
+    
+    .ufwp-course__badge + .ufwp-course__badge {
+        margin-top: @badge-height * 1.5;
+    }
+    
     .ufwp-course__img {
         position: absolute;
         top: @spacing;
         left: @spacing;
+        z-index: 5;
         
         display: block;
         height: auto;
@@ -182,5 +195,9 @@
     
     .ufwp-course__price {
         color: #fff;
+    }
+    
+    .ufwp-course__price--list {
+        color: darken(#fff, 15%);
     }
 }

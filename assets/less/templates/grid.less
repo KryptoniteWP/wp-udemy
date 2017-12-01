@@ -1,6 +1,7 @@
 @import "../common";
 @import "../../../node_modules/gee.less/gee";
 @import "../../../node_modules/dotsunited-equal-height-blocks/lib/mixins";
+@import (reference) "../elements/badges";
 
 //== Grid
 .ufwp-grid {
@@ -76,6 +77,17 @@
 
         padding-bottom: 30px;
     }
+    
+    .ufwp-course__badge {
+        position: absolute;
+        top: @spacing * 2;
+        left: 0;
+        z-index: 6;
+    }
+    
+    .ufwp-course__badge + .ufwp-course__badge {
+        margin-top: @badge-height * 1.5;
+    }
 
     .ufwp-course__img {
 
@@ -91,11 +103,56 @@
         bottom: @spacing;
         right: @spacing;
     }
-
+    
     .ufwp-course__price {
         position: absolute;
-
+        
         bottom: @spacing;
         left: @spacing;
+    }
+    
+    .ufwp-course__price--list {
+        display: none; // By default hidden on large grids due to space issues
+    }
+    
+    .ufwp-course--sale {
+        .ufwp-course__price {
+            margin-left: 0;
+        }
+    }
+    
+    @media (max-width: @breakpoint-mobile) {
+        .ufwp-course--sale {
+        
+            .ufwp-course__price {
+                left: (@spacing + 45px);
+            }
+        
+            .ufwp-course__price--list {
+                left: @spacing;
+            
+                display: block;
+            }
+        }
+    }
+    
+    @media (min-width: (@breakpoint-mobile + 1px)) {
+        &.ufwp-grid--col-1,
+        &.ufwp-grid--col-2,
+        &.ufwp-grid--col-3 {
+        
+            .ufwp-course--sale {
+            
+                .ufwp-course__price {
+                    left: (@spacing + 45px);
+                }
+            
+                .ufwp-course__price--list {
+                    left: @spacing;
+                
+                    display: block;
+                }
+            }
+        }
     }
 }

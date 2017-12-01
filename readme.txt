@@ -120,6 +120,16 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.8 (1st December 2017) =
+* New: Price reductions now show up inside course boxes
+* New: Added support for Google Accelerated Mobile Pages (AMP)
+* Improvement: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
+* Improvement: Optimized course data handling in order to reduce the amount of data to be stored in database
+* Improvement: Optimized styles handling
+* Fix: Placing shortcodes in page builders might lead into into PHP warnings
+* Fix: In some cases the plugin styles were not loaded
+* WordPress v4.9.1 compatibility
+
 = Version 1.0.7 (22th March 2017) =
 * Fix: Date/time formatting on plugin settings (debug mode)
 
@@ -151,6 +161,16 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.8 (1st December 2017) =
+* New: Price reductions now show up inside course boxes
+* New: Added support for Google Accelerated Mobile Pages (AMP)
+* Improvement: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
+* Improvement: Optimized course data handling in order to reduce the amount of data to be stored in database
+* Improvement: Optimized styles handling
+* Fix: Placing shortcodes in page builders might lead into into PHP warnings
+* Fix: In some cases the plugin styles were not loaded
+* WordPress v4.9.1 compatibility
 
 = Version 1.0.7 (22th March 2017) =
 * Fix: Date/time formatting on plugin settings (debug mode)

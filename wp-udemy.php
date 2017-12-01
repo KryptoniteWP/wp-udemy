@@ -4,7 +4,7 @@
  * Plugin URI:      https://wordpress.org/plugins/wp-udemy/
  * Description:     Display Online Learning Courses from the best platform inside your WordPress posts and pages.
  * Version:         1.0.8
- * Author:          flowdee, kryptonitewp
+ * Author:          KryptoniteWP
  * Author URI:      https://kryptonitewp.com
  * Text Domain:     wp-udemy
  *

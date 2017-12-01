@@ -1,5 +1,5 @@
 === Online Learning Courses ===
-Contributors: flowdee
+Contributors: flowdee, kryptonitewp
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1

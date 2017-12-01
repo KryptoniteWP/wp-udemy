@@ -529,14 +529,43 @@ if (!class_exists('UFWP_Settings')) {
                             <!-- /#post-body-content -->
                             <div id="postbox-container-1" class="postbox-container">
                                 <div class="meta-box-sortables">
-                                    <?php
-                                    $settings_infobox_plugin_slug = apply_filters( 'ufwp_settings_infobox_plugin_slug', 'udemy' );
-
-                                    require_once UFWP_DIR . 'includes/libs/flowdee_infobox.php';
-                                    $flowdee_infobox = new Flowdee_Infobox();
-                                    $flowdee_infobox->set_plugin_slug( $settings_infobox_plugin_slug );
-                                    $flowdee_infobox->display();
-                                    ?>
+                                    <div class="postbox">
+                                        <h3><span><?php _e('Resources &amp; Support', 'udemy-wp' ); ?></span></h3>
+                                        <div class="inside">
+                                            <p><?php _e('In order to make it as simple as possible for you, we created a detailed online documentation.', 'udemy-wp' ); ?></p>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://wordpress.org/plugins/wp-udemy/" target="_blank"><?php _e('Plugin Page', 'udemy-wp' ); ?></a>
+                                                </li>
+                                                <li>
+                                                    <?php
+                                                    $docs_link = esc_url( add_query_arg( array(
+                                                            'utm_source'   => 'plugins-page',
+                                                            'utm_medium'   => 'plugin-row',
+                                                            'utm_campaign' => 'Online Learning Courses',
+                                                        ), 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' )
+                                                    );
+                                                    ?>
+                                                    <a href="<?php echo $docs_link; ?>" target="_blank"><?php _e('Documentation', 'udemy-wp' ); ?></a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://wordpress.org/plugins/wp-udemy/#developers" target="_blank"><?php _e('Changelog', 'udemy-wp' ); ?></a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://twitter.com/kryptonitewp" target="_blank"><?php _e('Follow us on Twitter', 'udemy-wp' ); ?></a>
+                                                </li>
+                                            </ul>
+                                            <?php
+                                            $website_link = esc_url( add_query_arg( array(
+                                                    'utm_source'   => 'settings-page',
+                                                    'utm_medium'   => 'infobox',
+                                                    'utm_campaign' => 'Online Learning Courses',
+                                                ), 'https://kryptonitewp.com/' )
+                                            );
+                                            ?>
+                                            <p>&copy; Copyright <?php echo date('Y' ); ?> <a href="<?php echo $website_link; ?>" target="_blank">KryptoniteWP</a></p>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <?php if ( ! defined( 'UFWP_PRO_NAME' ) || defined( 'UFWP_PRO_DEBUG' ) ) { ?>
@@ -550,6 +579,8 @@ if (!class_exists('UFWP_Settings')) {
                                                 <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Affiliate Links', 'wp-udemy'); ?></strong></li>
                                                 <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Masked Links', 'wp-udemy'); ?></strong></li>
                                                 <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Click Tracking', 'wp-udemy'); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Highlight Bestselling Courses', 'wp-udemy'); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Highlight New Courses', 'wp-udemy'); ?></strong></li>
                                                 <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e('Custom Templates', 'wp-udemy'); ?></strong></li>
                                             </ul>
 
@@ -562,7 +593,7 @@ if (!class_exists('UFWP_Settings')) {
                                                 $upgrade_link = esc_url( add_query_arg( array(
                                                         'utm_source'   => 'settings-page',
                                                         'utm_medium'   => 'infobox',
-                                                        'utm_campaign' => 'Udemy for WordPress - PRO',
+                                                        'utm_campaign' => 'Online Learning Courses',
                                                     ), 'https://kryptonitewp.com/downloads/wp-udemy-pro/' )
                                                 );
                                                 ?>

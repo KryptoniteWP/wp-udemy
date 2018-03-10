@@ -3,8 +3,8 @@ Contributors: flowdee, kryptonitewp
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
-Tested up to: 4.9.1
-Stable tag: 1.0.8
+Tested up to: 4.9.4
+Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,6 +120,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.0.9 (10th March 2018) =
+* Fix: "Fatal Error: Cannot use object of type WP_Error as array ... in api-functions.php"
+* WordPress v4.9.4 compatibility
+
 = Version 1.0.8 (1st December 2017) =
 * New: Price reductions now show up inside course boxes
 * New: Added support for Google Accelerated Mobile Pages (AMP)
@@ -161,6 +165,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.0.9 (10th March 2018) =
+* Fix: "Fatal Error: Cannot use object of type WP_Error as array ... in api-functions.php"
+* WordPress v4.9.4 compatibility
 
 = Version 1.0.8 (1st December 2017) =
 * New: Price reductions now show up inside course boxes

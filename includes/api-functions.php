@@ -133,7 +133,7 @@ function ufwp_get_courses_from_api( $args = array() ) {
 
         return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'wp-udemy');
 
-    } elseif ( isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
+    } elseif ( is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
         ufwp_addlog( 'FETCHING COURSES FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         return __( 'Client ID and/or password invalid.', 'wp-udemy' );
 

@@ -4,7 +4,7 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
 Tested up to: 4.9.4
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,7 +27,7 @@ With Online Learning Courses you can display single courses by their ID or even 
 
 = Quickstart Examples =
 
-* Single courses: [ufwp id="518498"]
+* Single courses: [ufwp id="ID"]
 * Keyword search: [ufwp search="css" items="3" lang="de"]
 
 = More features with the PRO version =
@@ -120,6 +120,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.0 (2nd April 2018) =
+* New: Course images can now be downloaded and served locally instead of using Udemy's server (new setting added)
+* Minor CSS improvements for grid template
+
 = Version 1.0.9 (10th March 2018) =
 * Fix: "Fatal Error: Cannot use object of type WP_Error as array ... in api-functions.php"
 * WordPress v4.9.4 compatibility
@@ -165,6 +169,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.1.0 (2nd April 2018) =
+* New: Course images can now be downloaded and served locally instead of using Udemy's server (new setting added)
+* Minor CSS improvements for grid template
 
 = Version 1.0.9 (10th March 2018) =
 * Fix: "Fatal Error: Cannot use object of type WP_Error as array ... in api-functions.php"

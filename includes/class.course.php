@@ -139,18 +139,46 @@ if (!class_exists('UFWP_Course')) {
          */
         public function get_image( $size = null ) {
 
-            $image = 'image_480x270';
+            $image_placeholder = UFWP_URL . 'public/img/placeholder-course-image.png';
+
+            //ufwp_debug_log( $this->course );
+
+            $image_size = 'image_480x270';
 
             if ( 'small' === $size )
-                $image = 'image_125_H';
+	            $image_size = 'image_125_H';
 
             if ( 'list' === $size )
-                $image = 'image_200_H';
+	            $image_size = 'image_200_H';
 
             if ( 'widget_small' === $size )
-                $image = 'image_75x75';
+	            $image_size = 'image_75x75';
 
-            return ( isset ( $this->course[$image] ) ) ? $this->course[$image] : '';
+            if ( ! isset( $this->course[$image_size] ) )
+                return $image_placeholder;
+
+            $image = ( ufwp_get_option( 'download_images', false ) ) ? $this->get_downloaded_image( $image_size ) : $this->course[$image_size];
+
+            return ( ! empty( $image ) ) ? $image : $image_placeholder;
+        }
+
+	    /**
+         * Get downloaded image
+         *
+	     * @param $image_size
+	     *
+	     * @return null|string
+	     */
+        private function get_downloaded_image( $image_size ) {
+
+            $file_name = 'course_' . $this->get_id() . '_' . $image_size . '.jpg';
+
+            if ( ufwp_downloaded_course_image_exists( $file_name ) )
+                return ufwp_get_downloaded_course_image_url( $file_name );
+
+            $downloaded_image = ufwp_download_course_image( $file_name, $this->course[$image_size] );
+
+            return ( is_array( $downloaded_image ) && isset( $downloaded_image['url'] ) ) ? $downloaded_image['url'] : '';
         }
 
         /**

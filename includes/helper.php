@@ -88,7 +88,7 @@ function ufwp_the_assets() {
  * Check whether it's development environment or not
  */
 function ufwp_is_development() {
-    return ( strpos( get_bloginfo('url'), 'udemy-wp.dev' ) !== false ) ? true : false;
+    return ( strpos( get_bloginfo('url'), 'udemy-wp.test' ) !== false ) ? true : false;
 }
 
 /**
@@ -115,15 +115,21 @@ function ufwp_addlog( $string ) {
  */
 function ufwp_debug( $args, $title = false ) {
 
-    if ( $title ) {
-        echo '<h3>' . $title . '</h3>';
-    }
+	if ( ! ufwp_is_development() )
+		return;
 
-    if ( $args ) {
-        echo '<pre>';
-        print_r($args);
-        echo '</pre>';
-    }
+	if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+
+		if ( $title ) {
+			echo '<h3>' . $title . '</h3>';
+		}
+
+		if ( $args ) {
+			echo '<pre>';
+			print_r($args);
+			echo '</pre>';
+		}
+	}
 }
 
 /**
@@ -136,9 +142,12 @@ function ufwp_debug_log ( $log )  {
     if ( ! ufwp_is_development() )
         return;
 
-    if ( is_array( $log ) || is_object( $log ) ) {
-        error_log( print_r( $log, true ) );
-    } else {
-        error_log( $log );
+    if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+
+	    if ( is_array( $log ) || is_object( $log ) ) {
+		    error_log( print_r( $log, true ) );
+	    } else {
+		    error_log( $log );
+	    }
     }
 }

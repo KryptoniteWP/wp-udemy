@@ -593,3 +593,164 @@ function ufwp_prepare_course_data_for_cache( $data ) {
 
     return $course_data;
 }
+
+/**
+ * @return string
+ */
+function ufwp_get_downloaded_course_images_dirname() {
+	return 'ufwp';
+}
+
+/**
+ * Get uploads course images path
+ *
+ * @return null|string
+ */
+function ufwp_get_downloaded_course_images_path() {
+
+	$upload_dir = wp_upload_dir();
+
+	if ( $upload_dir['error'] !== false )
+		return null;
+
+	$path = trailingslashit( $upload_dir['basedir'] . '/' . ufwp_get_downloaded_course_images_dirname() );
+
+	return $path;
+}
+
+/**
+ * Get uploads course images url
+ *
+ * @return null|string
+ */
+function ufwp_get_downloaded_course_images_url() {
+
+	$upload_dir = wp_upload_dir();
+
+	if ( $upload_dir['error'] !== false )
+		return null;
+
+	$path = trailingslashit( $upload_dir['baseurl'] . '/' . ufwp_get_downloaded_course_images_dirname() );
+
+	return $path;
+}
+
+/**
+ * Check whether uploaded image already exists or not
+ *
+ * @param $file_name
+ *
+ * @return bool|null
+ */
+function ufwp_downloaded_course_image_exists( $file_name ) {
+
+	$uploads_path = ufwp_get_downloaded_course_images_path();
+
+	$file_path = $uploads_path . $file_name;
+
+	return ( file_exists( $file_path ) ) ? true : false;
+}
+
+/**
+ * Get uploads image url
+ *
+ * @param $file_name
+ *
+ * @return null|string
+ */
+function ufwp_get_downloaded_course_image_url( $file_name ) {
+
+	$uploads_url = ufwp_get_downloaded_course_images_url();
+
+	$file_url = $uploads_url . $file_name;
+
+	return $file_url;
+}
+
+/**
+ * Download course image
+ *
+ * @param $file_name
+ * @param $file_url
+ *
+ * @return array|null
+ */
+function ufwp_download_course_image( $file_name, $file_url ) {
+
+	// Download image
+	$request = wp_remote_get( $file_url );
+
+	$file = wp_remote_retrieve_body( $request );
+	
+	if ( ! $file )
+		return null;
+	
+	// Upload image
+	$file_extension = substr( $file_url , strrpos( $file_url, '.' ) + 1 );
+
+	if ( ! in_array( $file_extension, array( 'jpg', 'jpeg', 'png' ) ) )
+		return array( 'error' => __( 'Sorry, this file type is not permitted for security reasons.' ) );
+
+	$file_upload_dir = ufwp_get_downloaded_course_images_path();
+
+	$new_file = $file_upload_dir . $file_name;
+
+	// Are we able to create the upload folder?
+	if ( ! wp_mkdir_p( $file_upload_dir ) ) {
+		return array( 'error' => sprintf(
+		/* translators: %s: directory path */
+			__( 'Unable to create directory %s. Is its parent directory writable by the server?' ),
+			$file_upload_dir
+		) );
+	}
+
+	// Are we able to create the file?
+	$ifp = @ fopen( $new_file, 'wb' );
+
+	if ( ! $ifp )
+		return array( 'error' => sprintf( __( 'Could not write file %s' ), $new_file ) );
+
+	// Finally write the file
+	@fwrite( $ifp, $file );
+	fclose( $ifp );
+	clearstatcache();
+
+	// Set correct file permissions
+	$stat = @ stat( dirname( $new_file ) );
+	$perms = $stat['mode'] & 0007777;
+	$perms = $perms & 0000666;
+	@ chmod( $new_file, $perms );
+	clearstatcache();
+
+	// Prepare uploaded file
+	$file_upload_url = ufwp_get_downloaded_course_images_url();
+
+	$file_url = $file_upload_url . $file_name;
+
+	$upload = array(
+		'path' => $new_file,
+		'url' => $file_url,
+		'type' => $file_extension,
+		'error' => false
+	);
+
+	return $upload;
+}
+
+/**
+ * Delete downloaded images
+ */
+function ufwp_delete_images_cache() {
+
+	$dir = ufwp_get_downloaded_course_images_path();
+	$di = new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS );
+	$ri = new RecursiveIteratorIterator( $di, RecursiveIteratorIterator::CHILD_FIRST );
+
+	foreach ( $ri as $file ) {
+		$file->isDir() ? rmdir( $file ) : unlink( $file );
+	}
+
+	ufwp_addlog( '*** DOWNLOADED IMAGES MANUALLY DELETED ***' );
+
+	return true;
+}

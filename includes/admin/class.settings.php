@@ -93,6 +93,14 @@ if (!class_exists('UFWP_Settings')) {
                 'ufwp_settings_general'
             );
 
+	        add_settings_field(
+		        'ufwp_images',
+		        __( 'Images', 'wp-udemy' ),
+		        array(&$this, 'images_render'),
+		        'ufwp_settings',
+		        'ufwp_settings_general'
+	        );
+
             /*
              * Action to add more settings within this section
              */
@@ -222,7 +230,13 @@ if (!class_exists('UFWP_Settings')) {
                 $input['delete_cache'] = '0';
             }
 
-            // Handle cache deletion
+	        // Handle images cache deletion
+	        if ( isset ( $input['delete_images_cache'] ) && $input['delete_images_cache'] === '1' ) {
+		        ufwp_delete_images_cache();
+		        $input['delete_images_cache'] = '0';
+	        }
+
+            // Handle log reset
             if ( isset ( $input['reset_log'] ) && $input['reset_log'] === '1' ) {
                 delete_option('ufwp_log');
                 $input['reset_log'] = '0';
@@ -316,7 +330,28 @@ if (!class_exists('UFWP_Settings')) {
             <?php
         }
 
-        function default_templates_render() {
+	    function images_render() {
+
+		    $download_images_options = array(
+			    '' => __( 'Load images directly from Udemy server (Default)', 'wp-udemy' ),
+			    '1' => __( 'Download images and host them locally', 'wp-udemy' ),
+		    );
+
+		    $download_images = ( isset ( $this->options['download_images'] ) ) ? $this->options['download_images'] : '';
+
+		    ?>
+            <select id="ufwp_download_images" name="ufwp_settings[download_images]">
+			    <?php foreach ( $download_images_options as $key => $label ) { ?>
+                    <option value="<?php echo $key; ?>" <?php selected( $download_images, $key ); ?>><?php echo $label; ?></option>
+			    <?php } ?>
+            </select>
+
+            <input type="hidden" id="ufwp_delete_images_cache" name="ufwp_settings[delete_images_cache]" value="0" />
+		    <?php
+	    }
+
+
+	    function default_templates_render() {
 
             $templates = array(
                 'standard' => __('Standard', 'wp-udemy'),
@@ -519,7 +554,9 @@ if (!class_exists('UFWP_Settings')) {
                                         <p>
                                             <?php submit_button( 'Save Changes', 'button-primary', 'submit', false ); ?>
                                             &nbsp;
-                                            <?php submit_button( 'Delete cache', 'delete button-secondary', 'ufwp-delete-cache-submit', false ); ?>
+                                            <?php submit_button( 'Delete Cache', 'delete button-secondary', 'ufwp-delete-cache-submit', false ); ?>
+                                            &nbsp;
+	                                        <?php submit_button( 'Delete Downloaded Images', 'delete button-secondary', 'ufwp-delete-images-cache-submit', false ); ?>
                                         </p>
 
                                     </form>

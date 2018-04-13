@@ -3,8 +3,8 @@ Contributors: flowdee, kryptonitewp
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
-Tested up to: 4.9.4
-Stable tag: 1.1.0
+Tested up to: 4.9.5
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,6 +120,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.1 (13th April 2018) =
+* Improvement: Downloaded course images will be automatically deleted after 24 hours
+* WordPress v4.9.5 compatibility
+
 = Version 1.1.0 (2nd April 2018) =
 * New: Course images can now be downloaded and served locally instead of using Udemy's server (new setting added)
 * Minor CSS improvements for grid template
@@ -169,6 +173,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.1.1 (13th April 2018) =
+* Improvement: Downloaded course images will be automatically deleted after 24 hours
+* WordPress v4.9.5 compatibility
 
 = Version 1.1.0 (2nd April 2018) =
 * New: Course images can now be downloaded and served locally instead of using Udemy's server (new setting added)

@@ -233,6 +233,7 @@ if (!class_exists('UFWP_Settings')) {
 	        // Handle images cache deletion
 	        if ( isset ( $input['delete_images_cache'] ) && $input['delete_images_cache'] === '1' ) {
 		        ufwp_delete_images_cache();
+		        ufwp_addlog( '*** DOWNLOADED IMAGES MANUALLY DELETED ***' );
 		        $input['delete_images_cache'] = '0';
 	        }
 
@@ -345,6 +346,9 @@ if (!class_exists('UFWP_Settings')) {
                     <option value="<?php echo $key; ?>" <?php selected( $download_images, $key ); ?>><?php echo $label; ?></option>
 			    <?php } ?>
             </select>
+            <p>
+                <small><strong><?php _e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php _e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy'); ?></small>
+            </p>
 
             <input type="hidden" id="ufwp_delete_images_cache" name="ufwp_settings[delete_images_cache]" value="0" />
 		    <?php

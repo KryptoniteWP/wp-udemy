@@ -247,6 +247,9 @@ function ufwp_scheduled_events() {
 
     // Handle cache updates
     ufwp_update_cache_event();
+
+    // Cleanup image cache
+	ufwp_cleanup_image_cache_event();
 }
 add_action('ufwp_wp_scheduled_events', 'ufwp_scheduled_events');
 
@@ -735,6 +738,24 @@ function ufwp_download_course_image( $file_name, $file_url ) {
 	);
 
 	return $upload;
+}
+
+/**
+ * Handle cleanup image cache event
+ */
+function ufwp_cleanup_image_cache_event() {
+
+	$download_images = ufwp_get_option( 'download_images', 0 );
+
+	if ( '1' != $download_images )
+		return;
+
+	$download_images_cached = get_transient( 'ufwp_download_images_cached' );
+
+	if ( ! $download_images_cached ) {
+		ufwp_delete_images_cache();
+		set_transient( 'ufwp_download_images_cached', 1, 60 * 60 * 24 ); // 24 hours
+	}
 }
 
 /**

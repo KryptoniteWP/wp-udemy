@@ -3,8 +3,8 @@ Contributors: flowdee, kryptonitewp
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
-Tested up to: 4.9.5
-Stable tag: 1.1.1
+Tested up to: 4.9.6
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,6 +120,10 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.2 (4th June 2018) =
+* Improvement: API calls now properly verify SSL certificates
+* WordPress v4.9.6 compatibility
+
 = Version 1.1.1 (13th April 2018) =
 * Improvement: Downloaded course images will be automatically deleted after 24 hours
 * WordPress v4.9.5 compatibility
@@ -173,6 +177,10 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.1.2 (4th June 2018) =
+* Improvement: API calls now properly verify SSL certificates
+* WordPress v4.9.6 compatibility
 
 = Version 1.1.1 (13th April 2018) =
 * Improvement: Downloaded course images will be automatically deleted after 24 hours

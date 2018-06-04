@@ -23,8 +23,7 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
         'timeout' => 15,
         'headers' => array(
             'Authorization' => 'Basic ' . base64_encode( $client_id . ':' . $client_password )
-        ),
-        'sslverify' => false
+        )
     ));
 
     //ufwp_debug($response);
@@ -68,8 +67,7 @@ function ufwp_get_course_from_api( $id ) {
     //ufwp_debug_log( 'ufwp_get_course_from_api >> $url >> ' . $url );
 
     $response = wp_remote_get( esc_url_raw( $url ), array(
-        'timeout' => 15,
-        'sslverify' => false
+        'timeout' => 15
     ));
 
     //ufwp_debug($response);
@@ -121,8 +119,7 @@ function ufwp_get_courses_from_api( $args = array() ) {
         'timeout' => 15,
         'headers' => array(
             'Authorization' => 'Basic ' . base64_encode( $options['api_client_id'] . ':' . $options['api_client_password'] )
-        ),
-        'sslverify' => false
+        )
     ));
 
     //ufwp_debug($response);

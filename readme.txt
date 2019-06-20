@@ -3,8 +3,9 @@ Contributors: flowdee, kryptonitewp
 Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
-Tested up to: 4.9.6
-Stable tag: 1.1.2
+Requires PHP: 5.6.0
+Tested up to: 5.2.2
+Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,6 +121,12 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.3 (20th June 2019) =
+* New: Prices can now be shown/hidden via settings/shortcode
+* Updated translations
+* WordPress v5.2.2 compatibility
+* Templates updated: amp, grid, list, standard, widget, widget_small
+
 = Version 1.1.2 (4th June 2018) =
 * Improvement: API calls now properly verify SSL certificates
 * WordPress v4.9.6 compatibility
@@ -177,6 +184,12 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.1.3 (20th June 2019) =
+* New: Prices can now be shown/hidden via settings/shortcode
+* Updated translations
+* WordPress v5.2.2 compatibility
+* Templates updated: amp, grid, list, standard, widget, widget_small
 
 = Version 1.1.2 (4th June 2018) =
 * Improvement: API calls now properly verify SSL certificates

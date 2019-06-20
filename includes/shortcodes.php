@@ -84,6 +84,9 @@ function ufwp_add_shortcode( $atts ) {
             $output_args['template'] = sanitize_text_field( $atts['template'] );
         }
 
+        if ( isset ( $atts['price'] ) && in_array( $atts['price'], array( 'show', 'hide', 'none' ) ) )
+            $output_args['price'] = sanitize_text_field( $atts['price'] );
+
         $output_args = apply_filters( 'ufwp_shortcode_output_args', $output_args, $atts );
 
         $output = ufwp_display_courses( $courses, $output_args );

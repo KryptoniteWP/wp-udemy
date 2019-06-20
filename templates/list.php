@@ -36,10 +36,12 @@ if ( ! isset ( $courses ) )
                         <span class="ufwp-course__details"><?php echo $course->get_details(); ?></span>
 
                         <span class="ufwp-course__footer">
-                            <?php if ( $course->is_on_sale() ) { ?>
-                                <span class="ufwp-course__price ufwp-course__price--list"><?php echo $course->get_list_price(); ?></span>
+                            <?php if ( $course->show_price() ) { ?>
+                                <?php if ( $course->is_on_sale() ) { ?>
+                                    <span class="ufwp-course__price ufwp-course__price--list"><?php echo $course->get_list_price(); ?></span>
+                                <?php } ?>
+                                <span class="ufwp-course__price"><?php echo $course->get_price(); ?></span>
                             <?php } ?>
-                            <span class="ufwp-course__price"><?php echo $course->get_price(); ?></span>
                             <span class="ufwp-course__rating"><?php $course->the_star_rating(); ?> <?php echo $course->get_rating(); ?> (<?php printf( esc_html__( '%1$s ratings', 'wp-udemy' ), $course->get_reviews() ); ?>)</span>
                             <?php if ( $course->show_meta() ) { ?>
                                 <span class="ufwp-course__meta"><?php printf( esc_html__( '%1$s lectures', 'wp-udemy' ), $course->get_lectures() ); ?>, <?php printf( esc_html__( '%1$s hours', 'wp-udemy' ), $course->get_playing_time() ); ?></span>

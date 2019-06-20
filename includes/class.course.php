@@ -223,6 +223,31 @@ if (!class_exists('UFWP_Course')) {
         }
 
         /**
+         * Check whether to show price or not
+         *
+         * @return bool
+         */
+        public function show_price() {
+
+            $show_price = true;
+
+            if ( isset ( $this->options['hide_course_prices'] ) && '1' == $this->options['hide_course_prices'] )
+                $show_price = false;
+
+            if ( ! empty( $this->args['price'] ) ) {
+
+                if ( 'show' === $this->args['price'] ) {
+                    $show_price = true;
+
+                } elseif ( 'none' === $this->args['price'] || 'hide' === $this->args['price'] ) {
+                    $show_price = false;
+                }
+            }
+
+            return $show_price;
+        }
+
+        /**
          * Get price
          *
          * @return string

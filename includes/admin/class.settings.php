@@ -131,6 +131,15 @@ if (!class_exists('UFWP_Settings')) {
                 array('label_for' => 'ufwp_course_details')
             );
 
+            add_settings_field(
+                'ufwp_course_pricing',
+                __('Course Pricing', 'wp-udemy'),
+                array(&$this, 'course_pricing_render'),
+                'ufwp_settings',
+                'ufwp_settings_output',
+                array('label_for' => 'ufwp_course_pricing')
+            );
+
             /*
              * Action to add more settings within this section
              */
@@ -415,6 +424,28 @@ if (!class_exists('UFWP_Settings')) {
             <p>
                 <input type="checkbox" id="ufwp_course_meta" name="ufwp_settings[course_meta]" value="1" <?php echo($course_meta == 1 ? 'checked' : ''); ?>>
                 <label for="ufwp_course_meta"><?php _e('Show lectures and playing time', 'wp-udemy'); ?></label>
+            </p>
+            <?php
+        }
+
+        function course_pricing_render() {
+
+            $hide_course_prices = ( isset ( $this->options['hide_course_prices'] ) && $this->options['hide_course_prices'] == '1' ) ? 1 : 0;
+            ?>
+
+            <h4 style="margin: 5px 0;"><?php _e('Show/hide prices', 'wp-udemy'); ?></h4>
+            <p>
+                <?php _e( 'By default, all templates output course pricing.', 'wp-udemy' ); ?>
+            </p>
+            <p>
+                <input type="checkbox" id="ufwp_hide_course_prices" name="ufwp_settings[hide_course_prices]" value="1" <?php echo($hide_course_prices == 1 ? 'checked' : ''); ?>>
+                <label for="ufwp_hide_course_prices"><?php _e("Activate in order to hide the course prices from your site visitors.", 'wp-udemy-pro'); ?></label><br />
+            </p>
+            <p style="margin-top: 10px;">
+                <?php _e( 'In addition, you can show/hide the prices on a shortcode basis as well:', 'wp-udemy' ); ?>
+            </p>
+            <p>
+                <code>[ufwp id="480986" price="show"]</code> <?php _e('or', 'wp-udemy'); ?> <code>[ufwp id="480986" price="hide"]</code>
             </p>
             <?php
         }

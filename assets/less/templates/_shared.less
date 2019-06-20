@@ -79,20 +79,43 @@
     .ufwp-course__rating,
     .ufwp-course__meta {
         display: inline-block;
+        margin-left: 4px;
         margin-bottom: 3px;
+
+        &:after {
+            content: '\2022';
+
+            margin-left: 6px;
+
+            font-weight: bold;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+
+            &:after {
+                display: none;
+            }
+        }
     }
     
     .ufwp-course__rating,
     .ufwp-course__meta {
+
+        /*
         margin-left: 4px;
-        
+
         &:before {
             content: '\2022';
-            
+
             margin-right: 6px;
-            
+
             font-weight: bold;
         }
+        */
     }
 }
 

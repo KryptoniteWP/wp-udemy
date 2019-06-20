@@ -42,7 +42,7 @@ The PRO version extends this plugins exclusively with our affiliate link feature
 *   Highlight New Courses
 *   Custom Templates
 
-Details and upgrade can be found **[here](https://kryptonitewp.com/downloads/wp-udemy-pro/)**.
+Details and upgrade can be found **[here](https://kryptonitewp.com/downloads/wp-udemy-pro/?utm_source=wordpress.org&utm_medium=textlink&utm_campaign=Online%20Learning%20Courses&utm_content=plugin-page)**.
 
 = Support =
 

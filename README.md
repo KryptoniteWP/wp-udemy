@@ -18,7 +18,7 @@ Do you want to earn money with course sales? The PRO version extends the plugin 
 *   Highlight New Courses
 *   Custom Templates
 
-I would be happy if you give it a chance! [Upgrade to PRO Version](https://kryptonitewp.com/downloads/wp-udemy-pro/)
+I would be happy if you give it a chance! [Upgrade to PRO Version](https://kryptonitewp.com/downloads/wp-udemy-pro/?utm_source=github&utm_medium=textlink&utm_campaign=Online%20Learning%20Courses)
 
 ## More information
 

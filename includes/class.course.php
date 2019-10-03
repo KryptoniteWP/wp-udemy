@@ -21,8 +21,8 @@ if (!class_exists('UFWP_Course')) {
 
             // Variables
             $this->options = ufwp_get_options();
-            $this->course = $course; // https://www.udemy.com/api-2.0/courses/1229104/?fields[course]=@all
-            $this->args = $args;
+            $this->course  = $course; // https://www.udemy.com/api-2.0/courses/1229104/?fields[course]=@all
+            $this->args    = $args;
 
             //ufwp_debug( $course );
         }
@@ -59,7 +59,7 @@ if (!class_exists('UFWP_Course')) {
             }
 
             // Output
-            echo $classes;
+            echo esc_attr( $classes );
         }
 
         /**

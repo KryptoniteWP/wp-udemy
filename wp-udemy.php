@@ -15,9 +15,9 @@
  */
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !class_exists( 'UFWP' ) ) {
+if ( ! class_exists( 'UFWP' ) ) {
 
     /**
      * Main Udemy class
@@ -75,7 +75,7 @@ if( !class_exists( 'UFWP' ) ) {
 
             // Debug
             $options = get_option('ufwp_settings');
-            $debug = ( isset ( $options['developer_mode'] ) && $options['developer_mode'] == '1' ) ? true : false;
+            $debug   = ( isset ( $options['developer_mode'] ) && $options['developer_mode'] == '1' ) ? true : false;
 
             define( 'UFWP_DEBUG', $debug );
         }
@@ -123,10 +123,10 @@ if( !class_exists( 'UFWP' ) ) {
             $mofile = sprintf( '%1$s-%2$s.mo', 'wp-udemy', $locale );
 
             // Setup paths to current locale file
-            $mofile_local   = $lang_dir . $mofile;
-            $mofile_global  = WP_LANG_DIR . '/wp-udemy/' . $mofile;
+            $mofile_local  = $lang_dir . $mofile;
+            $mofile_global = WP_LANG_DIR . '/wp-udemy/' . $mofile;
 
-            if( file_exists( $mofile_global ) ) {
+            if ( file_exists( $mofile_global ) ) {
                 // Look in global /wp-content/languages/wp-udemy/ folder
                 load_textdomain( 'wp-udemy', $mofile_global );
             } elseif( file_exists( $mofile_local ) ) {

@@ -87,21 +87,21 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
          */
         public function form( $instance ) {
 
-            $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
-            $ids = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
-            $template = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
+            $title           = ! empty( $instance['title'] ) ? $instance['title'] : '';
+            $ids             = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
+            $template        = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
             $template_custom = ! empty( $instance['template_custom'] ) ? $instance['template_custom'] : '';
-            $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
-            $url = ! empty( $instance['url'] ) ? $instance['url'] : '';
+            $style           = ! empty( $instance['style'] ) ? $instance['style'] : '';
+            $url             = ! empty( $instance['url'] ) ? $instance['url'] : '';
 
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
             </p>
 
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>"><?php _e( 'Course IDs:', 'wp-udemy' ); ?></label>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>"><?php esc_attr_e( 'Course IDs:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'ids' ) ); ?>" type="text" value="<?php echo esc_attr( $ids ); ?>">
                 <br />
                 <small>
@@ -111,8 +111,8 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
 
             <?php
             $templates = array(
-                'widget' => __('Standard', 'wp-udemy'),
-                'widget_small' => __('Small', 'wp-udemy')
+                'widget'       => __( 'Standard', 'wp-udemy' ),
+                'widget_small' => __( 'Small', 'wp-udemy' )
             );
             ?>
             <p>

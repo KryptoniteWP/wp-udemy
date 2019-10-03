@@ -369,14 +369,11 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
     $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
 
-    if ( isset ( $args['style'] ) )
-        $style = $args['style'];
-
     // Prepare courses
     $courses = ufwp_get_course_objects_from_array( $courses, $args );
 
     // Template
-    $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
+    $template_course  = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
     if ( isset ( $args['template'] ) ) {
@@ -398,7 +395,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     if ( file_exists( $file ) ) {
         include( $file );
     } else {
-        _e('Template not found.', 'wp-udemy');
+        _e( 'Template not found.', 'wp-udemy' );
     }
 
     echo '</div>';

@@ -712,10 +712,10 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                     'enabled' => true,
                     'version' => $version
                 );
-            } else {
-                $this->checks = false;
-                return false;
             }
+
+            $this->checks = false;
+            return false;
         }
     }
 }

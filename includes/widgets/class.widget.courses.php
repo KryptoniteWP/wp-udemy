@@ -139,10 +139,10 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
 
             <?php
             $styles = array(
-                '' => __('Standard', 'wp-udemy'),
-                'clean' => __('Clean', 'wp-udemy'),
-                'light' => __('Light', 'wp-udemy'),
-                'dark' => __('Dark', 'wp-udemy')
+                ''      => __( 'Standard', 'wp-udemy' ),
+                'clean' => __( 'Clean', 'wp-udemy' ),
+                'light' => __( 'Light', 'wp-udemy' ),
+                'dark'  => __( 'Dark', 'wp-udemy' )
             );
             ?>
             <p>
@@ -172,19 +172,18 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
          * @see WP_Widget::update()
          *
          * @param array $new_instance Values just sent to be saved.
-         * @param array $old_instance Previously saved values from database.
          *
          * @return array Updated safe values to be saved.
          */
-        public function update( $new_instance, $old_instance ) {
+        public function update( $new_instance ) {
             $instance = array();
 
-            $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-            $instance['ids'] = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
-            $instance['template'] = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
+            $instance['title']           = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+            $instance['ids']             = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
+            $instance['template']        = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
             $instance['template_custom'] = ( ! empty( $new_instance['template_custom'] ) ) ? strip_tags( $new_instance['template_custom'] ) : '';
-            $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
-            $instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
+            $instance['style']           = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
+            $instance['url']             = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
 
             return $instance;
         }

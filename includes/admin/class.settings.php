@@ -405,7 +405,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
         function course_details_render() {
 
-            $course_details_options = array(
+            $course_details_opts = array(
                 'course'     => __( 'Course Subtitle', 'wp-udemy' ),
                 'instructor' => __( 'Instructor information', 'wp-udemy' ),
             );
@@ -414,7 +414,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             ?>
             <select id="ufwp_course_details" name="ufwp_settings[course_details]">
-                <?php foreach ( $course_details_options as $key => $label ) { ?>
+                <?php foreach ( $course_details_opts as $key => $label ) { ?>
                     <option value="<?php echo $key; ?>" <?php selected( $course_details, $key ); ?>><?php echo $label; ?></option>
                 <?php } ?>
             </select>

@@ -342,7 +342,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
 	    function images_render() {
 
-		    $download_images_options = array(
+		    $download_img_options = array(
 			    ''  => __( 'Load images directly from Udemy server (Default)', 'wp-udemy' ),
 			    '1' => __( 'Download images and host them locally', 'wp-udemy' ),
 		    );
@@ -351,7 +351,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
 		    ?>
             <select id="ufwp_download_images" name="ufwp_settings[download_images]">
-			    <?php foreach ( $download_images_options as $key => $label ) { ?>
+			    <?php foreach ( $download_img_options as $key => $label ) { ?>
                     <option value="<?php echo $key; ?>" <?php selected( $download_images, $key ); ?>><?php echo $label; ?></option>
 			    <?php } ?>
             </select>

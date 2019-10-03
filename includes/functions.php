@@ -546,7 +546,7 @@ function ufwp_get_settings_css( $apply_prefix = true ) {
 
     $options = ufwp_get_options();
 
-    $prefix = ( $apply_prefix ) ? '.ufwp ' : '';
+    //$prefix = ( $apply_prefix ) ? '.ufwp ' : '';
     $settings_css = '';
 
     // Silence

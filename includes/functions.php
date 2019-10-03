@@ -750,9 +750,9 @@ function ufwp_cleanup_image_cache_event() {
 	if ( '1' != $download_images )
 		return;
 
-	$download_images_cached = get_transient( 'ufwp_download_images_cached' );
+	$download_img_cached = get_transient( 'ufwp_download_images_cached' );
 
-	if ( ! $download_images_cached ) {
+	if ( ! $download_img_cached ) {
 		ufwp_delete_images_cache();
 		set_transient( 'ufwp_download_images_cached', 1, 60 * 60 * 24 ); // 24 hours
 	}

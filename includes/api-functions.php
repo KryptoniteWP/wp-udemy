@@ -92,7 +92,7 @@ function ufwp_get_course_from_api( $course_id ) {
 function ufwp_get_courses_from_api( $args = array() ) {
 
     $defaults = array(
-        'page' => 1,
+        'page'      => 1,
         'page_size' => 10,
     );
 
@@ -110,7 +110,7 @@ function ufwp_get_courses_from_api( $args = array() ) {
     $url = add_query_arg( $args, $url );
 
     $data_args = ufwp_api_get_course_data_args();
-    $url = $url . '&fields[course]=' . $data_args;
+    $url       = $url . '&fields[course]=' . $data_args;
 
     //echo '<h4>URL calling</h4>';
     //ufwp_debug($url);

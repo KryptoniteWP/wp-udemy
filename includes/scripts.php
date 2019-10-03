@@ -42,7 +42,7 @@ add_action( 'admin_enqueue_scripts', 'ufwp_admin_scripts', 100 );
  * @since       1.0.0
  * @return      void
  */
-function ufwp_scripts( $hook ) {
+function ufwp_scripts() {
 
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UFWP_DEBUG ) ? '' : '.min';

@@ -128,16 +128,14 @@ function ufwp_get_courses_from_api( $args = array() ) {
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
         $result = json_decode(wp_remote_retrieve_body($response), true);
 
-        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'wp-udemy');
-
+        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __( 'No courses found.', 'wp-udemy' );
     } elseif ( is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
         ufwp_addlog( 'FETCHING COURSES FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         return __( 'Client ID and/or password invalid.', 'wp-udemy' );
-
-    } else {
-        ufwp_addlog( 'FETCHING COURSES FAILED' );
-        return __( 'Courses could not be fetched. Please try again.', 'wp-udemy' );
     }
+
+    ufwp_addlog( 'FETCHING COURSES FAILED' );
+    return __( 'Courses could not be fetched. Please try again.', 'wp-udemy' );
 }
 
 /*

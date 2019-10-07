@@ -86,7 +86,7 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                 ufwp_widget_do_shortcode( $shortcode_atts );
 
             } else {
-                _e( 'Keyword missing.', 'wp-udemy' );
+                esc_html_e( 'Keyword missing.', 'wp-udemy' );
             }
 
             echo $args['after_widget'];
@@ -100,37 +100,32 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
          * @param array $instance Previously saved values from database.
          */
         public function form( $instance ) {
-
-            $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
-            $keywords = ! empty( $instance['keywords'] ) ? $instance['keywords'] : '';
-            $items = ! empty( $instance['items'] ) ? $instance['items'] : '3';
-            $lang = ! empty( $instance['lang'] ) ? $instance['lang'] : '';
-            $orderby = ! empty( $instance['orderby'] ) ? $instance['orderby'] : 'date';
-            $template = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
+            $title           = ! empty( $instance['title'] ) ? $instance['title'] : '';
+            $keywords        = ! empty( $instance['keywords'] ) ? $instance['keywords'] : '';
+            $items           = ! empty( $instance['items'] ) ? $instance['items'] : '3';
+            $lang            = ! empty( $instance['lang'] ) ? $instance['lang'] : '';
+            $orderby         = ! empty( $instance['orderby'] ) ? $instance['orderby'] : 'date';
+            $template        = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
             $template_custom = ! empty( $instance['template_custom'] ) ? $instance['template_custom'] : '';
-            $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
-
+            $style           = ! empty( $instance['style'] ) ? $instance['style'] : '';
             ?>
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
             </p>
-
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>"><?php _e( 'Keywords:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'keywords' ) ); ?>" type="text" value="<?php echo esc_attr( $keywords ); ?>">
             </p>
-
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>"><?php _e( 'Items:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>" type="number" value="<?php echo esc_attr( $items ); ?>">
             </p>
-
             <?php
             $orderby_options = array(
-                'sales' => __('Sales', 'wp-udemy'),
-                'date' => __('Date', 'wp-udemy'),
-                'trends' => __('Trends', 'wp-udemy')
+                'sales'  => __( 'Sales', 'wp-udemy' ),
+                'date'   => __( 'Date', 'wp-udemy' ),
+                'trends' => __( 'Trends', 'wp-udemy' )
             );
             ?>
             <p>
@@ -141,16 +136,15 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                     <?php } ?>
                 </select>
             </p>
-
             <?php
             $lang_options = array(
-                '' => __('All', 'wp-udemy'),
-                'en' => __('English', 'wp-udemy'),
-                'fr' => __('French', 'wp-udemy'),
-                'de' => __('German', 'wp-udemy'),
-                'it' => __('Italian', 'wp-udemy'),
-                'es' => __('Spanish', 'wp-udemy'),
-                'ru' => __('Russian', 'wp-udemy')
+                ''   => __( 'All', 'wp-udemy' ),
+                'en' => __( 'English', 'wp-udemy' ),
+                'fr' => __( 'French', 'wp-udemy' ),
+                'de' => __( 'German', 'wp-udemy' ),
+                'it' => __( 'Italian', 'wp-udemy' ),
+                'es' => __( 'Spanish', 'wp-udemy' ),
+                'ru' => __( 'Russian', 'wp-udemy')
             );
             ?>
             <p>
@@ -161,11 +155,10 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                     <?php } ?>
                 </select>
             </p>
-
             <?php
             $templates = array(
-                'widget' => __('Standard', 'wp-udemy'),
-                'widget_small' => __('Small', 'wp-udemy')
+                'widget'       => __( 'Standard', 'wp-udemy' ),
+                'widget_small' => __( 'Small', 'wp-udemy')
             );
             ?>
             <p>
@@ -180,7 +173,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                     <?php _e( 'The templates listed above are optimized for widgets.', 'wp-udemy' ); ?>
                 </small>
             </p>
-
             <p>
                 <label for="<?php echo esc_attr( $this->get_field_id( 'template_custom' ) ); ?>"><?php _e( 'Custom Template:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'template_custom' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'template_custom' ) ); ?>" type="text" value="<?php echo esc_attr( $template_custom ); ?>">
@@ -189,13 +181,12 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                     <?php _e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
                 </small>
             </p>
-
             <?php
             $styles = array(
-                '' => __('Standard', 'wp-udemy'),
-                'clean' => __('Clean', 'wp-udemy'),
-                'light' => __('Light', 'wp-udemy'),
-                'dark' => __('Dark', 'wp-udemy')
+                ''      => __( 'Standard', 'wp-udemy' ),
+                'clean' => __( 'Clean', 'wp-udemy' ),
+                'light' => __( 'Light', 'wp-udemy' ),
+                'dark'  => __( 'Dark', 'wp-udemy')
             );
             ?>
             <p>
@@ -206,7 +197,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                     <?php } ?>
                 </select>
             </p>
-
             <?php
         }
 

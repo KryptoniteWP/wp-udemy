@@ -126,7 +126,7 @@ function ufwp_debug( $args, $title = false ) {
 
 		if ( $args ) {
 			echo '<pre>';
-			print_r($args);
+			print_r( $args );
 			echo '</pre>';
 		}
 	}
@@ -145,9 +145,9 @@ function ufwp_debug_log ( $log )  {
     if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
 
 	    if ( is_array( $log ) || is_object( $log ) ) {
-		    error_log( print_r( $log, true ) );
-	    } else {
-		    error_log( $log );
-	    }
+            error_log( print_r( $log, true ) );
+            return;
+        }
+        error_log( $log );
     }
 }

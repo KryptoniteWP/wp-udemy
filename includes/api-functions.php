@@ -31,7 +31,7 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
     // Prepare validation
     $validation = array(
         'status' => false,
-        'error' => __( 'Undefined error', 'wp-udemy' ),
+        'error'  => __( 'Undefined error', 'wp-udemy' ),
     );
 
     // Handle response
@@ -39,11 +39,11 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
 
         if ( $response['response']['code'] === 200 ) {
             $validation['status'] = true;
-            $validation['error'] = '';
+            $validation['error']  = '';
 
         } elseif ( $response['response']['code'] === 403 ) {
             $validation['status'] = false;
-            $validation['error'] = __( 'Client ID and/or password invalid.', 'wp-udemy' );
+            $validation['error']  = __( 'Client ID and/or password invalid.', 'wp-udemy' );
             ufwp_addlog( 'VALIDATING API CREDENTIALS FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         }
     }
@@ -55,14 +55,14 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
 /*
  * Get single course from API
  */
-function ufwp_get_course_from_api( $id ) {
+function ufwp_get_course_from_api( $course_id ) {
 
-    if ( ! is_numeric( $id ) )
+    if ( ! is_numeric( $course_id ) )
         return __( 'Course ID must be a number.', 'wp-udemy' );
 
     $data_args = ufwp_api_get_course_data_args();
 
-    $url = 'https://www.udemy.com/api-2.0/courses/' . $id . '?fields[course]=' . $data_args;
+    $url = 'https://www.udemy.com/api-2.0/courses/' . $course_id . '?fields[course]=' . $data_args;
 
     //ufwp_debug_log( 'ufwp_get_course_from_api >> $url >> ' . $url );
 
@@ -81,7 +81,7 @@ function ufwp_get_course_from_api( $id ) {
 
         return $result;
     } else {
-        ufwp_addlog( 'FETCHING COURSE ID ' . $id . ' FAILED: COURSE NOT FOUND' );
+        ufwp_addlog( 'FETCHING COURSE ID ' . $course_id . ' FAILED: COURSE NOT FOUND' );
         return __( 'Course not found.', 'wp-udemy' );
     }
 }
@@ -92,7 +92,7 @@ function ufwp_get_course_from_api( $id ) {
 function ufwp_get_courses_from_api( $args = array() ) {
 
     $defaults = array(
-        'page' => 1,
+        'page'      => 1,
         'page_size' => 10,
     );
 
@@ -110,7 +110,7 @@ function ufwp_get_courses_from_api( $args = array() ) {
     $url = add_query_arg( $args, $url );
 
     $data_args = ufwp_api_get_course_data_args();
-    $url = $url . '&fields[course]=' . $data_args;
+    $url       = $url . '&fields[course]=' . $data_args;
 
     //echo '<h4>URL calling</h4>';
     //ufwp_debug($url);
@@ -128,16 +128,14 @@ function ufwp_get_courses_from_api( $args = array() ) {
     if ( ! is_wp_error( $response ) && is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 200 ) {
         $result = json_decode(wp_remote_retrieve_body($response), true);
 
-        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __('No courses found.', 'wp-udemy');
-
+        return ( isset ( $result['results'] ) && is_array( $result['results'] ) && sizeof( $result['results'] ) > 0 ) ? $result['results'] : __( 'No courses found.', 'wp-udemy' );
     } elseif ( is_array( $response ) && isset ( $response['response']['code'] ) && $response['response']['code'] === 403 ) {
         ufwp_addlog( 'FETCHING COURSES FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
         return __( 'Client ID and/or password invalid.', 'wp-udemy' );
-
-    } else {
-        ufwp_addlog( 'FETCHING COURSES FAILED' );
-        return __( 'Courses could not be fetched. Please try again.', 'wp-udemy' );
     }
+
+    ufwp_addlog( 'FETCHING COURSES FAILED' );
+    return __( 'Courses could not be fetched. Please try again.', 'wp-udemy' );
 }
 
 /*

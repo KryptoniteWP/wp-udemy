@@ -7,7 +7,7 @@
  */
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
+if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * Load admin scripts
@@ -16,7 +16,7 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @global      string $post_type The type of post that we are editing
  * @return      void
  */
-function ufwp_admin_scripts( $hook ) {
+function ufwp_admin_scripts() {
 
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || UFWP_DEBUG ) ? '' : '.min';
@@ -42,7 +42,7 @@ add_action( 'admin_enqueue_scripts', 'ufwp_admin_scripts', 100 );
  * @since       1.0.0
  * @return      void
  */
-function ufwp_scripts( $hook ) {
+function ufwp_scripts() {
 
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UFWP_DEBUG ) ? '' : '.min';

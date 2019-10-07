@@ -87,21 +87,21 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
          */
         public function form( $instance ) {
 
-            $title = ! empty( $instance['title'] ) ? $instance['title'] : '';
-            $ids = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
-            $template = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
+            $title           = ! empty( $instance['title'] ) ? $instance['title'] : '';
+            $ids             = ! empty( $instance['ids'] ) ? $instance['ids'] : '';
+            $template        = ! empty( $instance['template'] ) ? $instance['template'] : 'widget';
             $template_custom = ! empty( $instance['template_custom'] ) ? $instance['template_custom'] : '';
-            $style = ! empty( $instance['style'] ) ? $instance['style'] : '';
-            $url = ! empty( $instance['url'] ) ? $instance['url'] : '';
+            $style           = ! empty( $instance['style'] ) ? $instance['style'] : '';
+            $url             = ! empty( $instance['url'] ) ? $instance['url'] : '';
 
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
             </p>
 
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>"><?php _e( 'Course IDs:', 'wp-udemy' ); ?></label>
+                <label for="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>"><?php esc_attr_e( 'Course IDs:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'ids' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'ids' ) ); ?>" type="text" value="<?php echo esc_attr( $ids ); ?>">
                 <br />
                 <small>
@@ -111,8 +111,8 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
 
             <?php
             $templates = array(
-                'widget' => __('Standard', 'wp-udemy'),
-                'widget_small' => __('Small', 'wp-udemy')
+                'widget'       => __( 'Standard', 'wp-udemy' ),
+                'widget_small' => __( 'Small', 'wp-udemy' )
             );
             ?>
             <p>
@@ -139,10 +139,10 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
 
             <?php
             $styles = array(
-                '' => __('Standard', 'wp-udemy'),
-                'clean' => __('Clean', 'wp-udemy'),
-                'light' => __('Light', 'wp-udemy'),
-                'dark' => __('Dark', 'wp-udemy')
+                ''      => __( 'Standard', 'wp-udemy' ),
+                'clean' => __( 'Clean', 'wp-udemy' ),
+                'light' => __( 'Light', 'wp-udemy' ),
+                'dark'  => __( 'Dark', 'wp-udemy' )
             );
             ?>
             <p>
@@ -172,19 +172,18 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
          * @see WP_Widget::update()
          *
          * @param array $new_instance Values just sent to be saved.
-         * @param array $old_instance Previously saved values from database.
          *
          * @return array Updated safe values to be saved.
          */
-        public function update( $new_instance, $old_instance ) {
+        public function update( $new_instance ) {
             $instance = array();
 
-            $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-            $instance['ids'] = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
-            $instance['template'] = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
+            $instance['title']           = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+            $instance['ids']             = ( ! empty( $new_instance['ids'] ) ) ? strip_tags( $new_instance['ids'] ) : '';
+            $instance['template']        = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
             $instance['template_custom'] = ( ! empty( $new_instance['template_custom'] ) ) ? strip_tags( $new_instance['template_custom'] ) : '';
-            $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
-            $instance['url'] = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
+            $instance['style']           = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
+            $instance['url']             = ( ! empty( $new_instance['url'] ) ) ? strip_tags( $new_instance['url'] ) : '';
 
             return $instance;
         }

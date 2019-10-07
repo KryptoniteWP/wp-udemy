@@ -31,8 +31,8 @@ function ufwp_get_course_objects_from_array( $items = array(), $args = array() )
  */
 function ufwp_get_cache_structure() {
     return array(
-        'items' => array(),
-        'lists' => array(),
+        'items'       => array(),
+        'lists'       => array(),
         'last_update' => 0
     );
 }
@@ -172,15 +172,15 @@ function ufwp_bulk_update_items( $items ) {
 
     ufwp_addlog( 'BULK UPDATING ITEMS' );
 
-    $i = 1;
+    $num = 1;
 
     foreach ( $items as $id => $data ) {
 
         if ( is_numeric( $id ) ) {
 
             // Go easy on API and hold on after every 10 items
-            if ($i > 0 && $i % 10 == 0) {
-                ufwp_addlog( 'UPDATING PAUSED AFTER ' . $i . ' ITEMS' );
+            if ($num > 0 && $num % 10 == 0) {
+                ufwp_addlog( 'UPDATING PAUSED AFTER ' . $num . ' ITEMS' );
                 sleep(5);
             }
 
@@ -191,11 +191,11 @@ function ufwp_bulk_update_items( $items ) {
                 $items[$id] = $course;
 
             // Update item count
-            $i++;
+            $num++;
         }
     }
 
-    ufwp_addlog( 'BULK UPDATED ' . ( $i - 1 ) . ' ITEMS' );
+    ufwp_addlog( 'BULK UPDATED ' . ( $num - 1 ) . ' ITEMS' );
 
     return $items;
 }
@@ -207,7 +207,7 @@ function ufwp_bulk_update_lists( $lists ) {
 
     ufwp_addlog( 'BULK UPDATING LISTS' );
 
-    $i = 1;
+    $num = 1;
 
     foreach ( $lists as $id => $items ) {
 
@@ -216,8 +216,8 @@ function ufwp_bulk_update_lists( $lists ) {
         if ( sizeof( $args ) > 0 ) {
 
             // Go easy on API and hold on after every 5 lists
-            if ($i > 0 && $i % 5 == 0) {
-                ufwp_addlog( 'UPDATING PAUSED AFTER ' . $i . ' LISTS' );
+            if ( $num > 0 && $num % 5 == 0 ) {
+                ufwp_addlog( 'UPDATING PAUSED AFTER ' . $num . ' LISTS' );
                 sleep(5);
             }
 
@@ -228,11 +228,11 @@ function ufwp_bulk_update_lists( $lists ) {
                 $lists[$id] = $courses;
 
             // Update list count
-            $i++;
+            $num++;
         }
     }
 
-    ufwp_addlog( 'BULK UPDATED ' . ( $i - 1 ) . ' LISTS' );
+    ufwp_addlog( 'BULK UPDATED ' . ( $num - 1 ) . ' LISTS' );
 
     return $lists;
 }
@@ -268,7 +268,7 @@ function ufwp_get_courses( $atts ) {
     // IDs
     if ( isset ( $atts['id'] ) ) {
 
-        $course_ids = explode(',', str_replace( array( ' ', ';'), array( '', ','), sanitize_text_field( $atts['id'] ) ) );
+        $course_ids = explode( ',', str_replace( array( ' ', ';' ), array( '', ',' ), sanitize_text_field( $atts['id'] ) ) );
 
         foreach ( $course_ids as $id ) {
 
@@ -369,14 +369,11 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
     $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
 
-    if ( isset ( $args['style'] ) )
-        $style = $args['style'];
-
     // Prepare courses
     $courses = ufwp_get_course_objects_from_array( $courses, $args );
 
     // Template
-    $template_course = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
+    $template_course  = ( isset ( $options['template_course'] ) ) ? $options['template_course'] : 'standard';
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
     if ( isset ( $args['template'] ) ) {
@@ -398,7 +395,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     if ( file_exists( $file ) ) {
         include( $file );
     } else {
-        _e('Template not found.', 'wp-udemy');
+        _e( 'Template not found.', 'wp-udemy' );
     }
 
     echo '</div>';
@@ -549,7 +546,7 @@ function ufwp_get_settings_css( $apply_prefix = true ) {
 
     $options = ufwp_get_options();
 
-    $prefix = ( $apply_prefix ) ? '.ufwp ' : '';
+    //$prefix = ( $apply_prefix ) ? '.ufwp ' : '';
     $settings_css = '';
 
     // Silence
@@ -719,7 +716,7 @@ function ufwp_download_course_image( $file_name, $file_url ) {
 	clearstatcache();
 
 	// Set correct file permissions
-	$stat = @ stat( dirname( $new_file ) );
+	$stat  = @ stat( dirname( $new_file ) );
 	$perms = $stat['mode'] & 0007777;
 	$perms = $perms & 0000666;
 	@ chmod( $new_file, $perms );
@@ -731,9 +728,9 @@ function ufwp_download_course_image( $file_name, $file_url ) {
 	$file_url = $file_upload_url . $file_name;
 
 	$upload = array(
-		'path' => $new_file,
-		'url' => $file_url,
-		'type' => $file_extension,
+		'path'  => $new_file,
+		'url'   => $file_url,
+		'type'  => $file_extension,
 		'error' => false
 	);
 
@@ -750,9 +747,9 @@ function ufwp_cleanup_image_cache_event() {
 	if ( '1' != $download_images )
 		return;
 
-	$download_images_cached = get_transient( 'ufwp_download_images_cached' );
+	$download_img_cached = get_transient( 'ufwp_download_images_cached' );
 
-	if ( ! $download_images_cached ) {
+	if ( ! $download_img_cached ) {
 		ufwp_delete_images_cache();
 		set_transient( 'ufwp_download_images_cached', 1, 60 * 60 * 24 ); // 24 hours
 	}
@@ -763,11 +760,11 @@ function ufwp_cleanup_image_cache_event() {
  */
 function ufwp_delete_images_cache() {
 
-	$dir = ufwp_get_downloaded_course_images_path();
-	$di = new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS );
-	$ri = new RecursiveIteratorIterator( $di, RecursiveIteratorIterator::CHILD_FIRST );
+	$dir   = ufwp_get_downloaded_course_images_path();
+	$dirit = new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS );
+	$recit = new RecursiveIteratorIterator( $dirit, RecursiveIteratorIterator::CHILD_FIRST );
 
-	foreach ( $ri as $file ) {
+	foreach ( $recit as $file ) {
 		$file->isDir() ? rmdir( $file ) : unlink( $file );
 	}
 

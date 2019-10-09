@@ -41,13 +41,12 @@ if ( ! class_exists( 'UFWP' ) ) {
          * @return      object self::$instance The one true UFWP
          */
         public static function instance() {
-            if( !self::$instance ) {
+            if ( ! self::$instance ) {
                 self::$instance = new UFWP();
                 self::$instance->setup_constants();
                 self::$instance->includes();
                 self::$instance->load_textdomain();
             }
-
             return self::$instance;
         }
 

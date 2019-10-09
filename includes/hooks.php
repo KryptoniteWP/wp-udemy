@@ -90,7 +90,7 @@ function ufwp_print_amp_styles() {
 
     // Custom CSS
     $custom_css_activated = ( isset( $options['custom_css_activated'] ) && $options['custom_css_activated'] == '1' ) ? true : false;
-    $custom_css = ( isset( $options['custom_css'] ) ) ? $options['custom_css'] : '';
+    $custom_css           = ( isset( $options['custom_css'] ) ) ? $options['custom_css'] : '';
 
     if ( $custom_css_activated && ! empty( $custom_css ) )
         echo ufwp_cleanup_css_for_amp( $custom_css );

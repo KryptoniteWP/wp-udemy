@@ -7,7 +7,7 @@
  */
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*
  * Build course objects from result arrays
@@ -367,7 +367,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
 
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
-    $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
+    //$grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
 
     // Prepare courses
     $courses = ufwp_get_course_objects_from_array( $courses, $args );
@@ -377,7 +377,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
     $template_courses = ( isset ( $options['template_courses'] ) ) ? $options['template_courses'] : 'list';
 
     if ( isset ( $args['template'] ) ) {
-        $template = str_replace(' ', '', $args['template']);
+        $template = str_replace( ' ', '', $args['template'] );
     } elseif ( 'widget' === $type ) {
         $template = 'widget';
     } else {
@@ -394,7 +394,9 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
 
     if ( file_exists( $file ) ) {
         include( $file );
-    } else {
+    }
+
+    if ( ! file_exists( $file ) ) {
         _e( 'Template not found.', 'wp-udemy' );
     }
 
@@ -434,7 +436,7 @@ function ufwp_has_plugin_content() {
 
     global $post;
 
-    if( ( is_a( $post, 'WP_Post' ) && ( has_shortcode( $post->post_content, 'ufwp') || has_shortcode( $post->post_content, 'udemy') ) ) ) {
+    if ( ( is_a( $post, 'WP_Post' ) && ( has_shortcode( $post->post_content, 'ufwp') || has_shortcode( $post->post_content, 'udemy') ) ) ) {
         return true;
     }
 
@@ -461,16 +463,16 @@ function ufwp_asset_embed( $file ) {
     $rewriteUrl = function ($matches) use ($targetUrl) {
         $url = $matches['url'];
         // First check also matches protocol-relative urls like //example.com
-        if ((isset($url[0])  && '/' === $url[0]) || false !== strpos($url, '://') || 0 === strpos($url, 'data:')) {
+        if ( ( isset( $url[0] ) && '/' === $url[0] ) || false !== strpos( $url, '://' ) || 0 === strpos( $url, 'data:' ) ) {
             return $matches[0];
         }
-        return str_replace($url, $targetUrl . '/' . $url, $matches[0]);
+        return str_replace( $url, $targetUrl . '/' . $url, $matches[0] );
     };
 
-    $content = preg_replace_callback('/url\((["\']?)(?<url>.*?)(\\1)\)/', $rewriteUrl, $content);
-    $content = preg_replace_callback('/@import (?!url\()(\'|"|)(?<url>[^\'"\)\n\r]*)\1;?/', $rewriteUrl, $content);
+    $content = preg_replace_callback( '/url\((["\']?)(?<url>.*?)(\\1)\)/', $rewriteUrl, $content );
+    $content = preg_replace_callback( '/@import (?!url\()(\'|"|)(?<url>[^\'"\)\n\r]*)\1;?/', $rewriteUrl, $content );
     // Handle 'src' values (used in e.g. calls to AlphaImageLoader, which is a proprietary IE filter)
-    $content = preg_replace_callback('/\bsrc\s*=\s*(["\']?)(?<url>.*?)(\\1)/i', $rewriteUrl, $content);
+    $content = preg_replace_callback( '/\bsrc\s*=\s*(["\']?)(?<url>.*?)(\\1)/i', $rewriteUrl, $content );
 
     return $content;
 }
@@ -507,7 +509,7 @@ function ufwp_get_amp_styles() {
 
     // Custom styles
     $custom_css_activated = ( isset ( $options_output['custom_css_activated'] ) && $options_output['custom_css_activated'] == '1' ) ? 1 : 0;
-    $custom_css = ( ! empty ( $options_output['custom_css'] ) ) ? $options_output['custom_css'] : '';
+    $custom_css           = ( ! empty ( $options_output['custom_css'] ) ) ? $options_output['custom_css'] : '';
 
     if ( $custom_css_activated == '1' && $custom_css != '' ) {
         $amp_styles .= stripslashes( $custom_css );
@@ -531,7 +533,7 @@ function ufwp_cleanup_css_for_amp( $css = '' ) {
     $css = stripslashes( $css );
 
     // Remove important declarations
-    $css = str_replace('!important', '', $css);
+    $css = str_replace( '!important', '', $css );
 
     return $css;
 }
@@ -548,8 +550,6 @@ function ufwp_get_settings_css( $apply_prefix = true ) {
 
     //$prefix = ( $apply_prefix ) ? '.ufwp ' : '';
     $settings_css = '';
-
-    // Silence
 
     return $settings_css;
 }

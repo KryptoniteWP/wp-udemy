@@ -15,7 +15,7 @@ if ( ! isset ( $courses ) )
     return;
 ?>
 
-<div class="ufwp-widget-small<?php if ( isset( $style ) ) echo ' ufwp-style-' . $style; ?>">
+<div class="ufwp-widget-small<?php if ( isset( $style ) ) esc_attr_e( ' ufwp-style-' . $style ); ?>">
 
     <?php foreach ( $courses as $course ) { ?>
 
@@ -24,7 +24,7 @@ if ( ! isset ( $courses ) )
             <div class="<?php $course->the_classes( 'ufwp-course' ); ?>"<?php $course->the_container(); ?>>
                 <a class="ufwp-course__link" href="<?php echo $course->get_url(); ?>" target="_blank" rel="nofollow" title="<?php echo $course->get_title(); ?>">
                     <?php $course->the_badges(); ?>
-                    <span class="ufwp-course__img" style="background-image: url('<?php echo $course->get_image('widget_small'); ?>');"></span>
+                    <span class="ufwp-course__img" style="background-image: url('<?php echo $course->get_image( 'widget_small' ); ?>');"></span>
 
                     <span class="ufwp-course__content">
                         <span class="ufwp-course__title"><?php echo $course->get_title(); ?></span>

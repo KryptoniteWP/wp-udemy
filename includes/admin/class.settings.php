@@ -37,7 +37,6 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
         function add_admin_menu()
         {
-
             add_options_page(
                 __( 'UFWP Courses', 'wp-udemy' ),
                 __( 'UFWP Courses', 'wp-udemy' ),
@@ -45,7 +44,6 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                 'wp-udemy',
                 array( &$this, 'options_page' )
             );
-
         }
 
         function init_settings()
@@ -64,9 +62,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                 'ufwp_settings'
             );
 
-            /*
-             * Action to add more settings right after the quickstart
-             */
+            // Action to add more settings right after the quickstart
             do_action( 'ufwp_settings_register' );
 
             // SECTION: General
@@ -80,7 +76,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             add_settings_field(
                 'ufwp_api_client',
                 __( 'API', 'wp-udemy' ),
-                array(&$this, 'api_client_render'),
+                array( &$this, 'api_client_render' ),
                 'ufwp_settings',
                 'ufwp_settings_general'
             );
@@ -88,7 +84,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             add_settings_field(
                 'ufwp_cache_duration',
                 __( 'Cache Duration', 'wp-udemy' ),
-                array(&$this, 'cache_duration_render'),
+                array( &$this, 'cache_duration_render' ),
                 'ufwp_settings',
                 'ufwp_settings_general'
             );
@@ -96,14 +92,12 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 	        add_settings_field(
 		        'ufwp_images',
 		        __( 'Images', 'wp-udemy' ),
-		        array(&$this, 'images_render'),
+		        array( &$this, 'images_render' ),
 		        'ufwp_settings',
 		        'ufwp_settings_general'
 	        );
 
-            /*
-             * Action to add more settings within this section
-             */
+            // Action to add more settings within this section
             do_action( 'ufwp_settings_general_register' );
 
             // SECTION: Output
@@ -117,7 +111,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             add_settings_field(
                 'ufwp_default_templates',
                 __( 'Standard Templates', 'wp-udemy' ),
-                array(&$this, 'default_templates_render'),
+                array( &$this, 'default_templates_render' ),
                 'ufwp_settings',
                 'ufwp_settings_output'
             );
@@ -125,33 +119,31 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             add_settings_field(
                 'ufwp_course_details',
                 __( 'Course Details', 'wp-udemy' ),
-                array(&$this, 'course_details_render'),
+                array( &$this, 'course_details_render' ),
                 'ufwp_settings',
                 'ufwp_settings_output',
-                array( 'label_for' => 'ufwp_course_details')
+                array( 'label_for' => 'ufwp_course_details' )
             );
 
             add_settings_field(
                 'ufwp_course_pricing',
                 __( 'Course Pricing', 'wp-udemy' ),
-                array(&$this, 'course_pricing_render'),
+                array( &$this, 'course_pricing_render' ),
                 'ufwp_settings',
                 'ufwp_settings_output',
-                array( 'label_for' => 'ufwp_course_pricing')
+                array( 'label_for' => 'ufwp_course_pricing' )
             );
 
-            /*
-             * Action to add more settings within this section
-             */
+            // Action to add more settings within this section
             do_action( 'ufwp_settings_output_register' );
 
             add_settings_field(
                 'ufwp_custom_css',
                 __( 'Custom CSS', 'wp-udemy' ),
-                array(&$this, 'custom_css_render'),
+                array( &$this, 'custom_css_render' ),
                 'ufwp_settings',
                 'ufwp_settings_output',
-                array( 'label_for' => 'ufwp_custom_css')
+                array( 'label_for' => 'ufwp_custom_css' )
             );
 
             // SECTION: Debug
@@ -165,44 +157,41 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             add_settings_field(
                 'ufwp_widget_text_shortcodes',
                 __( 'Widgets & Shortcodes', 'wp-udemy' ),
-                array(&$this, 'widget_text_shortcodes_render'),
+                array( &$this, 'widget_text_shortcodes_render' ),
                 'ufwp_settings',
                 'ufwp_settings_other',
-                array( 'label_for' => 'ufwp_widget_text_shortcodes')
+                array( 'label_for' => 'ufwp_widget_text_shortcodes' )
             );
 
             add_settings_field(
                 'ufwp_credits',
                 __( 'You love this plugin?', 'wp-udemy' ),
-                array(&$this, 'credits_render'),
+                array( &$this, 'credits_render' ),
                 'ufwp_settings',
                 'ufwp_settings_other',
-                array( 'label_for' => 'ufwp_credits')
+                array( 'label_for' => 'ufwp_credits' )
             );
 
             add_settings_field(
                 'ufwp_developer_mode',
                 __( 'Developer Mode', 'wp-udemy' ),
-                array(&$this, 'developer_mode_render'),
+                array( &$this, 'developer_mode_render' ),
                 'ufwp_settings',
                 'ufwp_settings_other',
-                array( 'label_for' => 'ufwp_developer_mode')
+                array( 'label_for' => 'ufwp_developer_mode' )
             );
 
             if ( UFWP_DEBUG ) {
-
                 add_settings_field(
                     'ufwp_debug_information',
                     __( 'Debug Information', 'wp-udemy' ),
-                    array(&$this, 'debug_information_render'),
+                    array( &$this, 'debug_information_render' ),
                     'ufwp_settings',
                     'ufwp_settings_other'
                 );
             }
 
-            /*
-             * Action to add more settings within this section
-             */
+            // Action to add more settings within this section
             do_action( 'ufwp_settings_debug_register' );
         }
 
@@ -261,22 +250,22 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             ?>
 
             <div class="postbox">
-                <h3 class='hndle'><?php _e( 'Quickstart Guide', 'wp-udemy' ); ?></h3>
+                <h3 class='hndle'><?php esc_attr_e( 'Quickstart Guide', 'wp-udemy' ); ?></h3>
                 <div class="inside">
-                    <p><?php _e( 'There are two ways of displaying courses:', 'wp-udemy' ); ?></p>
+                    <p><?php esc_attr_e( 'There are two ways of displaying courses:', 'wp-udemy' ); ?></p>
                     <p>
-                        <strong><?php _e( 'Single course by ID', 'wp-udemy' ); ?></strong><br />
-                        <?php _e( 'In order to get the course ID, simply add the course to the cart and take the ID out of the url of your browser.', 'wp-udemy' ); ?>
+                        <strong><?php esc_attr_e( 'Single course by ID', 'wp-udemy' ); ?></strong><br />
+                        <?php esc_attr_e( 'In order to get the course ID, simply add the course to the cart and take the ID out of the url of your browser.', 'wp-udemy' ); ?>
                     </p>
                     <p>
                         <code>[ufwp id="480986"]</code>
                     </p>
 
                     <p>
-                        <strong><?php _e( 'Search for courses', 'wp-udemy' ); ?></strong><br />
-                        <?php _e( 'Alternatively you can search for courses and display grids or lists of multiple courses.', 'wp-udemy' ); ?> <span style="color: darkorange; font-weight: bold;"><?php _e( 'This feature requires API keys!', 'wp-udemy' ); ?></span>
+                        <strong><?php esc_attr_e( 'Search for courses', 'wp-udemy' ); ?></strong><br />
+                        <?php esc_attr_e( 'Alternatively you can search for courses and display grids or lists of multiple courses.', 'wp-udemy' ); ?> <span style="color: darkorange; font-weight: bold;"><?php esc_attr_e( 'This feature requires API keys!', 'wp-udemy' ); ?></span>
                     <p>
-                        <code>[ufwp search="css" items="6" template="grid" grid="3"]</code> <?php _e( 'or', 'wp-udemy' ); ?> <code>[ufwp search="html" items="6" template="list"]</code>
+                        <code>[ufwp search="css" items="6" template="grid" grid="3"]</code> <?php esc_attr_e( 'or', 'wp-udemy' ); ?> <code>[ufwp search="html" items="6" template="list"]</code>
                     </p>
 
                     <p><?php printf( wp_kses( __( 'Please take a look into the <a href="%s">documentation</a> for more options.', 'wp-udemy' ), array(  'a' => array( 'href' => array() ) ) ), esc_url( 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' ) ); ?></p>
@@ -290,22 +279,22 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
         function api_client_render() {
 
-            $api_client_id   = ( !empty($this->options['api_client_id'] ) ) ? esc_attr( trim( $this->options['api_client_id'] ) ) : '';
-            $api_client_pass = ( !empty($this->options['api_client_password'] ) ) ? esc_attr( trim($this->options['api_client_password'] ) ) : '';
+            $api_client_id   = ( ! empty($this->options['api_client_id'] ) ) ? esc_attr( trim( $this->options['api_client_id'] ) ) : '';
+            $api_client_pass = ( ! empty($this->options['api_client_password'] ) ) ? esc_attr( trim($this->options['api_client_password'] ) ) : '';
 
             ?>
-            <h4 style="margin: 5px 0"><?php _e( 'Status', 'wp-udemy' ); ?></h4>
+            <h4 style="margin: 5px 0"><?php esc_attr_e( 'Status', 'wp-udemy' ); ?></h4>
             <?php if ( ! empty( $api_client_id ) && ! empty( $api_client_pass ) ) { ?>
                 <?php $this->api_status_render(); ?>
             <?php } else { ?>
-                <span style="color: dodgerblue;"><?php _e("API credentials are currently only required when searching courses or displaying categories.", 'wp-udemy' ); ?></span>
+                <span style="color: dodgerblue;"><?php esc_attr_e( 'API credentials are currently only required when searching courses or displaying categories.', 'wp-udemy' ); ?></span>
             <?php } ?>
 
-            <h4 style="margin-bottom: 5px"><?php _e( 'Client ID', 'wp-udemy' ); ?></h4>
+            <h4 style="margin-bottom: 5px"><?php esc_attr_e( 'Client ID', 'wp-udemy' ); ?></h4>
             <input type='text' name='ufwp_settings[api_client_id]' id="ufwp_api_client_id"
                    value='<?php echo esc_attr( trim( $api_client_id ) ); ?>' style="width: 350px;">
 
-            <h4 style="margin: 15px 0 5px 0;"><?php _e( 'Client Password', 'wp-udemy' ); ?></h4>
+            <h4 style="margin: 15px 0 5px 0;"><?php esc_attr_e( 'Client Password', 'wp-udemy' ); ?></h4>
             <input type='text' name='ufwp_settings[api_client_password]' id="ufwp_api_client_password"
                    value='<?php echo esc_attr( trim( $api_client_pass ) ); ?>' style="width: 350px;">
 
@@ -356,7 +345,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 			    <?php } ?>
             </select>
             <p>
-                <small><strong><?php _e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php _e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
+                <small><strong><?php esc_attr_e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php _e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
             </p>
 
             <input type="hidden" id="ufwp_delete_images_cache" name="ufwp_settings[delete_images_cache]" value="0" />
@@ -376,7 +365,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             $template_courses = ( isset ( $this->options['template_courses'] ) ) ? $this->options['template_courses'] : 'list';
 
             ?>
-            <h4 style="margin: 5px 0;"><?php _e( 'Single Course', 'wp-udemy' ); ?></h4>
+            <h4 style="margin: 5px 0;"><?php esc_attr_e( 'Single Course', 'wp-udemy' ); ?></h4>
             <p>
                 <select id="ufwp_template_course" name="ufwp_settings[template_course]">
                     <?php foreach ( $templates as $key => $label ) { ?>
@@ -387,11 +376,11 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             <br />
 
-            <h4 style="margin: 5px 0;"><?php _e( 'Multiple Courses', 'wp-udemy' ); ?></h4>
+            <h4 style="margin: 5px 0;"><?php esc_attr_e( 'Multiple Courses', 'wp-udemy' ); ?></h4>
             <p>
                 <select id="ufwp_template_courses" name="ufwp_settings[template_courses]">
                     <?php foreach ( $templates as $key => $label ) { ?>
-                        <option value="<?php echo $key; ?>" <?php selected( $template_courses, $key ); ?>><?php echo $label; ?></option>
+                        <option value="<?php esc_attr_e( $key ); ?>" <?php selected( $template_courses, $key ); ?>><?php esc_attr_e( $label ); ?></option>
                     <?php } ?>
                 </select>
             </p>
@@ -418,12 +407,12 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                     <option value="<?php echo $key; ?>" <?php selected( $course_details, $key ); ?>><?php echo $label; ?></option>
                 <?php } ?>
             </select>
-            <p><small><?php _e( 'This will be applied to grid and list templates. The standard template already shows both information.', 'wp-udemy' ); ?></small></p>
+            <p><small><?php esc_attr_e( 'This will be applied to grid and list templates. The standard template already shows both information.', 'wp-udemy' ); ?></small></p>
 
             <?php $course_meta = ( isset ( $this->options['course_meta'] ) && $this->options['course_meta'] == '1' ) ? 1 : 0; ?>
             <p>
                 <input type="checkbox" id="ufwp_course_meta" name="ufwp_settings[course_meta]" value="1" <?php echo($course_meta == 1 ? 'checked' : ''); ?>>
-                <label for="ufwp_course_meta"><?php _e( 'Show lectures and playing time', 'wp-udemy' ); ?></label>
+                <label for="ufwp_course_meta"><?php esc_attr_e( 'Show lectures and playing time', 'wp-udemy' ); ?></label>
             </p>
             <?php
         }
@@ -433,19 +422,19 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             $hide_course_prices = ( isset ( $this->options['hide_course_prices'] ) && $this->options['hide_course_prices'] == '1' ) ? 1 : 0;
             ?>
 
-            <h4 style="margin: 5px 0;"><?php _e( 'Show/hide prices', 'wp-udemy' ); ?></h4>
+            <h4 style="margin: 5px 0;"><?php esc_attr_e( 'Show/hide prices', 'wp-udemy' ); ?></h4>
             <p>
-                <?php _e( 'By default, all templates output course pricing.', 'wp-udemy' ); ?>
+                <?php esc_attr_e( 'By default, all templates output course pricing.', 'wp-udemy' ); ?>
             </p>
             <p>
                 <input type="checkbox" id="ufwp_hide_course_prices" name="ufwp_settings[hide_course_prices]" value="1" <?php echo($hide_course_prices == 1 ? 'checked' : ''); ?>>
                 <label for="ufwp_hide_course_prices"><?php _e("Activate in order to hide the course prices from your site visitors.", 'wp-udemy-pro'); ?></label><br />
             </p>
             <p style="margin-top: 10px;">
-                <?php _e( 'In addition, you can show/hide the prices on a shortcode basis as well:', 'wp-udemy' ); ?>
+                <?php esc_attr_e( 'In addition, you can show/hide the prices on a shortcode basis as well:', 'wp-udemy' ); ?>
             </p>
             <p>
-                <code>[ufwp id="480986" price="show"]</code> <?php _e( 'or', 'wp-udemy' ); ?> <code>[ufwp id="480986" price="hide"]</code>
+                <code>[ufwp id="480986" price="show"]</code> <?php esc_attr_e( 'or', 'wp-udemy' ); ?> <code>[ufwp id="480986" price="hide"]</code>
             </p>
             <?php
         }
@@ -458,12 +447,12 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             <p>
                 <input type="checkbox" id="ufwp_custom_css_activated" name="ufwp_settings[custom_css_activated]" value="1" <?php echo($custom_css_activated == 1 ? 'checked' : ''); ?>>
-                <label for="ufwp_custom_css_activated"><?php _e( 'Output custom CSS styles', 'wp-udemy' ); ?></label>
+                <label for="ufwp_custom_css_activated"><?php esc_attr_e( 'Output custom CSS styles', 'wp-udemy' ); ?></label>
             </p>
             <br />
             <textarea id="ufwp_custom_css" name="ufwp_settings[custom_css]" rows="10" cols="80" style="width: 100%;"><?php echo stripslashes($custom_css); ?></textarea>
             <p>
-                <small><?php _e("Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
+                <small><?php _e( "Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
             </p>
 
             <?php
@@ -474,8 +463,8 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             $shortcodes = ( isset ( $this->options['widget_text_shortcodes'] ) && $this->options['widget_text_shortcodes'] == '1' ) ? 1 : 0;
 
             ?>
-            <input type="checkbox" id="ufwp_widget_text_shortcodes" name="ufwp_settings[widget_text_shortcodes]" value="1" <?php echo($shortcodes == 1 ? 'checked' : ''); ?>>
-            <label for="ufwp_widget_text_shortcodes"><?php _e("Activate if your theme doesn't support shortcodes within text widgets.", 'wp-udemy' ); ?></label>
+            <input type="checkbox" id="ufwp_widget_text_shortcodes" name="ufwp_settings[widget_text_shortcodes]" value="1" <?php echo( $shortcodes == 1 ? 'checked' : '' ); ?>>
+            <label for="ufwp_widget_text_shortcodes"><?php _e( "Activate if your theme doesn't support shortcodes within text widgets.", 'wp-udemy' ); ?></label>
             <?php
         }
 
@@ -485,7 +474,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             ?>
             <input type="checkbox" id="ufwp_credits" name="ufwp_settings[credits]" value="1" <?php echo($credits == 1 ? 'checked' : ''); ?>>
-            <label for="ufwp_credits"><?php _e( 'Activate if you love this plugin and spread it to the world!', 'wp-udemy' ); ?> :-)</label>
+            <label for="ufwp_credits"><?php esc_attr_e( 'Activate if you love this plugin and spread it to the world!', 'wp-udemy' ); ?> :-)</label>
             <?php
         }
 
@@ -495,7 +484,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             ?>
             <input type="checkbox" id="ufwp_developer_mode" name="ufwp_settings[developer_mode]" value="1" <?php echo($developer_mode == 1 ? 'checked' : ''); ?>>
-            <label for="ufwp_developer_mode"><?php _e( 'Please activate for debugging reasons only', 'wp-udemy' ); ?></label>
+            <label for="ufwp_developer_mode"><?php esc_attr_e( 'Please activate for debugging reasons only', 'wp-udemy' ); ?></label>
             <?php
         }
 
@@ -511,8 +500,8 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             <table class="widefat ufwp-settings-table">
                 <thead>
                     <tr>
-                        <th width="300"><?php _e( 'Setting', 'wp-udemy' ); ?></th>
-                        <th><?php _e( 'Values', 'wp-udemy' ); ?></th>
+                        <th width="300"><?php esc_attr_e( 'Setting', 'wp-udemy' ); ?></th>
+                        <th><?php esc_attr_e( 'Values', 'wp-udemy' ); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -527,24 +516,24 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                     <tr>
                         <th><?php printf( esc_html__( 'PHP "%1$s" extension', 'wp-udemy' ), 'cURL' ); ?></th>
                         <td>
-                            <?php echo (isset ($this->curl['enabled']) && $this->curl['enabled']) ? $enabled : $disabled; ?>
-                            <?php if (isset ($this->curl['version'])) echo ' (Version ' . $this->curl['version'] . ')'; ?>
+                            <?php echo ( isset ( $this->curl['enabled'] ) && $this->curl['enabled'] ) ? $enabled : $disabled; ?>
+                            <?php if ( isset ( $this->curl['version'])  ) echo ' (Version ' . $this->curl['version'] . ')'; ?>
                         </td>
                     </tr>
                     <tr class="alternate">
-                        <th><?php _e( 'Cache', 'wp-udemy' ); ?></th>
+                        <th><?php esc_attr_e( 'Cache', 'wp-udemy' ); ?></th>
                         <td>
                             <?php $cache = get_option( 'ufwp_cache', ufwp_get_cache_structure() ); ?>
 
-                            <strong><?php _e( 'Size', 'wp-udemy' ); ?></strong><br />
+                            <strong><?php esc_attr_e( 'Size', 'wp-udemy' ); ?></strong><br />
                             <?php printf( esc_html__( '%1$s courses and %2$s lists.', 'wp-udemy' ), '<strong>' . sizeof( $cache['items'] ) . '</strong>', '<strong>' . sizeof( $cache['lists'] ) . '</strong>' ); ?>
                             <br /><br />
-                            <strong><?php _e( 'Last update', 'wp-udemy' ); ?></strong><br />
+                            <strong><?php esc_attr_e( 'Last update', 'wp-udemy' ); ?></strong><br />
                             <?php echo ( ! empty ( $cache['last_update'] ) && is_numeric( $cache['last_update'] ) ) ? ufwp_get_datetime( $cache['last_update'] ) : 'N/A'; ?>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php _e( 'Next Cron Execution', 'wp-udemy' ); ?></th>
+                        <th><?php esc_attr_e( 'Next Cron Execution', 'wp-udemy' ); ?></th>
                         <td><?php echo ufwp_get_datetime( wp_next_scheduled( 'ufwp_wp_scheduled_events' ) ); ?></td>
                     </tr>
                 </tbody>
@@ -557,7 +546,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             <br />
 
             <p>
-                <strong><?php _e( 'Log file', 'wp-udemy' ); ?></strong><br />
+                <strong><?php esc_attr_e( 'Log file', 'wp-udemy' ); ?></strong><br />
                 <textarea rows="5" style="width: 100%;"><?php echo get_option( 'ufwp_log', __( 'No entries yet. ', 'wp-udemy' ) ); ?></textarea>
             </p>
             <p>
@@ -573,7 +562,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             <div class="ufwp-settings">
                 <div class="wrap">
-                    <h2><?php _e( 'Online Learning Courses', 'wp-udemy' ); ?></h2>
+                    <h2><?php esc_attr_e( 'Online Learning Courses', 'wp-udemy' ); ?></h2>
 
                     <div id="poststuff">
                         <div id="post-body" class="metabox-holder columns-2">
@@ -604,10 +593,10 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                     <div class="postbox">
                                         <h3><span><?php _e( 'Resources &amp; Support', 'udemy-wp' ); ?></span></h3>
                                         <div class="inside">
-                                            <p><?php _e( 'In order to make it as simple as possible for you, we created a detailed online documentation.', 'udemy-wp' ); ?></p>
+                                            <p><?php esc_attr_e( 'In order to make it as simple as possible for you, we created a detailed online documentation.', 'udemy-wp' ); ?></p>
                                             <ul>
                                                 <li>
-                                                    <a href="https://wordpress.org/plugins/wp-udemy/" target="_blank"><?php _e( 'Plugin Page', 'udemy-wp' ); ?></a>
+                                                    <a href="https://wordpress.org/plugins/wp-udemy/" target="_blank"><?php esc_attr_e( 'Plugin Page', 'udemy-wp' ); ?></a>
                                                 </li>
                                                 <li>
                                                     <?php
@@ -618,13 +607,13 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                                         ), 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' )
                                                     );
                                                     ?>
-                                                    <a href="<?php echo $docs_link; ?>" target="_blank"><?php _e( 'Documentation', 'udemy-wp' ); ?></a>
+                                                    <a href="<?php echo $docs_link; ?>" target="_blank"><?php esc_attr_e( 'Documentation', 'udemy-wp' ); ?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="https://wordpress.org/plugins/wp-udemy/#developers" target="_blank"><?php _e( 'Changelog', 'udemy-wp' ); ?></a>
+                                                    <a href="https://wordpress.org/plugins/wp-udemy/#developers" target="_blank"><?php esc_attr_e( 'Changelog', 'udemy-wp' ); ?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="https://twitter.com/kryptonitewp" target="_blank"><?php _e( 'Follow us on Twitter', 'udemy-wp' ); ?></a>
+                                                    <a href="https://twitter.com/kryptonitewp" target="_blank"><?php esc_attr_e( 'Follow us on Twitter', 'udemy-wp' ); ?></a>
                                                 </li>
                                             </ul>
                                             <?php
@@ -642,22 +631,22 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
                                 <?php if ( ! defined( 'UFWP_PRO_NAME' ) || defined( 'UFWP_PRO_DEBUG' ) ) { ?>
                                     <div class="postbox">
-                                        <h3><span><?php _e( 'Upgrade to PRO Version', 'wp-udemy' ); ?></span></h3>
+                                        <h3><span><?php esc_attr_e( 'Upgrade to PRO Version', 'wp-udemy' ); ?></span></h3>
                                         <div class="inside">
 
-                                            <p><?php _e( 'Do you want to <strong>earn money</strong> with course sales? The PRO version extends the plugin exclusively with our affiliate links feature.', 'wp-udemy' ); ?></p>
+                                            <p><?php esc_attr_e( 'Do you want to <strong>earn money</strong> with course sales? The PRO version extends the plugin exclusively with our affiliate links feature.', 'wp-udemy' ); ?></p>
 
                                             <ul>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Affiliate Links', 'wp-udemy' ); ?></strong></li>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Masked Links', 'wp-udemy' ); ?></strong></li>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Click Tracking', 'wp-udemy' ); ?></strong></li>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Highlight Bestselling Courses', 'wp-udemy' ); ?></strong></li>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Highlight New Courses', 'wp-udemy' ); ?></strong></li>
-                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php _e( 'Custom Templates', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Affiliate Links', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Masked Links', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Click Tracking', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Highlight Bestselling Courses', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Highlight New Courses', 'wp-udemy' ); ?></strong></li>
+                                                <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Custom Templates', 'wp-udemy' ); ?></strong></li>
                                             </ul>
 
                                             <p>
-                                                <?php _e( 'I would be happy if you give it a chance!', 'wp-udemy' ); ?>
+                                                <?php esc_attr_e( 'I would be happy if you give it a chance!', 'wp-udemy' ); ?>
                                             </p>
 
                                             <p>
@@ -669,7 +658,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                                     ), 'https://kryptonitewp.com/downloads/wp-udemy-pro/' )
                                                 );
                                                 ?>
-                                                <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo $upgrade_link; ?>" rel="nofollow"><?php _e( 'More details', 'wp-udemy' ); ?></a>
+                                                <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo $upgrade_link; ?>" rel="nofollow"><?php esc_attr_e( 'More details', 'wp-udemy' ); ?></a>
                                             </p>
                                         </div>
                                     </div>

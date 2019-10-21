@@ -46,7 +46,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
             }
 
             if ( empty( $instance['ids'] ) ) {
-                _e( 'Please enter a course ID.', 'wp-udemy' );
+                esc_attr_e( 'Please enter a course ID.', 'wp-udemy' );
             }
 
             if ( ! empty( $instance['ids'] ) ) {
@@ -106,7 +106,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
                 <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'ids' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'ids' ) ); ?>" type="text" value="<?php esc_attr_e( $ids ); ?>">
                 <br />
                 <small>
-                    <?php _e( 'You can enter multiple course IDs and separate them by comma.', 'wp-udemy' ); ?>
+                    <?php esc_attr_e( 'You can enter multiple course IDs and separate them by comma.', 'wp-udemy' ); ?>
                 </small>
             </p>
 
@@ -117,7 +117,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php esc_attr_e( $this->get_field_id( 'template' ) ); ?>"><?php _e( 'Template:', 'wp-udemy' ); ?></label>
+                <label for="<?php esc_attr_e( $this->get_field_id( 'template' ) ); ?>"><?php esc_attr_e( 'Template:', 'wp-udemy' ); ?></label>
                 <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'template' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'template' ) ); ?>">
                     <?php foreach ( $templates as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $template, $key ); ?>><?php echo $label; ?></option>
@@ -125,16 +125,16 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
                 </select>
                 <br />
                 <small>
-                    <?php _e( 'The templates listed above are optimized for widgets.', 'wp-udemy' ); ?>
+                    <?php esc_attr_e( 'The templates listed above are optimized for widgets.', 'wp-udemy' ); ?>
                 </small>
             </p>
 
             <p>
-                <label for="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>"><?php _e( 'Custom Template:', 'wp-udemy' ); ?></label>
+                <label for="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>"><?php esc_attr_e( 'Custom Template:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'template_custom' ) ); ?>" type="text" value="<?php esc_attr_e( $template_custom ); ?>">
                 <br />
                 <small>
-                    <?php _e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
+                    <?php esc_attr_e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
                 </small>
             </p>
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php esc_attr_e( $this->get_field_id( 'style' ) ); ?>"><?php _e( 'Style:', 'wp-udemy' ); ?></label>
+                <label for="<?php esc_attr_e( $this->get_field_id( 'style' ) ); ?>"><?php esc_attr_e( 'Style:', 'wp-udemy' ); ?></label>
                 <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'style' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'style' ) ); ?>">
                     <?php foreach ( $styles as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $style, $key ); ?>><?php echo $label; ?></option>
@@ -156,11 +156,11 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
             </p>
 
             <p>
-                <label for="<?php esc_attr_e( $this->get_field_id( 'url' ) ); ?>"><?php _e( 'Custom URL:', 'wp-udemy' ); ?></label>
+                <label for="<?php esc_attr_e( $this->get_field_id( 'url' ) ); ?>"><?php esc_attr_e( 'Custom URL:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'url' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'url' ) ); ?>" type="text" value="<?php esc_attr_e( $url ); ?>">
                 <br />
                 <small>
-                    <?php _e( 'Only working when entering one course id.', 'wp-udemy' ); ?>
+                    <?php esc_attr_e( 'Only working when entering one course id.', 'wp-udemy' ); ?>
                 </small>
             </p>
 

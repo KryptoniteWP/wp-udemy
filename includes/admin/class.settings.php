@@ -600,14 +600,13 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                                 </li>
                                                 <li>
                                                     <?php
-                                                    $docs_link = esc_url( add_query_arg( array(
+                                                    $docs_link = add_query_arg( array(
                                                             'utm_source'   => 'plugins-page',
                                                             'utm_medium'   => 'plugin-row',
                                                             'utm_campaign' => 'Online Learning Courses',
-                                                        ), 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' )
-                                                    );
+                                                        ), 'https://kryptonitewp.com/support/knb/online-learning-courses-documentation/' );
                                                     ?>
-                                                    <a href="<?php echo $docs_link; ?>" target="_blank"><?php esc_attr_e( 'Documentation', 'udemy-wp' ); ?></a>
+                                                    <a href="<?php echo esc_url( $docs_link ); ?>" target="_blank"><?php esc_attr_e( 'Documentation', 'udemy-wp' ); ?></a>
                                                 </li>
                                                 <li>
                                                     <a href="https://wordpress.org/plugins/wp-udemy/#developers" target="_blank"><?php esc_attr_e( 'Changelog', 'udemy-wp' ); ?></a>
@@ -617,14 +616,13 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                                 </li>
                                             </ul>
                                             <?php
-                                            $website_link = esc_url( add_query_arg( array(
+                                            $website_link = add_query_arg( array(
                                                     'utm_source'   => 'settings-page',
                                                     'utm_medium'   => 'infobox',
                                                     'utm_campaign' => 'Online Learning Courses',
-                                                ), 'https://kryptonitewp.com/' )
-                                            );
+                                                ), 'https://kryptonitewp.com/' );
                                             ?>
-                                            <p>&copy; Copyright <?php echo date( 'Y' ); ?> <a href="<?php echo $website_link; ?>" target="_blank">KryptoniteWP</a></p>
+                                            <p>&copy; Copyright <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( $website_link ); ?>" target="_blank">KryptoniteWP</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -651,14 +649,13 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
                                             <p>
                                                 <?php
-                                                $upgrade_link = esc_url( add_query_arg( array(
+                                                $upgrade_link = add_query_arg( array(
                                                         'utm_source'   => 'settings-page',
                                                         'utm_medium'   => 'infobox',
                                                         'utm_campaign' => 'Online Learning Courses',
-                                                    ), 'https://kryptonitewp.com/downloads/wp-udemy-pro/' )
-                                                );
+                                                    ), 'https://kryptonitewp.com/downloads/wp-udemy-pro/' );
                                                 ?>
-                                                <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo $upgrade_link; ?>" rel="nofollow"><?php esc_attr_e( 'More details', 'wp-udemy' ); ?></a>
+                                                <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo esc_url( $upgrade_link ); ?>" rel="nofollow"><?php esc_attr_e( 'More details', 'wp-udemy' ); ?></a>
                                             </p>
                                         </div>
                                     </div>

@@ -345,7 +345,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 			    <?php } ?>
             </select>
             <p>
-                <small><strong><?php esc_attr_e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php _e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
+                <small><strong><?php esc_attr_e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php esc_attr_e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
             </p>
 
             <input type="hidden" id="ufwp_delete_images_cache" name="ufwp_settings[delete_images_cache]" value="0" />
@@ -428,7 +428,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             </p>
             <p>
                 <input type="checkbox" id="ufwp_hide_course_prices" name="ufwp_settings[hide_course_prices]" value="1" <?php echo($hide_course_prices == 1 ? 'checked' : ''); ?>>
-                <label for="ufwp_hide_course_prices"><?php _e("Activate in order to hide the course prices from your site visitors.", 'wp-udemy-pro'); ?></label><br />
+                <label for="ufwp_hide_course_prices"><?php esc_attr_e("Activate in order to hide the course prices from your site visitors.", 'wp-udemy-pro'); ?></label><br />
             </p>
             <p style="margin-top: 10px;">
                 <?php esc_attr_e( 'In addition, you can show/hide the prices on a shortcode basis as well:', 'wp-udemy' ); ?>
@@ -452,7 +452,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             <br />
             <textarea id="ufwp_custom_css" name="ufwp_settings[custom_css]" rows="10" cols="80" style="width: 100%;"><?php echo stripslashes($custom_css); ?></textarea>
             <p>
-                <small><?php _e( "Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
+                <small><?php esc_attr_e( "Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
             </p>
 
             <?php
@@ -464,7 +464,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             ?>
             <input type="checkbox" id="ufwp_widget_text_shortcodes" name="ufwp_settings[widget_text_shortcodes]" value="1" <?php echo( $shortcodes == 1 ? 'checked' : '' ); ?>>
-            <label for="ufwp_widget_text_shortcodes"><?php _e( "Activate if your theme doesn't support shortcodes within text widgets.", 'wp-udemy' ); ?></label>
+            <label for="ufwp_widget_text_shortcodes"><?php esc_attr_e( "Activate if your theme doesn't support shortcodes within text widgets.", 'wp-udemy' ); ?></label>
             <?php
         }
 
@@ -540,7 +540,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             </table>
 
             <p>
-                <?php _e( 'In case one of the values above is <span style="color: red;"><strong>red</strong></span>, please get in contact with your webhoster in order to enable the missing PHP extensions.', 'wp-udemy' ); ?>
+                <?php esc_attr_e( 'In case one of the values above is <span style="color: red;"><strong>red</strong></span>, please get in contact with your webhoster in order to enable the missing PHP extensions.', 'wp-udemy' ); ?>
             </p>
 
             <br />
@@ -591,7 +591,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                             <div id="postbox-container-1" class="postbox-container">
                                 <div class="meta-box-sortables">
                                     <div class="postbox">
-                                        <h3><span><?php _e( 'Resources &amp; Support', 'udemy-wp' ); ?></span></h3>
+                                        <h3><span><?php esc_attr_e( 'Resources &amp; Support', 'udemy-wp' ); ?></span></h3>
                                         <div class="inside">
                                             <p><?php esc_attr_e( 'In order to make it as simple as possible for you, we created a detailed online documentation.', 'udemy-wp' ); ?></p>
                                             <ul>

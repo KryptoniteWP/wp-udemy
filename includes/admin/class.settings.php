@@ -622,7 +622,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                                     'utm_campaign' => 'Online Learning Courses',
                                                 ), 'https://kryptonitewp.com/' );
                                             ?>
-                                            <p>&copy; Copyright <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( $website_link ); ?>" target="_blank">KryptoniteWP</a></p>
+                                            <p>&copy; Copyright <?php esc_attr_e( date( 'Y' ) ); ?> <a href="<?php echo esc_url( $website_link ); ?>" target="_blank">KryptoniteWP</a></p>
                                         </div>
                                     </div>
                                 </div>

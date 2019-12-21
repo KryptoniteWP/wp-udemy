@@ -45,15 +45,18 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
                 echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
             }
 
-            if ( ! empty ( $instance['keywords'] ) ) {
+            if ( empty( $instance['keywords'] ) ) {
+                esc_html_e( 'Keyword missing.', 'wp-udemy' );
+            }
+    
+            if ( ! empty( $instance['keywords'] ) ) {
 
                 $shortcode_atts = array(
                     'type' => 'widget'
                 );
 
                 // Keywords
-                if ( ! empty ( $instance['keywords'] ) )
-                    $shortcode_atts['search'] = $instance['keywords'];
+                $shortcode_atts['search'] = $instance['keywords'];
 
                 // Category/subcategory TODO
                 //if ( ! empty ( $instance['category'] ) )
@@ -84,9 +87,6 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
 
                 // Execute Shortcode
                 ufwp_widget_do_shortcode( $shortcode_atts );
-
-            } else {
-                esc_html_e( 'Keyword missing.', 'wp-udemy' );
             }
 
             echo $args['after_widget'];
@@ -110,16 +110,16 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             $style           = ! empty( $instance['style'] ) ? $instance['style'] : '';
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ), 'wp-udemy' ); ?></label>
+                <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'title' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php esc_attr_e( $title ); ?>">
             </p>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>"><?php _e( 'Keywords:', 'wp-udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'keywords' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'keywords' ) ); ?>" type="text" value="<?php echo esc_attr( $keywords ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'keywords' ) ); ?>"><?php _e( 'Keywords:', 'wp-udemy' ); ?></label>
+                <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'keywords' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'keywords' ) ); ?>" type="text" value="<?php esc_attr_e( $keywords ); ?>">
             </p>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>"><?php _e( 'Items:', 'wp-udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'items' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'items' ) ); ?>" type="number" value="<?php echo esc_attr( $items ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'items' ) ); ?>"><?php _e( 'Items:', 'wp-udemy' ); ?></label>
+                <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'items' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'items' ) ); ?>" type="number" value="<?php esc_attr_e( $items ); ?>">
             </p>
             <?php
             $orderby_options = array(
@@ -129,8 +129,8 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php _e( 'Order by:', 'wp-udemy' ); ?></label>
-                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'orderby' ) ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'orderby' ) ); ?>"><?php _e( 'Order by:', 'wp-udemy' ); ?></label>
+                <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'orderby' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'orderby' ) ); ?>">
                     <?php foreach ( $orderby_options as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $orderby, $key ); ?>><?php echo $label; ?></option>
                     <?php } ?>
@@ -148,8 +148,8 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'lang' ) ); ?>"><?php _e( 'Language:', 'wp-udemy' ); ?></label>
-                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'lang' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'lang' ) ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'lang' ) ); ?>"><?php _e( 'Language:', 'wp-udemy' ); ?></label>
+                <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'lang' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'lang' ) ); ?>">
                     <?php foreach ( $lang_options as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $lang, $key ); ?>><?php echo $label; ?></option>
                     <?php } ?>
@@ -162,20 +162,20 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'template' ) ); ?>"><?php _e( 'Template:', 'wp-udemy' ); ?></label>
-                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'template' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'template' ) ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'template' ) ); ?>"><?php _e( 'Template:', 'wp-udemy' ); ?></label>
+                <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'template' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'template' ) ); ?>">
                     <?php foreach ( $templates as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $template, $key ); ?>><?php echo $label; ?></option>
                     <?php } ?>
                 </select>
                 <br />
                 <small>
-                    <?php _e( 'The templates listed above are optimized for widgets.', 'wp-udemy' ); ?>
+                    <?php esc_attr_e( 'The templates listed above are optimized for widgets.', 'wp-udemy' ); ?>
                 </small>
             </p>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'template_custom' ) ); ?>"><?php _e( 'Custom Template:', 'wp-udemy' ); ?></label>
-                <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'template_custom' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'template_custom' ) ); ?>" type="text" value="<?php echo esc_attr( $template_custom ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>"><?php esc_attr_e( 'Custom Template:', 'wp-udemy' ); ?></label>
+                <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'template_custom' ) ); ?>" type="text" value="<?php esc_attr_e( $template_custom ); ?>">
                 <br />
                 <small>
                     <?php _e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
@@ -190,8 +190,8 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
             );
             ?>
             <p>
-                <label for="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>"><?php _e( 'Style:', 'wp-udemy' ); ?></label>
-                <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'style' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'style' ) ); ?>">
+                <label for="<?php esc_attr_e( $this->get_field_id( 'style' ) ); ?>"><?php _e( 'Style:', 'wp-udemy' ); ?></label>
+                <select class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'style' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'style' ) ); ?>">
                     <?php foreach ( $styles as $key => $label ) { ?>
                         <option value="<?php echo $key; ?>" <?php selected( $style, $key ); ?>><?php echo $label; ?></option>
                     <?php } ?>
@@ -213,14 +213,14 @@ if ( ! class_exists( 'UFWP_Search_Widget' ) ) {
         public function update( $new_instance, $old_instance ) {
             $instance = array();
 
-            $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-            $instance['keywords'] = ( ! empty( $new_instance['keywords'] ) ) ? strip_tags( $new_instance['keywords'] ) : '';
-            $instance['items'] = ( ! empty( $new_instance['items'] ) ) ? strip_tags( $new_instance['items'] ) : '';
-            $instance['lang'] = ( ! empty( $new_instance['lang'] ) ) ? strip_tags( $new_instance['lang'] ) : '';
-            $instance['orderby'] = ( ! empty( $new_instance['orderby'] ) ) ? strip_tags( $new_instance['orderby'] ) : '';
-            $instance['template'] = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
+            $instance['title']           = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+            $instance['keywords']        = ( ! empty( $new_instance['keywords'] ) ) ? strip_tags( $new_instance['keywords'] ) : '';
+            $instance['items']           = ( ! empty( $new_instance['items'] ) ) ? strip_tags( $new_instance['items'] ) : '';
+            $instance['lang']            = ( ! empty( $new_instance['lang'] ) ) ? strip_tags( $new_instance['lang'] ) : '';
+            $instance['orderby']         = ( ! empty( $new_instance['orderby'] ) ) ? strip_tags( $new_instance['orderby'] ) : '';
+            $instance['template']        = ( ! empty( $new_instance['template'] ) ) ? strip_tags( $new_instance['template'] ) : '';
             $instance['template_custom'] = ( ! empty( $new_instance['template_custom'] ) ) ? strip_tags( $new_instance['template_custom'] ) : '';
-            $instance['style'] = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
+            $instance['style']           = ( ! empty( $new_instance['style'] ) ) ? strip_tags( $new_instance['style'] ) : '';
 
             return $instance;
         }

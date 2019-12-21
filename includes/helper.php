@@ -88,7 +88,7 @@ function ufwp_the_assets() {
  * Check whether it's development environment or not
  */
 function ufwp_is_development() {
-    return ( strpos( get_bloginfo('url'), 'udemy-wp.test' ) !== false ) ? true : false;
+    return ( strpos( get_bloginfo( 'url' ), 'udemy-wp.test' ) !== false ) ? true : false;
 }
 
 /**
@@ -121,7 +121,7 @@ function ufwp_debug( $args, $title = false ) {
 	if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
 
 		if ( $title ) {
-			echo '<h3>' . $title . '</h3>';
+			echo '<h3>' . esc_html( $title ) . '</h3>';
 		}
 
 		if ( $args ) {

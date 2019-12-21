@@ -20,10 +20,10 @@ function ufwp_maybe_cleanup_shortcode_output( $content ) {
     ) );
 
     // opening tag
-    $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
+    $rep = preg_replace( "/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content );
 
     // closing tag
-    $rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
+    $rep = preg_replace( "/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep );
 
     return $rep;
 }
@@ -40,7 +40,7 @@ function ufwp_add_shortcode( $atts ) {
     // Defaults
     $courses_list = false;
 
-    $output = '';
+    $output      = '';
     $output_args = array();
 
     // Get courses
@@ -50,11 +50,7 @@ function ufwp_add_shortcode( $atts ) {
         return $courses;
 
     // Type: IDs
-    if ( isset ( $atts['id'] ) ) {
-        // Silence
-
-    // Type: Lists
-    } else {
+    if ( ! isset( $atts['id'] ) ) {
         $courses_list = true;
 
         // Shortcode atts
@@ -68,10 +64,10 @@ function ufwp_add_shortcode( $atts ) {
         $output_args['items'] = sizeof( $courses );
 
         // Set type
+        $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
+
         if ( isset ( $atts['type'] ) ) {
             $output_args['type'] = $atts['type'];
-        } else {
-            $output_args['type'] = ( $courses_list ) ? 'list' : 'single';
         }
 
         // Shortcode atts

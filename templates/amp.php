@@ -8,7 +8,7 @@
  */
 
 // Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Check if course was forwarded
 if ( ! isset ( $courses ) )

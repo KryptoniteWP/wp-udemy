@@ -4,8 +4,8 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
 Requires PHP: 5.6.0
-Tested up to: 5.2.2
-Stable tag: 1.1.3
+Tested up to: 5.3.2
+Stable tag: 1.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -121,6 +121,12 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.4 (21th December 2019) =
+* New: Added "review our plugin" note to the plugin's admin page footer
+* Tweak: Code style optimizations
+* Updated translations
+* WordPress v5.3.2 compatibility
+
 = Version 1.1.3 (20th June 2019) =
 * New: Prices can now be shown/hidden via settings/shortcode
 * Updated translations
@@ -128,11 +134,11 @@ Yes of course.
 * Templates updated: amp, grid, list, standard, widget, widget_small
 
 = Version 1.1.2 (4th June 2018) =
-* Improvement: API calls now properly verify SSL certificates
+* Tweak: API calls now properly verify SSL certificates
 * WordPress v4.9.6 compatibility
 
 = Version 1.1.1 (13th April 2018) =
-* Improvement: Downloaded course images will be automatically deleted after 24 hours
+* Tweak: Downloaded course images will be automatically deleted after 24 hours
 * WordPress v4.9.5 compatibility
 
 = Version 1.1.0 (2nd April 2018) =
@@ -146,9 +152,9 @@ Yes of course.
 = Version 1.0.8 (1st December 2017) =
 * New: Price reductions now show up inside course boxes
 * New: Added support for Google Accelerated Mobile Pages (AMP)
-* Improvement: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
-* Improvement: Optimized course data handling in order to reduce the amount of data to be stored in database
-* Improvement: Optimized styles handling
+* Tweak: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
+* Tweak: Optimized course data handling in order to reduce the amount of data to be stored in database
+* Tweak: Optimized styles handling
 * Fix: Placing shortcodes in page builders might lead into into PHP warnings
 * Fix: In some cases the plugin styles were not loaded
 * WordPress v4.9.1 compatibility
@@ -165,26 +171,32 @@ Yes of course.
 * Updated translations
 
 = Version 1.0.4 (18th August 2016) =
-* Improvement: Optimized styles in order to prevent theme issues
+* Tweak: Optimized styles in order to prevent theme issues
 * Fix: Styles weren't loaded correctly when using the new ufwp shortcode
 
 = Version 1.0.3 (17th August 2016) =
 * Plugin rebranding
 
 = Version 1.0.2 (13th August 2016) =
-* Improvement: Optimized course img styles in order to prevent theme issues
+* Tweak: Optimized course img styles in order to prevent theme issues
 * Added settings quickstart grid col example
 * Templates updated: grid, list, standard, widget, widget_small
 
 = Version 1.0.1 (8th August 2016) =
 * New: Enable/disable meta via settings
-* Improvement: Optimized course image responsive styles and removed important rules
+* Tweak: Optimized course image responsive styles and removed important rules
 
 = Version 1.0.0 (23th July 2016) =
 * Initial release
 
 == Upgrade Notice ==
 
+= Version 1.1.4 (21th December 2019) =
+* New: Added "review our plugin" note to the plugin's admin page footer
+* Tweak: Code style optimizations
+* Updated translations
+* WordPress v5.3.2 compatibility
+
 = Version 1.1.3 (20th June 2019) =
 * New: Prices can now be shown/hidden via settings/shortcode
 * Updated translations
@@ -192,11 +204,11 @@ Yes of course.
 * Templates updated: amp, grid, list, standard, widget, widget_small
 
 = Version 1.1.2 (4th June 2018) =
-* Improvement: API calls now properly verify SSL certificates
+* Tweak: API calls now properly verify SSL certificates
 * WordPress v4.9.6 compatibility
 
 = Version 1.1.1 (13th April 2018) =
-* Improvement: Downloaded course images will be automatically deleted after 24 hours
+* Tweak: Downloaded course images will be automatically deleted after 24 hours
 * WordPress v4.9.5 compatibility
 
 = Version 1.1.0 (2nd April 2018) =
@@ -210,9 +222,9 @@ Yes of course.
 = Version 1.0.8 (1st December 2017) =
 * New: Price reductions now show up inside course boxes
 * New: Added support for Google Accelerated Mobile Pages (AMP)
-* Improvement: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
-* Improvement: Optimized course data handling in order to reduce the amount of data to be stored in database
-* Improvement: Optimized styles handling
+* Tweak: Cleanup shortcode output in order to prevent unwanted breaks and empty paragraphs
+* Tweak: Optimized course data handling in order to reduce the amount of data to be stored in database
+* Tweak: Optimized styles handling
 * Fix: Placing shortcodes in page builders might lead into into PHP warnings
 * Fix: In some cases the plugin styles were not loaded
 * WordPress v4.9.1 compatibility
@@ -229,20 +241,20 @@ Yes of course.
 * Updated translations
 
 = Version 1.0.4 (18th August 2016) =
-* Improvement: Optimized styles in order to prevent theme issues
+* Tweak: Optimized styles in order to prevent theme issues
 * Fix: Styles weren't loaded correctly when using the new ufwp shortcode
 
 = Version 1.0.3 (17th August 2016) =
 * Plugin rebranding
 
 = Version 1.0.2 (13th August 2016) =
-* Improvement: Optimized course img styles in order to prevent theme issues
+* Tweak: Optimized course img styles in order to prevent theme issues
 * Added settings quickstart grid col example
 * Templates updated: grid, list, standard, widget, widget_small
 
 = Version 1.0.1 (8th August 2016) =
 * New: Enable/disable meta via settings
-* Improvement: Optimized course image responsive styles and removed important rules
+* Tweak: Optimized course image responsive styles and removed important rules
 
 = Version 1.0.0 (23th July 2016) =
 * Initial release

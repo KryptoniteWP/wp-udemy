@@ -172,11 +172,11 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
          *
          * @see WP_Widget::update()
          *
-         * @param array $new_instance Values just sent to be saved.
-         *
+         * @param array $new_instance
+         * @param array $old_instance
          * @return array Updated safe values to be saved.
          */
-        public function update( $new_instance ) {
+        public function update( $new_instance, $old_instance ) {
             $instance = array();
 
             $instance['title']           = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';

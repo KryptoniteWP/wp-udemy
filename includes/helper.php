@@ -92,6 +92,18 @@ function ufwp_is_development() {
 }
 
 /**
+ * Check whether we are on our admin pages or not
+ *
+ * @return bool
+ */
+function ufwp_is_plugin_admin_area() {
+
+    $screen = get_current_screen();
+
+    return ( strpos( $screen->id, 'ufwp' ) !== false || strpos( $screen->id, 'wp-udemy' ) !== false ) ? true : false;
+}
+
+/**
  * Output data to a log for debugging reasons
  **/
 function ufwp_addlog( $string ) {

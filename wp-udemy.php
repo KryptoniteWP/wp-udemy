@@ -94,6 +94,7 @@ if ( ! class_exists( 'UFWP' ) ) {
             if ( is_admin() ) {
                 require_once UFWP_DIR . 'includes/admin/plugins.php';
                 require_once UFWP_DIR . 'includes/admin/class.settings.php';
+                require_once UFWP_DIR . 'includes/admin/hooks.php';
             }
 
             require_once UFWP_DIR . 'includes/scripts.php';

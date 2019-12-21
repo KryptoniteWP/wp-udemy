@@ -15,7 +15,7 @@
     "gee.less": "3.0.0"
   },
   "devDependencies": {
-    "clean-css": "^3.4.12",
+    "clean-css": "^4.2.1",
     "grunt": "^1.0.4",
     "grunt-autoprefixer": "^3.0.3",
     "grunt-checktextdomain": "^1.0.0",

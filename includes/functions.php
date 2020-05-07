@@ -367,7 +367,7 @@ function ufwp_display_courses( $courses = array(), $args = array() ) {
 
     // Defaults
     $type = ( isset ( $args['type'] ) ) ? $args['type'] : 'single';
-    //$grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
+    $grid = ( isset ( $args['grid'] ) && is_numeric( $args['grid'] ) ) ? $args['grid'] : '3';
 
     // Prepare courses
     $courses = ufwp_get_course_objects_from_array( $courses, $args );

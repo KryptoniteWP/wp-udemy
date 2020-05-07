@@ -390,9 +390,17 @@
     width: 46%;
   }
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ufwp .ufwp-grid--col-3 .ufwp-grid__item,
+  .ufwp .ufwp-grid--col-4 .ufwp-grid__item,
+  .ufwp .ufwp-grid--col-5 .ufwp-grid__item,
+  .ufwp .ufwp-grid--col-6 .ufwp-grid__item {
+    width: 29.33%;
+  }
+}
 .ufwp .ufwp-grid .ufwp-course {
   position: relative;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 .ufwp .ufwp-grid .ufwp-course__badge {
   position: absolute;
@@ -403,43 +411,43 @@
 .ufwp .ufwp-grid .ufwp-course__badge + .ufwp-course__badge {
   margin-top: 30px;
 }
-.ufwp .ufwp-grid .ufwp-course__rating {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+.ufwp .ufwp-grid .ufwp-course__content .ufwp-course__footer {
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
-.ufwp .ufwp-grid .ufwp-course__price {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+.ufwp .ufwp-grid .ufwp-course__content .ufwp-course__footer .ufwp-course__price {
+  display: inline-block;
+  margin: 0 auto 3px 0;
 }
-.ufwp .ufwp-grid .ufwp-course__price--list {
-  display: none;
+.ufwp .ufwp-grid .ufwp-course__content .ufwp-course__footer .ufwp-course__price--list {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  margin-right: 10px;
+}
+.ufwp .ufwp-grid .ufwp-course__content .ufwp-course__footer .ufwp-course__price:after {
+  content: none;
+}
+.ufwp .ufwp-grid .ufwp-course__content .ufwp-course__footer .ufwp-course__rating {
+  display: inline-block;
+  margin-left: 0;
 }
 .ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price {
   margin-left: 0;
-}
-@media (max-width: 480px) {
-  .ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price {
-    left: 55px;
-  }
-  .ufwp .ufwp-grid .ufwp-course--sale .ufwp-course__price--list {
-    left: 10px;
-    display: block;
-  }
-}
-@media (min-width: 481px) {
-  .ufwp .ufwp-grid.ufwp-grid--col-1 .ufwp-course--sale .ufwp-course__price,
-  .ufwp .ufwp-grid.ufwp-grid--col-2 .ufwp-course--sale .ufwp-course__price,
-  .ufwp .ufwp-grid.ufwp-grid--col-3 .ufwp-course--sale .ufwp-course__price {
-    left: 65px;
-  }
-  .ufwp .ufwp-grid.ufwp-grid--col-1 .ufwp-course--sale .ufwp-course__price--list,
-  .ufwp .ufwp-grid.ufwp-grid--col-2 .ufwp-course--sale .ufwp-course__price--list,
-  .ufwp .ufwp-grid.ufwp-grid--col-3 .ufwp-course--sale .ufwp-course__price--list {
-    left: 10px;
-    display: block;
-  }
 }
 .ufwp .ufwp-list {
   margin: 0 0 20px;

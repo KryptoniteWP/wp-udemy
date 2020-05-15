@@ -44,6 +44,10 @@ add_action( 'admin_enqueue_scripts', 'ufwp_admin_scripts', 100 );
  */
 function ufwp_scripts() {
 
+    // Don't enqueue scripts or styles in AMP mode.
+    if ( function_exists( 'is_amp_endpoint' ) &&  is_amp_endpoint() )
+        return;
+
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG || UFWP_DEBUG ) ? '' : '.min';
 

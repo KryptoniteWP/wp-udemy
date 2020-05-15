@@ -4,8 +4,8 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
 Requires PHP: 5.6.0
-Tested up to: 5.3.2
-Stable tag: 1.1.4
+Tested up to: 5.4.1
+Stable tag: 1.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -121,6 +121,11 @@ Yes of course.
 
 == Changelog ==
 
+= Version 1.1.5 (15th May 2020) =
+* Tweak: Optimisation for AMP mode
+* Fix: Grid template wasn't displayed properly
+* WordPress v5.4.1 compatibility
+
 = Version 1.1.4 (21th December 2019) =
 * New: Added "review our plugin" note to the plugin's admin page footer
 * Tweak: Code style optimizations
@@ -190,6 +195,11 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.1.5 (15th May 2020) =
+* Tweak: Optimisation for AMP mode
+* Fix: Grid template wasn't displayed properly
+* WordPress v5.4.1 compatibility
 
 = Version 1.1.4 (21th December 2019) =
 * New: Added "review our plugin" note to the plugin's admin page footer

@@ -3,7 +3,7 @@
  * Plugin Name:     UFWP - Online Learning Courses
  * Plugin URI:      https://wordpress.org/plugins/wp-udemy/
  * Description:     Display Online Learning Courses from the best platform inside your WordPress posts and pages.
- * Version:         1.1.4
+ * Version:         1.1.5
  * Author:          KryptoniteWP
  * Author URI:      https://kryptonitewp.com
  * Text Domain:     wp-udemy
@@ -64,7 +64,7 @@ if ( ! class_exists( 'UFWP' ) ) {
             define( 'UFWP_NAME', 'Online Learning Courses' );
 
             // Plugin version
-            define( 'UFWP_VER', '1.1.4' );
+            define( 'UFWP_VER', '1.1.5' );
 
             // Plugin path
             define( 'UFWP_DIR', plugin_dir_path( __FILE__ ) );
@@ -78,7 +78,7 @@ if ( ! class_exists( 'UFWP' ) ) {
 
             define( 'UFWP_DEBUG', $debug );
         }
-        
+
         /**
          * Include necessary files
          *

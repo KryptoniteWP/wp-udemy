@@ -61,7 +61,7 @@ if ( ! class_exists( 'UFWP' ) ) {
         private function setup_constants() {
 
             // Plugin name
-            define( 'UFWP_NAME', 'Online Learning Courses' );
+            define( 'UFWP_NAME', 'Udemy™ - Online Learning Courses' );
 
             // Plugin version
             define( 'UFWP_VER', '1.1.5' );

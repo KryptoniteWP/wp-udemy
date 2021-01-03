@@ -38,8 +38,8 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
         function add_admin_menu()
         {
             add_options_page(
-                __( 'UFWP Courses', 'wp-udemy' ),
-                __( 'UFWP Courses', 'wp-udemy' ),
+                __( 'Udemy™', 'wp-udemy' ),
+                __( 'Udemy™', 'wp-udemy' ),
                 'manage_options',
                 'wp-udemy',
                 array( &$this, 'options_page' )
@@ -562,7 +562,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
             <div class="ufwp-settings">
                 <div class="wrap">
-                    <h2><?php esc_attr_e( 'Online Learning Courses', 'wp-udemy' ); ?></h2>
+                    <h2><?php esc_attr_e( 'Udemy™ - Online Learning Courses', 'wp-udemy' ); ?></h2>
 
                     <div id="poststuff">
                         <div id="post-body" class="metabox-holder columns-2">

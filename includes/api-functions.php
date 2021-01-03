@@ -12,6 +12,9 @@ if( !defined( 'ABSPATH' ) ) exit;
 /*
  * Validate API credentials
  */
+/*
+ * Validate API credentials
+ */
 function ufwp_validate_api_credentials( $client_id, $client_password ) {
 
     if ( empty( $client_id ) || empty( $client_password ) )
@@ -22,7 +25,9 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
     $response = wp_remote_get( esc_url_raw( $url ), array(
         'timeout' => 15,
         'headers' => array(
-            'Authorization' => 'Basic ' . base64_encode( $client_id . ':' . $client_password )
+            'Authorization' => 'Basic ' . base64_encode( $client_id . ':' . $client_password ),
+            'Accept' => 'application/json, text/plain, */*',
+            'Content-Type' => 'application/json;charset=utf-8'
         )
     ));
 
@@ -42,9 +47,17 @@ function ufwp_validate_api_credentials( $client_id, $client_password ) {
             $validation['error']  = '';
 
         } elseif ( $response['response']['code'] === 403 ) {
+
             $validation['status'] = false;
-            $validation['error']  = __( 'Client ID and/or password invalid.', 'wp-udemy' );
-            ufwp_addlog( 'VALIDATING API CREDENTIALS FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
+
+            if ( isset ( $response['body'] ) && is_string( $response['body'] ) && strpos( $response['body'], 'cf-error-details' ) !== false ) {
+                $validation['error']  = __( 'Your domain was blocked by the Udemy firewall', 'wp-udemy' );
+                ufwp_addlog( 'VALIDATING API CREDENTIALS FAILED: BLOCKED BY UDEMY FIREWALL' );
+            } else {
+                $validation['error']  = __( 'Client ID and/or password invalid.', 'wp-udemy' );
+                ufwp_addlog( 'VALIDATING API CREDENTIALS FAILED: CLIENT ID AND/OR PASSWORD INVALID' );
+            }
+
         }
     }
 
@@ -67,7 +80,11 @@ function ufwp_get_course_from_api( $course_id ) {
     //ufwp_debug_log( 'ufwp_get_course_from_api >> $url >> ' . $url );
 
     $response = wp_remote_get( esc_url_raw( $url ), array(
-        'timeout' => 15
+        'timeout' => 15,
+        'headers' => array(
+            'Accept' => 'application/json, text/plain, */*',
+            'Content-Type' => 'application/json;charset=utf-8'
+        )
     ));
 
     //ufwp_debug($response);
@@ -118,7 +135,9 @@ function ufwp_get_courses_from_api( $args = array() ) {
     $response = wp_remote_get( esc_url_raw( $url ), array(
         'timeout' => 15,
         'headers' => array(
-            'Authorization' => 'Basic ' . base64_encode( $options['api_client_id'] . ':' . $options['api_client_password'] )
+            'Authorization' => 'Basic ' . base64_encode( $options['api_client_id'] . ':' . $options['api_client_password'] ),
+            'Accept' => 'application/json, text/plain, */*',
+            'Content-Type' => 'application/json;charset=utf-8'
         )
     ));
 

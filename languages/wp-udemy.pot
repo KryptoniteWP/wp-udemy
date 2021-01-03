@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Udemy\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-udemy\n"
-"POT-Creation-Date: 2019-12-21 10:36+0100\n"
+"POT-Creation-Date: 2021-01-03 10:26+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -431,27 +431,31 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/api-functions.php:34
+#: includes/api-functions.php:39
 msgid "Undefined error"
 msgstr ""
 
-#: includes/api-functions.php:46 includes/api-functions.php:134
+#: includes/api-functions.php:54
+msgid "Your domain was blocked by the Udemy firewall"
+msgstr ""
+
+#: includes/api-functions.php:57 includes/api-functions.php:153
 msgid "Client ID and/or password invalid."
 msgstr ""
 
-#: includes/api-functions.php:61
+#: includes/api-functions.php:74
 msgid "Course ID must be a number."
 msgstr ""
 
-#: includes/api-functions.php:85
+#: includes/api-functions.php:102
 msgid "Course not found."
 msgstr ""
 
-#: includes/api-functions.php:131
+#: includes/api-functions.php:150
 msgid "No courses found."
 msgstr ""
 
-#: includes/api-functions.php:138
+#: includes/api-functions.php:157
 msgid "Courses could not be fetched. Please try again."
 msgstr ""
 

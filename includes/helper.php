@@ -88,7 +88,7 @@ function ufwp_the_assets() {
  * Check whether it's development environment or not
  */
 function ufwp_is_development() {
-    return ( strpos( get_bloginfo( 'url' ), 'udemy-wp.test' ) !== false ) ? true : false;
+    return ( strpos( get_bloginfo( 'url' ), 'kryptonitewp-downloads.local' ) !== false ) ? true : false;
 }
 
 /**

@@ -440,7 +440,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
         }
 
         function custom_css_render() {
-            
+
             $custom_css_activated = ( isset ( $this->options['custom_css_activated'] ) && $this->options['custom_css_activated'] == '1' ) ? 1 : 0;
             $custom_css           = ( !empty ( $this->options['custom_css'] ) ) ? $this->options['custom_css'] : '';
             ?>
@@ -452,7 +452,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
             <br />
             <textarea id="ufwp_custom_css" name="ufwp_settings[custom_css]" rows="10" cols="80" style="width: 100%;"><?php echo stripslashes($custom_css); ?></textarea>
             <p>
-                <small><?php esc_attr_e( "Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
+                <small><?php _e( "Please don't use the <code>style</code> tag. Simply paste you CSS classes/definitions e.g. <code>.ufwp .ufwp-course { background-color: #333; color: #fff; }</code>", 'wp-udemy' ) ?></small>
             </p>
 
             <?php
@@ -632,7 +632,7 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                                         <h3><span><?php esc_attr_e( 'Upgrade to PRO Version', 'wp-udemy' ); ?></span></h3>
                                         <div class="inside">
 
-                                            <p><?php esc_attr_e( 'Do you want to <strong>earn money</strong> with course sales? The PRO version extends the plugin exclusively with our affiliate links feature.', 'wp-udemy' ); ?></p>
+                                            <p><?php _e( 'Do you want to <strong>earn money</strong> with course sales? The PRO version extends the plugin exclusively with our affiliate links feature.', 'wp-udemy' ); ?></p>
 
                                             <ul>
                                                 <li><span class="dashicons dashicons-star-filled ufwp-settings-star"></span> <strong><?php esc_attr_e( 'Affiliate Links', 'wp-udemy' ); ?></strong></li>

@@ -115,8 +115,7 @@ function ufwp_get_courses_from_api( $args = array() ) {
 
     $args = wp_parse_args( $args, $defaults );
 
-    //echo '<h4>Parsed args</h4>';
-    //ufwp_debug($args);
+    //ufwp_debug( $args, __FUNCTION__ . ' >> $args' );
 
     $options = ufwp_get_options();
 

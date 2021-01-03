@@ -335,18 +335,27 @@ function ufwp_get_courses( $atts ) {
         if ( isset ( $atts['search'] ) )
             $args['search'] = sanitize_text_field( $atts['search'] );
 
+        //ufwp_debug( $args, __FUNCTION__ . ' >> $args' );
+
         // Get courses
         if ( sizeof( $args ) > 0 ) {
 
             $courses_cache = ufwp_get_cache( $args );
 
             // Cache available
-            if ( $courses_cache ) {
+            if ( ! empty ( $courses_cache ) ) {
                 $courses = $courses_cache;
             } else {
                 $courses = ufwp_get_courses_from_api($args);
 
                 if ( is_array( $courses ) ) {
+
+                    // For some reason, the API does not use the passed "page_size" parameter and might return more results.
+                    if ( ! empty ( $atts['items'] ) && is_numeric( $atts['items'] ) && sizeof( $courses ) > absint( $atts['items'] ) ) {
+                        $courses = array_slice( $courses, 0, absint( $atts['items'] ) );
+                    }
+
+                    // Update cache.
                     ufwp_update_cache( $courses, $args );
                 }
             }

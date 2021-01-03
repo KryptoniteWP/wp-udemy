@@ -134,7 +134,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
                 <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'template_custom' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'template_custom' ) ); ?>" type="text" value="<?php esc_attr_e( $template_custom ); ?>">
                 <br />
                 <small>
-                    <?php esc_attr_e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
+                    <?php _e( 'You can use another template by entering the the name: e.g. <strong>my_widget</strong>.', 'wp-udemy' ); ?>
                 </small>
             </p>
 

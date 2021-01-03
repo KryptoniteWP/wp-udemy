@@ -3,7 +3,7 @@
  * Plugin Name:     Udemy™ - Online Learning Courses
  * Plugin URI:      https://wordpress.org/plugins/wp-udemy/
  * Description:     Display Online Learning Courses from the Udemy™ platform inside your WordPress posts and pages.
- * Version:         1.1.5
+ * Version:         1.2.0
  * Author:          KryptoniteWP
  * Author URI:      https://kryptonitewp.com
  * Text Domain:     wp-udemy
@@ -64,7 +64,7 @@ if ( ! class_exists( 'UFWP' ) ) {
             define( 'UFWP_NAME', 'Udemy™ - Online Learning Courses' );
 
             // Plugin version
-            define( 'UFWP_VER', '1.1.5' );
+            define( 'UFWP_VER', '1.2.0' );
 
             // Plugin path
             define( 'UFWP_DIR', plugin_dir_path( __FILE__ ) );

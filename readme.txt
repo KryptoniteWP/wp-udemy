@@ -4,8 +4,8 @@ Donate link: https://donate.flowdee.de
 Tags: udemy, udemy api, udemy course, udemy courses, course, courses, boxes, api, video course, video courses, online learning, learning, online learning courses, flowdee, kryptonitewp
 Requires at least: 3.5.1
 Requires PHP: 5.6.0
-Tested up to: 5.4.1
-Stable tag: 1.1.5
+Tested up to: 5.6.0
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -120,6 +120,15 @@ Yes of course.
 6. Admin: Widgets configuration
 
 == Changelog ==
+
+= Version 1.2.0 (3rd January 2021) =
+* Tweak: API credentials validation now shows an error in case the site/domain is being blocked by the Udemy firewall
+* Tweak: Optimized API call headers
+* Fix: When using the course search, the API returned more results than requested
+* Fix: Several HTML examples were broken on the settings and edit widget screen
+* Updated translations .pot file
+* PHP v7.4.1 compatibility
+* WordPress v5.6.0 compatibility
 
 = Version 1.1.5 (15th May 2020) =
 * Tweak: Optimisation for AMP mode

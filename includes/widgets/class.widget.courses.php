@@ -155,6 +155,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
                 </select>
             </p>
 
+            <?php if ( ! defined( 'UFWP_PRO_NAME' ) || defined( 'UFWP_PRO_DEBUG' ) ) { ?>
             <p>
                 <label for="<?php esc_attr_e( $this->get_field_id( 'url' ) ); ?>"><?php esc_attr_e( 'Custom URL:', 'wp-udemy' ); ?></label>
                 <input class="widefat" id="<?php esc_attr_e( $this->get_field_id( 'url' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'url' ) ); ?>" type="text" value="<?php esc_attr_e( $url ); ?>">
@@ -163,6 +164,7 @@ if ( ! class_exists( 'UFWP_Courses_Widget' ) ) {
                     <?php esc_attr_e( 'Only working when entering one course id.', 'wp-udemy' ); ?>
                 </small>
             </p>
+            <?php } ?>
 
             <?php
         }

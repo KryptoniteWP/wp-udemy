@@ -1,4 +1,4 @@
-@import "../common";
+@import "../../common";
 @import (reference) "../elements/badges";
 
 @image-width: 225px;
@@ -31,97 +31,97 @@
 }
 
 .template-standard-styles() {
-    
+
     .ufwp-course {
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
-        
+
         &:hover {
             box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
         }
     }
-    
+
     .ufwp-course__link {
         position: relative;
-        
+
         padding: @spacing;
     }
-    
+
     .ufwp-course__badge {
         position: absolute;
         top: @spacing * 2;
         left: 0;
         z-index: 6;
     }
-    
+
     .ufwp-course__badge + .ufwp-course__badge {
         margin-top: @badge-height * 1.5;
     }
-    
+
     .ufwp-course__img {
         position: absolute;
         top: @spacing;
         left: @spacing;
         z-index: 5;
-        
+
         display: block;
         height: auto;
         max-width: @image-width;
-        
+
         @media (max-width: @breakpoint-standard) {
             max-width: @image-medium-width;
         }
-        
+
         @media (max-width: @breakpoint-mobile) {
             position: static;
-            
+
             max-width: 100%;
             margin: 0 auto;
         }
     }
-    
+
     .ufwp-course__content {
         margin-left: @image-width + (@spacing * 2);
         min-height: @image-height;
         padding: 0;
-        
+
         @media (max-width: @breakpoint-standard) {
             margin-left: @image-medium-width + (@spacing * 2);
         }
-        
+
         @media (max-width: @breakpoint-mobile) {
             margin: @spacing 0 0;
             min-height: 0;
         }
     }
-    
+
     .ufwp-course__title {
         margin-bottom: 0;
-        
+
         font-size: 18px;
         line-height: 24px;
-        
+
         @media (max-width: @breakpoint-mobile) {
             margin-bottom: @spacing;
-            
+
             line-height: 20px;
         }
     }
-    
+
     .ufwp-course__instructors {
         display: block;
         margin-bottom: @spacing;
-        
+
         color: @color-font-lightened;
         font-style: italic;
     }
-    
+
     .ufwp-course__headline {
         display: block;
         margin-bottom: @spacing;
-        
+
         font-size: 15px;
     }
-    
+
     .ufwp-course__meta {
         @media (max-width: @breakpoint-mobile) {
             display: none;
@@ -130,19 +130,19 @@
 }
 
 .template-standard-clean-styles() {
-    
+
     .ufwp-course {
         background: none;
         box-shadow: none;
         color: inherit;
-        
+
         a {
             color: inherit;
-            
+
             &:visited {
                 color: inherit;
             }
-            
+
             &:hover,
             &:focus,
             &:active {
@@ -150,33 +150,33 @@
             }
         }
     }
-    
+
     .ufwp-course__details {
         color: inherit;
     }
 }
 
 .template-standard-light-styles() {
-    
+
     .ufwp-course {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     }
 }
 
 .template-standard-dark-styles() {
-    
+
     .ufwp-course {
         background-color: #222;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
         color: darken(#fff, 5%);
-        
+
         a {
             color: #fff;
-            
+
             &:visited {
                 color: #fff;
             }
-            
+
             &:hover,
             &:focus,
             &:active {
@@ -184,19 +184,19 @@
             }
         }
     }
-    
+
     .ufwp-course__instructors {
         color: darken(#fff, 5%);
     }
-    
+
     .ufwp-course__headline {
         color: #ccc;
     }
-    
+
     .ufwp-course__price {
         color: #fff;
     }
-    
+
     .ufwp-course__price--list {
         color: darken(#fff, 15%);
     }

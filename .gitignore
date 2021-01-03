@@ -36,5 +36,4 @@ vendor
 *~
 
 # Other
-package-lock.json
 deploy.sh

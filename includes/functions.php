@@ -495,7 +495,7 @@ function ufwp_get_amp_styles() {
         $amp_styles = '';
 
         $embed_urls = array(
-            UFWP_URL . 'public/css/amp.min.css'
+            UFWP_URL . 'assets/dist/amp.css'
         );
 
         $embed_urls = apply_filters( 'ufwp_amp_embed_urls', $embed_urls );
@@ -681,10 +681,10 @@ function ufwp_download_course_image( $file_name, $file_url ) {
 	$request = wp_remote_get( $file_url );
 
 	$file = wp_remote_retrieve_body( $request );
-	
+
 	if ( ! $file )
 		return null;
-	
+
 	// Upload image
 	$file_extension = substr( $file_url , strrpos( $file_url, '.' ) + 1 );
 

@@ -1,6 +1,6 @@
-@import "../common";
-@import "../../../node_modules/gee.less/gee";
-@import "../../../node_modules/dotsunited-equal-height-blocks/lib/mixins";
+@import "../../common";
+@import "../../../../node_modules/gee.less/gee";
+@import "../../../../node_modules/dotsunited-equal-height-blocks/lib/mixins";
 @import (reference) "../elements/badges";
 
 //== Grid
@@ -88,14 +88,14 @@
         position: relative;
         padding-bottom:  @spacing;
     }
-    
+
     .ufwp-course__badge {
         position: absolute;
         top: @spacing * 2;
         left: 0;
         z-index: 6;
     }
-    
+
     .ufwp-course__badge + .ufwp-course__badge {
         margin-top: @badge-height * 1.5;
     }

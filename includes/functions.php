@@ -694,12 +694,17 @@ function ufwp_download_course_image( $file_name, $file_url ) {
 	if ( ! $file )
 		return null;
 
-	// Upload image
-	$file_extension = substr( $file_url , strrpos( $file_url, '.' ) + 1 );
+	// Omit file hash, if exists
+    list( $file_url_without_hash ) = explode( '?', $file_url );
+
+    $haystack = ( $file_url_without_hash ) ? $file_url_without_hash : $file_url;
+
+    $file_extension = substr( $haystack , strrpos( $haystack, '.' ) + 1 );
 
 	if ( ! in_array( $file_extension, array( 'jpg', 'jpeg', 'png' ) ) )
 		return array( 'error' => __( 'Sorry, this file type is not permitted for security reasons.' ) );
 
+    // Upload image
 	$file_upload_dir = ufwp_get_downloaded_course_images_path();
 
 	$new_file = $file_upload_dir . $file_name;

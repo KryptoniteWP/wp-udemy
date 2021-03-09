@@ -589,6 +589,18 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
                             </div>
                             <!-- /#post-body-content -->
                             <div id="postbox-container-1" class="postbox-container">
+
+                                <div class="postbox">
+                                    <h3><span><span class="dashicons dashicons-star-filled"></span>&nbsp;<?php esc_html_e( 'Do You Enjoy our Plugin?', 'udemy-wp' ); ?></span></h3>
+                                    <div class="inside">
+                                        <p><?php _e( 'It would be great if you <strong>do us a big favor and give us a review</strong> for our plugin.', 'udemy-wp' ); ?></p>
+                                        <p><?php esc_html_e( 'This will help us to make others aware of our plugin and we can continue to provide it with great features in long term.', 'udemy-wp' ); ?></p>
+                                        <p>
+                                            <a class="ufwp-settings-button ufwp-settings-button--block" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/support/plugin/wp-udemy/reviews/?filter=5#new-post' ); ?>" rel="nofollow"><?php _e( 'Submit a review', 'udemy-wp' ); ?></a>
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <div class="meta-box-sortables">
                                     <div class="postbox">
                                         <h3><span><?php esc_attr_e( 'Resources &amp; Support', 'udemy-wp' ); ?></span></h3>

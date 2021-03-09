@@ -1,22 +1,28 @@
-@import "../../common";
-@import "../../../../node_modules/gee.less/gee";
-@import "../../../../node_modules/dotsunited-equal-height-blocks/lib/mixins";
+@import "../../shared/common";
 @import (reference) "../elements/badges";
+
+@template-grid-gap: 2%; // The final gap between 2 items with be this value *2
+@template-grid-col-deduct: (@template-grid-gap * 2); // We have to multiple it with 2, because the gap will be on the left and right of an item
 
 //== Grid
 .ufwp-grid {
-    .gee-grid(@gutter);
-
-    @media (min-width: (@breakpoint-mobile + 1px)) {
-        .dotsunited-equal-height-blocks-container();
-    }
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    margin: 0 -@template-grid-gap;
 }
 
 .ufwp-grid__item {
-    .gee-unit(12, 12, @gutter);
+    width: 100%;
+    margin: 0 @template-grid-gap;
 
+    // Handling equal heights of items.
     @media (min-width: (@breakpoint-mobile + 1px)) {
-        .dotsunited-equal-height-blocks-item-wrapper();
+        display: flex;
+
+        > * {
+            max-width: 100%;
+        }
     }
 }
 
@@ -24,35 +30,35 @@
     .ufwp-grid--col-2 {
 
         .ufwp-grid__item {
-            .gee-unit-width(6, 12, @gutter);
+            width: ((100% / 2) - @template-grid-col-deduct);
         }
     }
 
     .ufwp-grid--col-3 {
 
         .ufwp-grid__item {
-            .gee-unit-width(4, 12, @gutter);
+            width: ((100% / 3) - @template-grid-col-deduct);
         }
     }
 
     .ufwp-grid--col-4 {
 
         .ufwp-grid__item {
-            .gee-unit-width(3, 12, @gutter);
+            width: ((100% / 4) - @template-grid-col-deduct);
         }
     }
 
     .ufwp-grid--col-5 {
 
         .ufwp-grid__item {
-            .gee-unit-width(12/5, 12, @gutter);
+            width: ((100% / 5) - @template-grid-col-deduct);
         }
     }
 
     .ufwp-grid--col-6 {
 
         .ufwp-grid__item {
-            .gee-unit-width(2, 12, @gutter);
+            width: ((100% / 6) - @template-grid-col-deduct);
         }
     }
 }
@@ -64,7 +70,7 @@
     .ufwp-grid--col-6 {
 
         .ufwp-grid__item {
-            .gee-unit-width(6, 12, @gutter);
+            width: ((100% / 2) - @template-grid-col-deduct);
         }
     }
 }
@@ -76,7 +82,7 @@
     .ufwp-grid--col-6 {
 
         .ufwp-grid__item {
-            .gee-unit-width(4, 12, @gutter);
+            width: ((100% / 3) - @template-grid-col-deduct);
         }
     }
 }

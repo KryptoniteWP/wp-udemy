@@ -504,7 +504,7 @@ function ufwp_get_amp_styles() {
         $amp_styles = '';
 
         $embed_urls = array(
-            UFWP_URL . 'assets/dist/amp.css'
+            UFWP_URL . 'assets/dist/css/amp.css'
         );
 
         $embed_urls = apply_filters( 'ufwp_amp_embed_urls', $embed_urls );

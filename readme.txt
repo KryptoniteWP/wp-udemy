@@ -123,6 +123,7 @@ Yes of course.
 
 = Version 1.3.0 (15th March 2021) =
 * New: Added settings widget to easily submit a plugin review
+* Tweak: Optimized images settings
 * Tweak: Optimized assets building
 * WordPress v5.7 compatibility
 
@@ -213,6 +214,9 @@ Yes of course.
 * Initial release
 
 == Upgrade Notice ==
+
+= Version 1.3.0 (15th March 2021) =
+* If you used the setting "download images", you need to visit the settings page and choose this option again
 
 = Version 1.1.5 (15th May 2020) =
 * Tweak: Optimisation for AMP mode

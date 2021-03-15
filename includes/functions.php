@@ -756,9 +756,9 @@ function ufwp_download_course_image( $file_name, $file_url ) {
  */
 function ufwp_cleanup_image_cache_event() {
 
-	$download_images = ufwp_get_option( 'download_images', 0 );
+	$download_images = ( 'download' === ufwp_get_option( 'download_images', false ) ) ? true : false;
 
-	if ( '1' != $download_images )
+	if ( ! $download_images )
 		return;
 
 	$download_img_cached = get_transient( 'ufwp_download_images_cached' );

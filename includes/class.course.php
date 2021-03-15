@@ -157,7 +157,7 @@ if (!class_exists('UFWP_Course')) {
             if ( ! isset( $this->course[$image_size] ) )
                 return $image_placeholder;
 
-            $image = ( ufwp_get_option( 'download_images', false ) ) ? $this->get_downloaded_image( $image_size ) : $this->course[$image_size];
+            $image = ( 'download' === ufwp_get_option( 'images', false ) ) ? $this->get_downloaded_image( $image_size ) : $this->course[$image_size];
 
             return ( ! empty( $image ) ) ? $image : $image_placeholder;
         }

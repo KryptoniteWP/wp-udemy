@@ -331,21 +331,21 @@ if ( ! class_exists( 'UFWP_Settings' ) ) {
 
 	    function images_render() {
 
-		    $download_img_options = array(
+		    $images_options = apply_filters( 'ufwp_images_options', array(
 			    ''  => __( 'Load images directly from Udemy server (Default)', 'wp-udemy' ),
-			    '1' => __( 'Download images and host them locally', 'wp-udemy' ),
-		    );
+			    'download' => __( 'Download images and host them locally', 'wp-udemy' ),
+		    ) );
 
-		    $download_images = ( isset ( $this->options['download_images'] ) ) ? $this->options['download_images'] : '';
+		    $images = ( isset ( $this->options['images'] ) ) ? $this->options['images'] : '';
 
 		    ?>
-            <select id="ufwp_download_images" name="ufwp_settings[download_images]">
-			    <?php foreach ( $download_img_options as $key => $label ) { ?>
-                    <option value="<?php echo $key; ?>" <?php selected( $download_images, $key ); ?>><?php echo $label; ?></option>
+            <select id="ufwp_images" name="ufwp_settings[images]">
+			    <?php foreach ( $images_options as $key => $label ) { ?>
+                    <option value="<?php echo $key; ?>" <?php selected( $images, $key ); ?>><?php echo $label; ?></option>
 			    <?php } ?>
             </select>
             <p>
-                <small><strong><?php esc_attr_e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php esc_attr_e( "The use of this feature is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
+                <small><strong><?php esc_attr_e( 'Important note:', 'aawp'); ?></strong>&nbsp;<?php esc_attr_e( "Using any other setting than loading images directly from the Udemy servers is on your responsibility. Downloaded images will be automatically deleted every 24 hours.", 'wp-udemy' ); ?></small>
             </p>
 
             <input type="hidden" id="ufwp_delete_images_cache" name="ufwp_settings[delete_images_cache]" value="0" />

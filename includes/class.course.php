@@ -159,6 +159,8 @@ if (!class_exists('UFWP_Course')) {
 
             $image = ( 'download' === ufwp_get_option( 'images', false ) ) ? $this->get_downloaded_image( $image_size ) : $this->course[$image_size];
 
+            $image = apply_filters( 'ufwp_course_image', $image );
+
             return ( ! empty( $image ) ) ? $image : $image_placeholder;
         }
 
